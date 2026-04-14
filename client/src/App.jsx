@@ -11,6 +11,7 @@ import AcidsAndBases from './pages/lessons/AcidsAndBases'
 import ChemicalReactions from './pages/lessons/ChemicalReactions'
 import Quiz from './pages/Quiz'
 import EquationBalancer from './pages/EquationBalancer'
+import Reactions from './pages/Reactions'
 import Login from './pages/Login'
 import Register from './pages/Register'
 
@@ -32,6 +33,7 @@ export default function App() {
               <Route path="/lessons/chemical-reactions" element={<ChemicalReactions />} />
               <Route path="/quiz" element={<Quiz />} />
               <Route path="/balancer" element={<EquationBalancer />} />
+              <Route path="/reactions" element={<Reactions />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes>

@@ -7,6 +7,7 @@ const navLinks = [
   { to: '/lessons',         label: 'Lessons',          icon: '📚' },
   { to: '/quiz',            label: 'Quiz',             icon: '✏️' },
   { to: '/balancer',        label: 'Equation Balancer',icon: '⚖️' },
+  { to: '/reactions',       label: 'Reactions',        icon: '🔬' },
 ]
 
 export default function Navbar() {

@@ -35,6 +35,14 @@ const features = [
     color: 'from-orange-900 to-orange-800',
     border: 'border-orange-700',
   },
+  {
+    icon: '🔬',
+    title: 'Reaction Library',
+    description: 'Search 70+ reactions by element or compound — see balanced equations, types, conditions, and explanations.',
+    to: '/reactions',
+    color: 'from-teal-900 to-teal-800',
+    border: 'border-teal-700',
+  },
 ]
 
 const topics = [
