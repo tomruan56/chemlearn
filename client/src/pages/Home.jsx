@@ -38,10 +38,18 @@ const features = [
   {
     icon: '🔬',
     title: 'Reaction Library',
-    description: 'Search 70+ reactions by element or compound — see balanced equations, types, conditions, and explanations.',
+    description: 'Search 200+ reactions by element or compound — see balanced equations, types, conditions, and explanations.',
     to: '/reactions',
     color: 'from-teal-900 to-teal-800',
     border: 'border-teal-700',
+  },
+  {
+    icon: '🔗',
+    title: 'Reaction Chain Graph',
+    description: 'Explore an interactive force-directed graph showing how every element and compound is connected through reactions.',
+    to: '/reaction-graph',
+    color: 'from-pink-900 to-pink-800',
+    border: 'border-pink-700',
   },
 ]
 

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -14,6 +15,9 @@ import EquationBalancer from './pages/EquationBalancer'
 import Reactions from './pages/Reactions'
 import Login from './pages/Login'
 import Register from './pages/Register'
+
+// Heavy graph library — load only when the route is visited
+const ReactionGraph = lazy(() => import('./pages/ReactionGraph'))
 
 export default function App() {
   return (
@@ -34,6 +38,15 @@ export default function App() {
               <Route path="/quiz" element={<Quiz />} />
               <Route path="/balancer" element={<EquationBalancer />} />
               <Route path="/reactions" element={<Reactions />} />
+              <Route path="/reaction-graph" element={
+                <Suspense fallback={
+                  <div className="flex items-center justify-center h-64 text-gray-500 text-sm animate-pulse">
+                    Loading graph…
+                  </div>
+                }>
+                  <ReactionGraph />
+                </Suspense>
+              } />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes>
