@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-950 text-gray-100 min-h-screen;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200;
+  }
+  .btn-secondary {
+    @apply bg-gray-700 hover:bg-gray-600 text-gray-100 font-semibold px-4 py-2 rounded-lg transition-colors duration-200;
+  }
+  .card {
+    @apply bg-gray-900 border border-gray-800 rounded-xl p-6;
+  }
+  .input {
+    @apply bg-gray-800 border border-gray-700 text-gray-100 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500;
+  }
+}
+
+/* Periodic table element hover */
+.element-cell {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.element-cell:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  box-shadow: 0 0 0 2px #60a5fa;
+}
+
+/* Quiz option */
+.quiz-option {
+  @apply border border-gray-700 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-blue-500 hover:bg-blue-900/20;
+}
+.quiz-option.correct {
+  @apply border-green-500 bg-green-900/30 text-green-300;
+}
+.quiz-option.incorrect {
+  @apply border-red-500 bg-red-900/30 text-red-300;
+}
+.quiz-option.selected {
+  @apply border-blue-500 bg-blue-900/30;
+}

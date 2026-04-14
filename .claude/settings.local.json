@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(curl -s http://localhost:3001/api/quiz/topics)",
+      "Bash(curl -s \"http://localhost:3001/api/quiz/questions/stoichiometry\")",
+      "Bash(npx vite:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm run:*)",
+      "Bash(pkill -f \"node index.js\")",
+      "Bash(NODE_ENV=production node server/index.js)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/)",
+      "Bash(curl -s http://localhost:3001/api/health)",
+      "Bash(pkill -f \"nodemon\")",
+      "Bash(PORT=3002 NODE_ENV=production node server/index.js)",
+      "Bash(curl -s -o /dev/null -w \"HTML status: %{http_code}\\\\n\" http://localhost:3002/)",
+      "Bash(curl -s http://localhost:3002/api/health)",
+      "Bash(pkill -f \"PORT=3002\")"
+    ]
+  }
+}
