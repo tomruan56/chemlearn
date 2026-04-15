@@ -49,7 +49,7 @@ export default function PeriodicTable() {
   const filteredElements = filter === 'all' ? null : filter
 
   return (
-    <div className="max-w-[1400px] mx-auto px-2 py-6">
+    <div className="max-w-[1400px] mx-auto px-4 py-6">
       <div className="flex flex-wrap items-center gap-3 mb-4 px-2">
         <h1 className="text-2xl font-bold">Periodic Table</h1>
         <select

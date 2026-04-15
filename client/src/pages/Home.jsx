@@ -22,7 +22,7 @@ const features = [
   {
     icon: '✏️',
     title: 'Practice Quizzes',
-    description: 'Test your knowledge with 10 questions per topic. Track your best scores and progress.',
+    description: 'Test yourself with 10 difficulty-graded tests per topic (100 questions each) — from Very Easy to Expert.',
     to: '/quiz',
     color: 'from-green-900 to-green-800',
     border: 'border-green-700',
@@ -76,7 +76,20 @@ export default function Home() {
     }
   }, [token])
 
-  const completedTopics = progress.filter(p => p.completed).length
+  // progress is now per topic+test; tally passed tests per topic
+  const TOTAL_TESTS = topics.length * 10   // 5 topics × 10 tests = 50
+  const passedTests = progress.filter(p => p.completed).length
+
+  const topicStats = topics.reduce((acc, t) => {
+    const topicId = t.name.toLowerCase().replace(/ & /g, '_and_').replace(/ /g, '_')
+    const rows = progress.filter(p => p.topic === topicId)
+    acc[topicId] = {
+      passed:    rows.filter(r => r.completed).length,
+      attempted: rows.length,
+      best:      rows.length ? Math.max(...rows.map(r => r.bestScore)) : null,
+    }
+    return acc
+  }, {})
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -100,17 +113,18 @@ export default function Home() {
         <div className="card mb-10">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold text-lg">Your Progress</h2>
-            <span className="text-sm text-gray-400">{completedTopics} / {topics.length} topics completed</span>
+            <span className="text-sm text-gray-400">{passedTests} / {TOTAL_TESTS} tests passed</span>
           </div>
           <div className="w-full bg-gray-800 rounded-full h-3 mb-4">
             <div
               className="bg-blue-500 h-3 rounded-full transition-all duration-500"
-              style={{ width: `${(completedTopics / topics.length) * 100}%` }}
+              style={{ width: `${(passedTests / TOTAL_TESTS) * 100}%` }}
             />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
             {topics.map(topic => {
-              const p = progress.find(x => x.topic === topic.name.toLowerCase().replace(/ & /g, '_and_').replace(/ /g, '_'))
+              const topicId = topic.name.toLowerCase().replace(/ & /g, '_and_').replace(/ /g, '_')
+              const s = topicStats[topicId]
               return (
                 <Link
                   key={topic.to}
@@ -119,8 +133,8 @@ export default function Home() {
                 >
                   <div className="text-2xl mb-1">{topic.icon}</div>
                   <div className="text-xs text-gray-400 mb-1">{topic.name}</div>
-                  {p ? (
-                    <div className="text-xs font-semibold text-green-400">Best: {p.best_score}/10</div>
+                  {s.attempted > 0 ? (
+                    <div className="text-xs font-semibold text-green-400">{s.passed}/10 passed</div>
                   ) : (
                     <div className="text-xs text-gray-600">Not started</div>
                   )}
