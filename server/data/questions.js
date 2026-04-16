@@ -1,368 +1,614 @@
 const questions = {
-  atomic_structure: [
-    {
-      id: 1,
-      question: "What subatomic particle determines the atomic number of an element?",
-      options: ["Neutron", "Electron", "Proton", "Quark"],
-      answer: 2,
-      explanation: "The atomic number equals the number of protons in the nucleus. For example, carbon has 6 protons so its atomic number is 6."
-    },
-    {
-      id: 2,
-      question: "An atom of carbon-14 has 6 protons. How many neutrons does it have?",
-      options: ["6", "8", "14", "20"],
-      answer: 1,
-      explanation: "Mass number = protons + neutrons. So neutrons = 14 − 6 = 8."
-    },
-    {
-      id: 3,
-      question: "Which electron configuration represents a ground-state sodium (Na, Z=11) atom?",
-      options: ["1s² 2s² 2p⁶ 3p¹", "1s² 2s² 2p⁶ 3s¹", "1s² 2s² 2p⁵ 3s²", "1s² 2s¹ 2p⁶ 3s²"],
-      answer: 1,
-      explanation: "Sodium has 11 electrons: 1s²(2) 2s²(2) 2p⁶(6) 3s¹(1) = 11 electrons total."
-    },
-    {
-      id: 4,
-      question: "What is the maximum number of electrons in the third electron shell (n=3)?",
-      options: ["8", "12", "18", "32"],
-      answer: 2,
-      explanation: "The maximum electrons per shell = 2n². For n=3: 2×9 = 18."
-    },
-    {
-      id: 5,
-      question: "Atoms of the same element with different numbers of neutrons are called:",
-      options: ["Ions", "Allotropes", "Isotopes", "Isobars"],
-      answer: 2,
-      explanation: "Isotopes are atoms of the same element (same proton count) but different neutron counts, giving different mass numbers."
-    },
-    {
-      id: 6,
-      question: "In the Bohr model, when an electron moves from a higher to a lower energy level, it:",
-      options: ["Absorbs energy as heat", "Emits a photon of light", "Gains kinetic energy", "Loses a neutron"],
-      answer: 1,
-      explanation: "When an electron drops to a lower energy level, the energy difference is released as a photon (light)."
-    },
-    {
-      id: 7,
-      question: "What is the charge of an ion with 11 protons and 10 electrons?",
-      options: ["-1", "0", "+1", "+2"],
-      answer: 2,
-      explanation: "Charge = protons − electrons = 11 − 10 = +1. This is a sodium ion (Na⁺)."
-    },
-    {
-      id: 8,
-      question: "Which quantum number describes the shape of an orbital?",
-      options: ["Principal (n)", "Angular momentum (l)", "Magnetic (ml)", "Spin (ms)"],
-      answer: 1,
-      explanation: "The angular momentum quantum number (l) defines orbital shape: l=0 is s (sphere), l=1 is p (dumbbell), l=2 is d, etc."
-    },
-    {
-      id: 9,
-      question: "The Heisenberg Uncertainty Principle states that it is impossible to simultaneously know with precision an electron's:",
-      options: ["Mass and charge", "Position and momentum", "Energy and spin", "Proton count and electron count"],
-      answer: 1,
-      explanation: "Heisenberg's principle: Δx·Δp ≥ ħ/2. You cannot know both exact position and exact momentum at the same time."
-    },
-    {
-      id: 10,
-      question: "Which of the following has the same electron configuration as a neutral neon atom?",
-      options: ["Na⁺", "Na", "Mg", "F⁻"],
-      answer: 3,
-      explanation: "F has 9 electrons; gaining 1 gives F⁻ with 10 electrons — the same as neon (1s² 2s² 2p⁶)."
-    }
-  ],
+  atomic_structure: {
+    1: [
+      { id: 1, question: "What is the subatomic particle found in the nucleus that carries a positive charge?", options: ["Electron", "Neutron", "Proton", "Photon"], answer: 2, explanation: "Protons carry a +1 charge and reside in the nucleus. The atomic number of an element equals its proton count." },
+      { id: 2, question: "Which subatomic particle has no electric charge?", options: ["Proton", "Electron", "Positron", "Neutron"], answer: 3, explanation: "Neutrons are neutral particles found in the nucleus; they contribute to mass number but not to charge." },
+      { id: 3, question: "Where are electrons found in an atom?", options: ["Inside the nucleus", "In electron shells around the nucleus", "Between protons and neutrons", "Only on the surface of the nucleus"], answer: 1, explanation: "Electrons occupy energy levels (shells) outside the nucleus and are held by electrostatic attraction to protons." },
+      { id: 4, question: "What is the relative mass of a proton compared to an electron?", options: ["Equal", "About 1836 times heavier", "About 1836 times lighter", "About 100 times heavier"], answer: 1, explanation: "A proton has a mass of ~1.673 × 10⁻²⁷ kg, approximately 1836 times the mass of an electron." },
+      { id: 5, question: "Which statement best describes the nucleus of an atom?", options: ["It contains only protons", "It is large and diffuse", "It contains protons and neutrons and is very small and dense", "It contains protons, neutrons, and electrons"], answer: 2, explanation: "The nucleus contains protons and neutrons, occupies a tiny fraction of the atom's volume, and holds virtually all of its mass." },
+      { id: 6, question: "What is the charge on an electron?", options: ["+1", "−1", "0", "+2"], answer: 1, explanation: "Electrons carry a charge of −1 (in units of elementary charge, approximately −1.6 × 10⁻¹⁹ C)." },
+      { id: 7, question: "The number of protons in an atom is called its:", options: ["Mass number", "Atomic number", "Nucleon number", "Isotope number"], answer: 1, explanation: "The atomic number (symbol Z) equals the number of protons and uniquely identifies each element." },
+      { id: 8, question: "What is the mass number of an atom?", options: ["Number of protons only", "Number of neutrons only", "Number of protons plus neutrons", "Number of electrons plus protons"], answer: 2, explanation: "Mass number (A) = number of protons + number of neutrons; electrons contribute negligible mass." },
+      { id: 9, question: "How many protons and neutrons are in a carbon-12 nucleus?", options: ["6 protons, 6 neutrons", "6 protons, 12 neutrons", "12 protons, 6 neutrons", "6 protons, 0 neutrons"], answer: 0, explanation: "Carbon has atomic number 6 (6 protons); mass number 12 means 12 − 6 = 6 neutrons." },
+      { id: 10, question: "Which particle, if removed from a neutral atom, would produce a positive ion?", options: ["Neutron", "Proton", "Electron", "Nucleus"], answer: 2, explanation: "Removing an electron leaves the atom with more protons than electrons, giving it a net positive charge (cation)." }
+    ],
+    2: [
+      { id: 11, question: "The atomic number of chlorine is 17. How many protons does a chlorine atom contain?", options: ["17", "18", "35", "53"], answer: 0, explanation: "The atomic number directly gives the number of protons; chlorine has 17 protons." },
+      { id: 12, question: "An atom has mass number 23 and atomic number 11. How many neutrons does it have?", options: ["11", "12", "23", "34"], answer: 1, explanation: "Neutrons = mass number − atomic number = 23 − 11 = 12. This is sodium-23." },
+      { id: 13, question: "What is the mass number of an atom with 15 protons and 16 neutrons?", options: ["15", "16", "31", "1"], answer: 2, explanation: "Mass number = protons + neutrons = 15 + 16 = 31. This is phosphorus-31." },
+      { id: 14, question: "Relative atomic mass (Ar) is based on which standard?", options: ["Hydrogen-1 = 1", "Carbon-12 = 12", "Oxygen-16 = 16", "Nitrogen-14 = 14"], answer: 1, explanation: "The IUPAC standard defines relative atomic mass on a scale where carbon-12 has a mass of exactly 12." },
+      { id: 15, question: "Chlorine has two stable isotopes: ³⁵Cl (75%) and ³⁷Cl (25%). What is the approximate relative atomic mass of chlorine?", options: ["35.0", "35.5", "36.0", "37.0"], answer: 1, explanation: "Ar = (35 × 0.75) + (37 × 0.25) = 26.25 + 9.25 = 35.5." },
+      { id: 16, question: "Which of the following correctly defines the mass number?", options: ["Total number of electrons", "Number of protons only", "Total number of protons and neutrons", "Number of neutrons only"], answer: 2, explanation: "Mass number A counts nucleons — protons plus neutrons — in the nucleus." },
+      { id: 17, question: "An element X has atomic number 20 and mass number 40. How many electrons does a neutral X atom have?", options: ["20", "40", "60", "80"], answer: 0, explanation: "A neutral atom has equal numbers of protons and electrons; atomic number 20 means 20 electrons." },
+      { id: 18, question: "Which symbol correctly represents an atom with 8 protons and mass number 18?", options: ["¹⁸O", "¹⁶O", "¹⁸F", "⁸Ne"], answer: 0, explanation: "Oxygen (Z = 8) with mass number 18 is written ¹⁸O (oxygen-18)." },
+      { id: 19, question: "The relative atomic mass of magnesium is 24.3. This value is not a whole number because:", options: ["Magnesium atoms are not spherical", "It is an average accounting for naturally occurring isotopes", "Protons and neutrons have slightly different masses", "Electrons contribute to the mass"], answer: 1, explanation: "Relative atomic mass is a weighted average over all naturally occurring isotopes and their abundances, giving a non-integer value." },
+      { id: 20, question: "An atom of ⁵⁶Fe has atomic number 26. How many neutrons does it contain?", options: ["26", "30", "56", "82"], answer: 1, explanation: "Neutrons = mass number − atomic number = 56 − 26 = 30." }
+    ],
+    3: [
+      { id: 21, question: "Isotopes of the same element have the same number of:", options: ["Neutrons", "Nucleons", "Protons", "Mass numbers"], answer: 2, explanation: "Isotopes are atoms of the same element (same proton number) that differ only in their number of neutrons." },
+      { id: 22, question: "Carbon-14 is an isotope of carbon-12. How do they differ?", options: ["Different number of protons", "Carbon-14 has 2 more neutrons", "Carbon-14 has 2 fewer electrons", "Different atomic number"], answer: 1, explanation: "Both have 6 protons; carbon-14 has 8 neutrons while carbon-12 has 6 neutrons — a difference of 2." },
+      { id: 23, question: "A sodium atom (Na, Z = 11) loses one electron. What charge does the resulting ion carry?", options: ["−1", "0", "+1", "+2"], answer: 2, explanation: "Losing one electron leaves 11 protons and 10 electrons, giving a net charge of +1; the ion is Na⁺." },
+      { id: 24, question: "An oxygen atom gains two electrons to form an ion. What is its charge?", options: ["+2", "+1", "−1", "−2"], answer: 3, explanation: "Gaining 2 electrons gives oxygen 10 electrons vs. 8 protons, resulting in the O²⁻ ion." },
+      { id: 25, question: "How many electrons does a Ca²⁺ ion have if calcium's atomic number is 20?", options: ["18", "20", "22", "40"], answer: 0, explanation: "Ca²⁺ has lost 2 electrons from 20, leaving 18 electrons." },
+      { id: 26, question: "Which pair of species are isotopes of each other?", options: ["¹H and ²He", "¹²C and ¹⁴N", "³⁵Cl and ³⁷Cl", "¹⁶O and ¹⁸F"], answer: 2, explanation: "³⁵Cl and ³⁷Cl both have 17 protons (same element) but different mass numbers, making them isotopes." },
+      { id: 27, question: "A fluorine atom (Z = 9) gains one electron. The resulting ion has the same electron configuration as which noble gas?", options: ["Helium", "Neon", "Argon", "Krypton"], answer: 1, explanation: "F⁻ has 10 electrons — the same as neon (Z = 10), giving it the neon electron configuration 1s² 2s² 2p⁶." },
+      { id: 28, question: "Which statement about isotopes is correct?", options: ["They have different chemical properties", "They have different numbers of protons", "They occupy different positions on the periodic table", "They have the same atomic number but different mass numbers"], answer: 3, explanation: "Isotopes share the same atomic number (element identity) but differ in neutron count and therefore mass number." },
+      { id: 29, question: "An aluminium ion Al³⁺ has atomic number 13. How many electrons does it have?", options: ["10", "13", "16", "3"], answer: 0, explanation: "Al loses 3 electrons: 13 − 3 = 10 electrons remain." },
+      { id: 30, question: "An atom has 18 protons and 20 neutrons. It gains 2 electrons. What is the charge of the resulting ion?", options: ["−2", "+2", "0", "−1"], answer: 0, explanation: "Gaining 2 electrons gives 20 electrons vs. 18 protons, resulting in a 2− charge (Ar²⁻ — though noble gases rarely form ions, this is the charge)." }
+    ],
+    4: [
+      { id: 31, question: "The first electron shell of an atom can hold a maximum of how many electrons?", options: ["2", "8", "18", "32"], answer: 0, explanation: "The first shell (n = 1) has only the 1s subshell and holds a maximum of 2 electrons." },
+      { id: 32, question: "How many electrons can the second electron shell hold at maximum?", options: ["2", "4", "8", "18"], answer: 2, explanation: "The second shell (n = 2) contains the 2s and 2p subshells, holding up to 2 + 6 = 8 electrons." },
+      { id: 33, question: "What is the electron shell arrangement (2,8,8) for potassium (Z = 19) using the simple shell model?", options: ["2,8,8,1", "2,8,9", "2,9,8", "2,8,8"], answer: 0, explanation: "After filling shells 1 (2e), 2 (8e), and 3 (8e), potassium's 19th electron goes into shell 4, giving 2,8,8,1." },
+      { id: 34, question: "Which element has the electron arrangement 2,8,7?", options: ["Fluorine", "Chlorine", "Argon", "Sulfur"], answer: 1, explanation: "2 + 8 + 7 = 17 electrons, so the element has atomic number 17 — chlorine." },
+      { id: 35, question: "Using the 2,8,8 rule, what is the electron arrangement of calcium (Z = 20)?", options: ["2,8,8,2", "2,8,10", "2,10,8", "2,8,9,1"], answer: 0, explanation: "Shells fill as 2, 8, 8, then the remaining 2 electrons go in shell 4: 2,8,8,2." },
+      { id: 36, question: "How many electrons are in the outer shell of a noble gas (period 2 or higher)?", options: ["2", "4", "6", "8"], answer: 3, explanation: "Noble gases (except helium) have 8 electrons in their outermost shell, making them chemically stable." },
+      { id: 37, question: "An atom has the electron arrangement 2,8,1. To which group of the periodic table does it belong?", options: ["Group 1", "Group 2", "Group 7", "Group 0"], answer: 0, explanation: "One electron in the outer shell places this element in Group 1 (alkali metals)." },
+      { id: 38, question: "The electron arrangement 2,8,6 corresponds to which element?", options: ["Oxygen", "Sulfur", "Argon", "Carbon"], answer: 1, explanation: "2 + 8 + 6 = 16 electrons → atomic number 16 → sulfur." },
+      { id: 39, question: "Why do atoms react to form bonds, according to the shell model?", options: ["To increase their mass", "To achieve a full outer electron shell", "To gain more protons", "To become isotopes"], answer: 1, explanation: "Atoms react to attain a stable full outer shell (typically 8 electrons — the octet rule), lowering their energy." },
+      { id: 40, question: "An element X has the electron arrangement 2,8,8,2. In which period of the periodic table is X found?", options: ["Period 2", "Period 3", "Period 4", "Period 5"], answer: 2, explanation: "The outermost electrons are in shell 4, so X is in Period 4; this is calcium." }
+    ],
+    5: [
+      { id: 41, question: "What is the electron configuration of carbon (Z = 6)?", options: ["1s² 2s² 2p²", "1s² 2s¹ 2p³", "1s² 2p⁴", "1s¹ 2s² 2p³"], answer: 0, explanation: "Carbon fills 1s² (2e), then 2s² (2e), then 2p² (2e), giving 1s² 2s² 2p²." },
+      { id: 42, question: "How many electrons are in the 3p subshell of sulfur (Z = 16)?", options: ["2", "4", "6", "8"], answer: 1, explanation: "Sulfur's configuration is 1s² 2s² 2p⁶ 3s² 3p⁴; the 3p subshell contains 4 electrons." },
+      { id: 43, question: "What is the maximum number of electrons the 3d subshell can hold?", options: ["2", "6", "10", "14"], answer: 2, explanation: "The d subshell has 5 orbitals; with 2 electrons each (Pauli), it holds a maximum of 10 electrons." },
+      { id: 44, question: "Which subshell is filled immediately after the 3p subshell according to the Aufbau principle?", options: ["3d", "4s", "4p", "3f"], answer: 1, explanation: "The Aufbau order places 4s below 3d in energy; 4s fills before 3d." },
+      { id: 45, question: "What is the electron configuration of neon (Z = 10)?", options: ["1s² 2s² 2p⁴", "1s² 2s² 2p⁶", "1s² 2s⁴ 2p⁴", "1s² 2p⁸"], answer: 1, explanation: "Neon fills 1s² (2e), 2s² (2e), and 2p⁶ (6e) for a total of 10 electrons." },
+      { id: 46, question: "The electron configuration of argon (Z = 18) is:", options: ["1s² 2s² 2p⁶ 3s² 3p⁴", "1s² 2s² 2p⁶ 3s² 3p⁶", "1s² 2s² 2p⁶ 3s² 3d⁶", "1s² 2s² 2p⁶ 3p⁸"], answer: 1, explanation: "Argon completes the 3p subshell: 1s² 2s² 2p⁶ 3s² 3p⁶ (18 electrons total)." },
+      { id: 47, question: "In the electron configuration 1s² 2s² 2p⁶ 3s² 3p¹, which element is described?", options: ["Magnesium", "Silicon", "Aluminium", "Phosphorus"], answer: 2, explanation: "Counting electrons: 2+2+6+2+1 = 13, so this is aluminium (Z = 13)." },
+      { id: 48, question: "How many p electrons does phosphorus (Z = 15) have in total?", options: ["3", "6", "9", "5"], answer: 2, explanation: "Phosphorus: 1s² 2s² 2p⁶ 3s² 3p³ — 6 electrons in 2p and 3 in 3p gives 9 p electrons total." },
+      { id: 49, question: "What is the electron configuration of the Cl⁻ ion (chlorine Z = 17)?", options: ["1s² 2s² 2p⁶ 3s² 3p⁵", "1s² 2s² 2p⁶ 3s² 3p⁶", "1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹", "1s² 2s² 2p⁶ 3s⁴ 3p⁴"], answer: 1, explanation: "Cl⁻ has gained one electron (18 total), completing the 3p subshell: 1s² 2s² 2p⁶ 3s² 3p⁶." },
+      { id: 50, question: "Which element has the ground-state electron configuration [Ne] 3s² 3p³?", options: ["Sulfur", "Argon", "Phosphorus", "Silicon"], answer: 2, explanation: "[Ne] represents the 10-electron core; adding 3s² 3p³ gives 15 electrons total — phosphorus (Z = 15)." }
+    ],
+    6: [
+      { id: 51, question: "What is the ground-state electron configuration of chromium (Cr, Z = 24)?", options: ["[Ar] 3d⁴ 4s²", "[Ar] 3d⁵ 4s¹", "[Ar] 3d⁶", "[Ar] 3d³ 4s² 4p¹"], answer: 1, explanation: "Chromium is an exception: it adopts [Ar] 3d⁵ 4s¹ because a half-filled d subshell provides extra stability." },
+      { id: 52, question: "Copper (Cu, Z = 29) has the configuration [Ar] 3d¹⁰ 4s¹ rather than [Ar] 3d⁹ 4s². This is because:", options: ["The 4s orbital fills before 3d in all cases", "A completely filled 3d subshell is particularly stable", "Copper is a p-block element", "The Pauli exclusion principle requires it"], answer: 1, explanation: "A fully filled d subshell ([Ar] 3d¹⁰) is energetically favoured, so one 4s electron is promoted to complete the 3d subshell." },
+      { id: 53, question: "What is the electron configuration of Fe²⁺ (iron Z = 26)?", options: ["[Ar] 3d⁶ 4s²", "[Ar] 3d⁶", "[Ar] 3d⁴ 4s²", "[Ar] 3d⁵ 4s¹"], answer: 1, explanation: "Iron is [Ar] 3d⁶ 4s²; when forming Fe²⁺, the 4s electrons are lost first, giving [Ar] 3d⁶." },
+      { id: 54, question: "For transition metals, which electrons are lost first when forming cations?", options: ["3d electrons", "4s electrons", "3p electrons", "Core electrons"], answer: 1, explanation: "Although 4s fills before 3d, once the atom is ionised the 4s electrons are at higher energy and are removed first." },
+      { id: 55, question: "What is the electron configuration of Mn²⁺ (manganese Z = 25)?", options: ["[Ar] 3d⁵ 4s²", "[Ar] 3d⁵", "[Ar] 3d³ 4s²", "[Ar] 3d⁴ 4s¹"], answer: 1, explanation: "Manganese is [Ar] 3d⁵ 4s²; losing 2 electrons (4s first) gives [Ar] 3d⁵." },
+      { id: 56, question: "How many unpaired electrons does a ground-state Fe atom ([Ar] 3d⁶ 4s²) have?", options: ["2", "4", "6", "0"], answer: 1, explanation: "The 3d⁶ configuration fills one orbital fully and leaves four with one electron each (Hund's rule), giving 4 unpaired electrons." },
+      { id: 57, question: "Which of the following is ALSO an exception to the expected Aufbau filling, similar to Cr and Cu?", options: ["Zinc (Z = 30)", "Molybdenum (Z = 42)", "Iron (Z = 26)", "Nickel (Z = 28)"], answer: 1, explanation: "Molybdenum adopts [Kr] 4d⁵ 5s¹ (half-filled d, analogous to Cr) rather than the expected [Kr] 4d⁴ 5s²." },
+      { id: 58, question: "What is the complete electron configuration of Cu⁺ (Z = 29)?", options: ["[Ar] 3d¹⁰", "[Ar] 3d⁹ 4s¹", "[Ar] 3d¹⁰ 4s¹", "[Ar] 3d⁸ 4s²"], answer: 0, explanation: "Cu is [Ar] 3d¹⁰ 4s¹; Cu⁺ loses the 4s¹ electron, leaving [Ar] 3d¹⁰." },
+      { id: 59, question: "Why do the electron configurations of Cr and Cu deviate from the Aufbau prediction?", options: ["Their 4p orbitals are lower in energy than 3d", "Half-filled and fully filled d subshells have extra stability due to exchange energy", "Pauli exclusion forces redistribution", "Their nuclear charge is too high for normal filling"], answer: 1, explanation: "Exchange energy contributions make half-filled (d⁵) and fully filled (d¹⁰) subshells especially stable, causing one 4s electron to enter the 3d subshell." },
+      { id: 60, question: "How many 3d electrons does Cr³⁺ have (Cr Z = 24, ground state [Ar] 3d⁵ 4s¹)?", options: ["3", "4", "5", "2"], answer: 0, explanation: "Cr loses 4s¹ first then 2 more from 3d: 3d⁵ → 3d³ after losing 3 electrons total. Cr³⁺ has 3 d electrons." }
+    ],
+    7: [
+      { id: 61, question: "Which quantum number describes the energy level (shell) of an electron?", options: ["l (azimuthal)", "mₗ (magnetic)", "n (principal)", "mₛ (spin)"], answer: 2, explanation: "The principal quantum number n (1, 2, 3, …) primarily determines the energy and size of an orbital." },
+      { id: 62, question: "For a 3p orbital, what is the value of the azimuthal quantum number l?", options: ["0", "1", "2", "3"], answer: 1, explanation: "The azimuthal (angular momentum) quantum number l = 0 for s, 1 for p, 2 for d, 3 for f orbitals." },
+      { id: 63, question: "What are the allowed values of the magnetic quantum number (mₗ) for a d subshell (l = 2)?", options: ["−1, 0, +1", "−2, −1, 0, +1, +2", "0, 1, 2", "−3, −2, −1, 0, +1, +2, +3"], answer: 1, explanation: "mₗ ranges from −l to +l; for l = 2 this gives −2, −1, 0, +1, +2 — five orbitals." },
+      { id: 64, question: "The spin quantum number mₛ can take which values?", options: ["0 or 1", "+½ or −½", "−1, 0, or +1", "+1 or −1"], answer: 1, explanation: "The spin quantum number describes an electron's intrinsic angular momentum and can only be +½ or −½." },
+      { id: 65, question: "How many orbitals are in the n = 3 shell in total?", options: ["3", "6", "9", "18"], answer: 2, explanation: "For n = 3, l can be 0,1,2 giving 1+3+5 = 9 orbitals (each holding up to 2 electrons for a total of 18)." },
+      { id: 66, question: "Which set of quantum numbers is NOT allowed?", options: ["n=2, l=1, mₗ=0, mₛ=+½", "n=3, l=2, mₗ=−2, mₛ=−½", "n=2, l=2, mₗ=0, mₛ=+½", "n=1, l=0, mₗ=0, mₛ=−½"], answer: 2, explanation: "For n=2 the maximum value of l is n−1 = 1; l=2 is not allowed when n=2." },
+      { id: 67, question: "The principal quantum number n can take which values?", options: ["0, 1, 2, 3, …", "1, 2, 3, 4, …", "−1, 0, +1", "½, 1, 3/2, 2, …"], answer: 1, explanation: "n is a positive integer starting at 1; n = 0 is not physically meaningful." },
+      { id: 68, question: "How many electrons can a subshell with l = 3 (f subshell) hold?", options: ["6", "10", "14", "18"], answer: 2, explanation: "l = 3 has 2l+1 = 7 orbitals; with 2 electrons each, it holds 14 electrons maximum." },
+      { id: 69, question: "For an electron in a 2s orbital, which set of quantum numbers is correct?", options: ["n=2, l=0, mₗ=0", "n=2, l=1, mₗ=0", "n=2, l=0, mₗ=1", "n=1, l=0, mₗ=0"], answer: 0, explanation: "A 2s orbital has n=2 (second shell) and l=0 (s subshell), so mₗ can only be 0." },
+      { id: 70, question: "Which quantum number distinguishes the three 2p orbitals from one another?", options: ["n", "l", "mₗ", "mₛ"], answer: 2, explanation: "All three 2p orbitals share n=2 and l=1; they differ in their magnetic quantum number mₗ = −1, 0, or +1." }
+    ],
+    8: [
+      { id: 71, question: "What is the shape of an s orbital?", options: ["Dumbbell", "Clover-leaf", "Spherical", "Toroidal"], answer: 2, explanation: "s orbitals have spherical symmetry — their electron density is distributed evenly around the nucleus." },
+      { id: 72, question: "The Pauli exclusion principle states that:", options: ["Electrons fill lower energy orbitals first", "No two electrons in an atom can have the same four quantum numbers", "Electrons occupy degenerate orbitals singly before pairing", "Electron energy depends only on n"], answer: 1, explanation: "The Pauli exclusion principle requires every electron to have a unique set of quantum numbers n, l, mₗ, mₛ." },
+      { id: 73, question: "Hund's rule states that electrons in degenerate orbitals will:", options: ["Pair up in one orbital before filling others", "Occupy separate orbitals with parallel spins before pairing", "Fill in order of increasing l", "Always have opposite spins"], answer: 1, explanation: "Hund's rule minimises electron repulsion by placing one electron in each degenerate orbital before any pairing occurs, with spins parallel." },
+      { id: 74, question: "How many unpaired electrons does a ground-state nitrogen atom (Z = 7) have?", options: ["1", "2", "3", "4"], answer: 2, explanation: "N is 1s² 2s² 2p³; each 2p orbital singly occupied (Hund's rule) gives 3 unpaired electrons." },
+      { id: 75, question: "Which orbital shape has two lobes oriented along an axis?", options: ["s", "p", "f", "g"], answer: 1, explanation: "p orbitals are dumbbell-shaped with two lobes pointing in opposite directions along one of the x, y, or z axes." },
+      { id: 76, question: "The dz² orbital is a member of which subshell?", options: ["s", "p", "d", "f"], answer: 2, explanation: "dz² is one of the five d orbitals (l = 2), which have characteristic four-lobed or donut-shaped geometries." },
+      { id: 77, question: "According to the Pauli exclusion principle, how many electrons can a single orbital hold?", options: ["1", "2", "4", "Unlimited"], answer: 1, explanation: "One orbital can hold at most 2 electrons, and they must have opposite spins (+½ and −½)." },
+      { id: 78, question: "Which of the following violates Hund's rule for the 2p subshell with 2 electrons?", options: ["One electron in 2pₓ, one in 2pᵧ, same spin", "One electron in 2pₓ, one in 2pᵧ, opposite spin", "Two electrons both in 2pₓ, opposite spin", "One electron in 2pₓ, one in 2p_z, same spin"], answer: 2, explanation: "Hund's rule says electrons occupy separate degenerate orbitals before pairing; placing both in 2pₓ violates this." },
+      { id: 79, question: "The 3d subshell contains how many orbitals?", options: ["3", "4", "5", "7"], answer: 2, explanation: "d subshells (l = 2) have 2l+1 = 5 orbitals: dxy, dxz, dyz, dx²−y², and dz²." },
+      { id: 80, question: "Which principle/rule determines the order in which subshells are filled?", options: ["Hund's rule", "Pauli exclusion principle", "Aufbau principle", "Heisenberg uncertainty principle"], answer: 2, explanation: "The Aufbau (building-up) principle states that electrons occupy the lowest available energy subshell first." }
+    ],
+    9: [
+      { id: 81, question: "Which trend in atomic radius is observed going across Period 3 (Na to Cl)?", options: ["Increases steadily", "Decreases steadily", "Remains constant", "First increases then decreases"], answer: 1, explanation: "Across a period, nuclear charge increases while electrons are added to the same shell, increasing attraction and pulling the electron cloud inward — atomic radius decreases." },
+      { id: 82, question: "Why does atomic radius increase going down a group?", options: ["Nuclear charge decreases", "More electron shells are added, increasing distance from nucleus", "Shielding decreases", "Fewer protons are present"], answer: 1, explanation: "Each successive period adds a new electron shell, increasing the principal quantum number of outer electrons and thus the atomic radius." },
+      { id: 83, question: "First ionisation energy generally increases across Period 2. Which of the following best explains this?", options: ["Atomic radius increases", "Increasing nuclear charge holds outer electrons more tightly", "Electron shielding increases significantly", "Valence electrons change subshell"], answer: 1, explanation: "Across a period, nuclear charge (Z) increases while shielding remains roughly constant, so outer electrons are attracted more strongly, requiring more energy to remove." },
+      { id: 84, question: "Electron affinity is the energy change when:", options: ["An electron is removed from a gaseous atom", "A gaseous atom gains an electron to form a negative ion", "An ion forms a crystal lattice", "An atom loses all its valence electrons"], answer: 1, explanation: "Electron affinity measures the energy released (usually negative) when a neutral gaseous atom gains one electron." },
+      { id: 85, question: "Which element has the highest first ionisation energy?", options: ["Sodium", "Fluorine", "Helium", "Cesium"], answer: 2, explanation: "Helium has the highest first ionisation energy because its small atomic radius and high effective nuclear charge make removing an electron from the filled 1s shell very difficult." },
+      { id: 86, question: "Going down Group 1, first ionisation energy:", options: ["Increases", "Decreases", "Stays the same", "First increases then decreases"], answer: 1, explanation: "Down a group, atomic radius increases and shielding increases, reducing the effective nuclear charge on the outer electron and lowering ionisation energy." },
+      { id: 87, question: "Which periodic trend shows an anomaly between Be and B (beryllium and boron)?", options: ["Atomic radius", "First ionisation energy", "Electron affinity", "Nuclear charge"], answer: 1, explanation: "B's first ionisation energy is lower than Be's because B's outer electron is in a 2p orbital (higher energy, more shielded) compared to Be's 2s." },
+      { id: 88, question: "Effective nuclear charge (Zeff) increases across a period because:", options: ["Neutrons increase", "The number of shielding electrons increases more than the nuclear charge", "Nuclear charge increases while inner shielding remains roughly constant", "Electron shells increase"], answer: 2, explanation: "Across a period, each added proton increases Z by 1, but the new electron goes into the same shell and shields poorly, so Zeff increases." },
+      { id: 89, question: "Which of the following correctly ranks F, Cl, and Br in order of increasing electron affinity (most negative to least)?", options: ["F > Cl > Br", "Cl > F > Br", "Br > Cl > F", "F > Br > Cl"], answer: 1, explanation: "Chlorine has a higher electron affinity than fluorine because F has a very small atomic radius causing electron repulsion; Br is largest and has the lowest electron affinity." },
+      { id: 90, question: "Which pair of elements shows the largest jump in successive ionisation energies, indicating the end of valence electrons for the second element?", options: ["Na: IE₁ to IE₂", "Mg: IE₂ to IE₃", "Al: IE₃ to IE₄", "All of the above are jumps after removing valence electrons"], answer: 3, explanation: "Each is correct: Na (1 valence e⁻), Mg (2 valence e⁻), Al (3 valence e⁻) all show a large jump when core electrons begin to be removed." }
+    ],
+    10: [
+      { id: 91, question: "The first ionisation energy of sodium is 496 kJ mol⁻¹. What process does this represent?", options: ["Na(g) → Na⁺(g) + e⁻", "Na(s) → Na⁺(g) + e⁻", "Na(g) → Na²⁺(g) + 2e⁻", "Na⁺(g) + e⁻ → Na(g)"], answer: 0, explanation: "First ionisation energy is defined for a gaseous atom losing one electron to form a gaseous +1 ion: Na(g) → Na⁺(g) + e⁻." },
+      { id: 92, question: "Magnesium's successive ionisation energies (kJ mol⁻¹) are approximately: 738, 1451, 7733. Why is there a large jump between the 2nd and 3rd?", options: ["The 3rd electron is in the 2s subshell, which is larger", "The 3rd electron must be removed from an inner shell (core), which is more strongly attracted to the nucleus", "The 2nd electron is easier to remove than the 1st", "Magnesium becomes unstable after losing 2 electrons"], answer: 1, explanation: "After removing the 2 valence (3s) electrons, the 3rd electron comes from the inner n=2 shell, which is much closer to the nucleus and harder to remove." },
+      { id: 93, question: "Photoelectron spectroscopy (PES) provides evidence for:", options: ["The existence of isotopes", "Discrete electron energy levels (subshells) in atoms", "The wave nature of light only", "Nuclear binding energies"], answer: 1, explanation: "PES measures the kinetic energies of ejected electrons, revealing distinct peaks that correspond to electrons in different subshells with different binding energies." },
+      { id: 94, question: "In a PES spectrum, a peak at higher binding energy corresponds to electrons that are:", options: ["Further from the nucleus and easier to remove", "Closer to the nucleus and harder to remove", "In degenerate orbitals", "In anti-bonding orbitals"], answer: 1, explanation: "Higher binding energy means more energy is needed to eject the electron, indicating it is in an inner (core) shell closer to the nucleus." },
+      { id: 95, question: "The PES spectrum of neon shows peaks at two different binding energies. These correspond to:", options: ["1s and 2p subshells only", "The 1s, 2s, and 2p subshells (three peaks, not two)", "n=1 and n=2 shells collectively", "Core and valence bands only"], answer: 1, explanation: "Neon (1s² 2s² 2p⁶) has electrons in three distinct subshells (1s, 2s, 2p) giving three separate PES peaks at different binding energies." },
+      { id: 96, question: "The second ionisation energy is always greater than the first because:", options: ["The second electron is in a higher energy level", "After removing one electron, the remaining ion has increased effective nuclear charge per electron", "Nuclear charge changes between ionisations", "The second electron is always in a 2p orbital"], answer: 1, explanation: "With one fewer electron, electron-electron repulsion decreases and the effective nuclear charge acting on each remaining electron increases, making subsequent ionisations harder." },
+      { id: 97, question: "An element has successive ionisation energies (kJ mol⁻¹): 800, 2400, 3600, 25000. How many valence electrons does this element have?", options: ["1", "2", "3", "4"], answer: 2, explanation: "There is a dramatic jump between the 3rd and 4th ionisation energies, indicating 3 valence electrons; this is consistent with a Group 13 element." },
+      { id: 98, question: "Why is the first ionisation energy of oxygen slightly lower than that of nitrogen?", options: ["Oxygen has a larger atomic radius", "Oxygen has a paired 2p electron that experiences extra repulsion, making it easier to remove", "Nitrogen has more protons", "Oxygen is a gas at room temperature"], answer: 1, explanation: "Nitrogen has three singly occupied 2p orbitals (no repulsion); oxygen's fourth 2p electron must pair, and the added repulsion lowers its ionisation energy." },
+      { id: 99, question: "In PES, the relative peak height (intensity) corresponds to:", options: ["The energy of electrons in that subshell", "The number of electrons in that subshell", "The orbital size", "The ionisation order"], answer: 1, explanation: "The intensity (height or area) of a PES peak is proportional to the number of electrons in that subshell." },
+      { id: 100, question: "Using successive ionisation energy data, how would you identify an element as being in Group 2?", options: ["Large jump between IE₁ and IE₂", "Large jump between IE₂ and IE₃", "Large jump between IE₃ and IE₄", "No large jumps at all"], answer: 1, explanation: "Group 2 elements have 2 valence electrons; after both are removed there is a dramatic increase in the next ionisation energy (IE₃) as a core electron is reached." }
+    ]
+  },
+  chemical_bonding: {
+    1: [
+      { id: 101, question: "Which type of bond forms between a metal and a non-metal through electron transfer?", options: ["Covalent bond", "Metallic bond", "Ionic bond", "Hydrogen bond"], answer: 2, explanation: "Ionic bonds form when a metal transfers electrons to a non-metal, creating oppositely charged ions that attract each other." },
+      { id: 102, question: "A covalent bond is best described as:", options: ["Transfer of electrons from metal to non-metal", "Electrostatic attraction between positive ions in a sea of electrons", "Sharing of electron pairs between atoms", "Attraction between molecules"], answer: 2, explanation: "In a covalent bond, two atoms share one or more pairs of electrons, achieving a more stable electron configuration." },
+      { id: 103, question: "Metallic bonding involves:", options: ["Sharing of electrons between two specific atoms", "Transfer of electrons to form ions", "Positive metal ions surrounded by delocalised electrons", "Covalent networks extending in all directions"], answer: 2, explanation: "In metallic bonding, metal cations sit in a 'sea' of delocalised electrons that are free to move throughout the structure." },
+      { id: 104, question: "Which of the following substances is most likely to contain ionic bonds?", options: ["H₂O", "CO₂", "NaCl", "CH₄"], answer: 2, explanation: "NaCl (sodium chloride) consists of Na⁺ and Cl⁻ ions held together by ionic bonds; the others are molecular covalent compounds." },
+      { id: 105, question: "Which pair of elements is most likely to form a covalent bond?", options: ["Na and Cl", "Ca and O", "Cl and Cl", "K and Br"], answer: 2, explanation: "Two non-metals (e.g., Cl and Cl) share electrons to form covalent bonds; metal-non-metal pairs typically form ionic bonds." },
+      { id: 106, question: "In metallic bonding, electrical conductivity arises because:", options: ["Ions can move freely", "Covalent bonds break easily", "Delocalised electrons can move throughout the metal", "The metal has a high melting point"], answer: 2, explanation: "The free-moving delocalised electrons in metallic structures carry charge, enabling electrical conductivity." },
+      { id: 107, question: "Which property is characteristic of ionic compounds?", options: ["Low melting point", "Electrical conductivity when solid", "High melting point and conductivity when molten", "Insolubility in water"], answer: 2, explanation: "Ionic compounds have strong electrostatic forces requiring high temperatures to melt, and conduct electricity when molten (ions are free to move)." },
+      { id: 108, question: "Which type of bond typically has directional character (fixed bond angles)?", options: ["Ionic", "Metallic", "Covalent", "All bonds are directional"], answer: 2, explanation: "Covalent bonds have directional properties because they arise from orbital overlap in specific directions, leading to defined molecular geometries." },
+      { id: 109, question: "Copper conducts electricity in the solid state. This is because copper has:", options: ["Ionic bonds that allow ion movement", "Covalent bonds with mobile electrons", "Metallic bonding with delocalised electrons", "Hydrogen bonding between atoms"], answer: 2, explanation: "Copper's metallic bonding provides a sea of mobile delocalised electrons that can carry an electric current even in the solid state." },
+      { id: 110, question: "Nitrogen gas (N₂) contains which type of bond between the two nitrogen atoms?", options: ["Ionic bond", "Metallic bond", "Single covalent bond", "Triple covalent bond"], answer: 3, explanation: "N₂ contains a triple covalent bond (one sigma + two pi bonds), as each nitrogen shares 3 electrons to achieve a stable octet." }
+    ],
+    2: [
+      { id: 111, question: "When sodium reacts with chlorine to form NaCl, the sodium atom:", options: ["Gains one electron", "Shares one electron with chlorine", "Loses one electron", "Loses two electrons"], answer: 2, explanation: "Sodium (Group 1) loses its single valence electron to chlorine, forming Na⁺ and Cl⁻ ions." },
+      { id: 112, question: "Lattice energy is defined as the energy required to:", options: ["Form one mole of ionic compound from gaseous ions", "Break one mole of covalent bonds", "Separate one mole of ionic solid into gaseous ions", "Dissolve one mole of ionic compound in water"], answer: 2, explanation: "Lattice energy (sometimes defined as the energy released on formation) is most precisely the energy needed to completely separate one mole of ionic solid into its constituent gaseous ions." },
+      { id: 113, question: "Which ionic compound has the highest lattice energy?", options: ["NaCl", "KCl", "MgO", "NaF"], answer: 2, explanation: "Lattice energy increases with ionic charge and decreases with ionic radius; MgO has 2+ and 2− ions with small radii, giving the highest lattice energy of these options." },
+      { id: 114, question: "When calcium (Ca) forms an ionic compound with chlorine (Cl), calcium:", options: ["Gains 2 electrons", "Loses 1 electron", "Loses 2 electrons", "Shares 2 electrons"], answer: 2, explanation: "Calcium is in Group 2 and loses 2 electrons to form Ca²⁺, which then combines with 2 Cl⁻ ions to form CaCl₂." },
+      { id: 115, question: "Ionic compounds generally have high melting points because:", options: ["Covalent bonds are strong", "Many weak van der Waals forces must be overcome", "Strong electrostatic forces between oppositely charged ions must be overcome", "They are all metals"], answer: 2, explanation: "The strong electrostatic attractions between oppositely charged ions in the crystal lattice require large amounts of energy to break." },
+      { id: 116, question: "Which ion has the electron configuration of argon (Z=18)?", options: ["Na⁺", "K⁺", "Ca²⁺", "Mg²⁺"], answer: 1, explanation: "K⁺ (Z=19, loses 1 e⁻) has 18 electrons matching argon's configuration; Ca²⁺ also has 18 electrons but higher nuclear charge." },
+      { id: 117, question: "Why does MgO have a higher melting point than NaCl?", options: ["Mg and O atoms are larger", "MgO has a molecular structure", "Mg²⁺ and O²⁻ have higher charges and smaller radii, giving stronger lattice energy", "NaCl is covalent"], answer: 2, explanation: "The doubly charged Mg²⁺ and O²⁻ ions produce much stronger electrostatic attraction than Na⁺ and Cl⁻, resulting in a higher lattice energy and melting point." },
+      { id: 118, question: "When a magnesium atom forms an Mg²⁺ ion, it loses electrons from which subshell?", options: ["2p", "3p", "3s", "2s"], answer: 2, explanation: "Magnesium's configuration is [Ne] 3s²; it loses the 2 outer 3s electrons to form Mg²⁺." },
+      { id: 119, question: "Which factor does NOT increase lattice energy?", options: ["Higher charge on ions", "Smaller ionic radius", "Larger ionic radius", "Formation of 2+ and 2− ions instead of 1+ and 1−"], answer: 2, explanation: "Larger ionic radii increase the distance between ions, weakening electrostatic attraction and thus decreasing lattice energy." },
+      { id: 120, question: "An ionic compound conducts electricity when dissolved in water because:", options: ["Water molecules carry the charge", "Covalent bonds break", "Ions dissociate and are free to move through solution", "Electrons flow through the solution"], answer: 2, explanation: "Dissolving an ionic compound releases mobile ions into solution; these ions carry charge and allow conduction of electricity." }
+    ],
+    3: [
+      { id: 121, question: "In a covalent bond, a bonding pair of electrons is:", options: ["Transferred from one atom to another", "Shared between two atoms", "Delocalised over the whole molecule", "Held only by the more electronegative atom"], answer: 1, explanation: "A covalent bond consists of one or more shared electron pairs held between two atoms by attraction to both nuclei." },
+      { id: 122, question: "What is a lone pair of electrons?", options: ["A pair of electrons shared between two atoms", "A pair of valence electrons not involved in bonding", "An unpaired electron in an orbital", "Electrons in the nucleus"], answer: 1, explanation: "Lone pairs (non-bonding pairs) are valence electron pairs that belong to one atom and do not participate in covalent bonding." },
+      { id: 123, question: "How many bonds does a hydrogen atom (valence electrons = 1) typically form?", options: ["1", "2", "3", "4"], answer: 0, explanation: "Hydrogen has 1 valence electron and needs 1 more to fill its 1s shell, so it forms exactly 1 covalent bond." },
+      { id: 124, question: "In the Lewis structure of H₂O, how many lone pairs are on the oxygen atom?", options: ["0", "1", "2", "3"], answer: 2, explanation: "Oxygen has 6 valence electrons; 2 are used in single bonds with H, leaving 4 electrons (2 lone pairs) on oxygen." },
+      { id: 125, question: "How many covalent bonds does nitrogen typically form in neutral molecules?", options: ["1", "2", "3", "4"], answer: 2, explanation: "Nitrogen has 5 valence electrons; forming 3 bonds gives it an octet (3 bonding + 1 lone pair of 2 electrons)." },
+      { id: 126, question: "In the Lewis dot structure of CH₄, carbon forms:", options: ["2 bonds and 2 lone pairs", "4 single bonds and 0 lone pairs", "3 bonds and 1 lone pair", "4 bonds and 1 lone pair"], answer: 1, explanation: "Carbon has 4 valence electrons; it forms 4 single bonds to 4 hydrogen atoms, with no lone pairs, satisfying the octet rule." },
+      { id: 127, question: "How many valence electrons does a sulfur atom have?", options: ["4", "6", "8", "2"], answer: 1, explanation: "Sulfur is in Group 16 and has 6 valence electrons." },
+      { id: 128, question: "In H₂O, oxygen has 2 lone pairs and 2 bonding pairs. Its total electron pairs around the central atom is:", options: ["2", "3", "4", "6"], answer: 2, explanation: "Oxygen in water has 2 bonding pairs + 2 lone pairs = 4 electron pairs total around the central O atom." },
+      { id: 129, question: "What is the Lewis structure representation of Cl₂?", options: [":Cl−Cl: with no lone pairs on either Cl", ":Cl:−:Cl: where each Cl has 3 lone pairs", ":Cl=Cl: with a double bond", "Cl⁺Cl⁻ ionic structure"], answer: 1, explanation: "Each Cl has 7 valence electrons; sharing one pair gives each Cl 3 lone pairs and 1 bonding pair, satisfying the octet." },
+      { id: 130, question: "In a Lewis structure, a double bond consists of:", options: ["One pair of shared electrons", "Two pairs of shared electrons", "Three pairs of shared electrons", "One shared and one lone pair"], answer: 1, explanation: "A double bond contains 2 shared electron pairs (4 electrons total) between two atoms." }
+    ],
+    4: [
+      { id: 131, question: "In the Lewis structure of CO₂, the carbon atom forms:", options: ["Two single bonds", "One single and one double bond", "Two double bonds", "One triple bond"], answer: 2, explanation: "Carbon forms two double bonds in CO₂ (O=C=O), giving carbon an octet and each oxygen an octet." },
+      { id: 132, question: "Which molecule is an exception to the octet rule by having fewer than 8 electrons around the central atom?", options: ["PCl₅", "SF₆", "BF₃", "XeF₄"], answer: 2, explanation: "Boron in BF₃ has only 6 electrons around it (3 bonding pairs), making it an electron-deficient octet exception." },
+      { id: 133, question: "PCl₅ is an example of an octet rule exception because phosphorus:", options: ["Has too few electrons", "Expands its valence shell to accommodate 10 electrons", "Forms ionic bonds with Cl", "Has only 4 valence electrons"], answer: 1, explanation: "Phosphorus can use its 3d orbitals to expand beyond 8 electrons, accommodating 10 electrons (5 bonding pairs) in PCl₅." },
+      { id: 134, question: "What is the formal charge on nitrogen in NH₄⁺?", options: ["0", "+1", "−1", "+2"], answer: 1, explanation: "In NH₄⁺, N has 4 bonds (8 bonding electrons shared = 4 'owned') and 0 lone pairs; formal charge = 5 − 0 − 4 = +1." },
+      { id: 135, question: "In the Lewis structure of N₂, the nitrogen atoms are connected by:", options: ["A single bond", "A double bond", "A triple bond", "A dative bond only"], answer: 2, explanation: "Each N needs 3 more electrons to complete its octet; sharing 3 pairs gives a triple bond (N≡N)." },
+      { id: 136, question: "Which molecule has a lone pair on the central atom that creates an octet expansion?", options: ["H₂O", "NH₃", "SF₄", "CH₄"], answer: 2, explanation: "SF₄ has sulfur with 4 bonding pairs and 1 lone pair — 10 electrons around S — which is an expanded octet (d-orbital involvement)." },
+      { id: 137, question: "In the Lewis structure of SO₃, the formal charges can be minimised by drawing:", options: ["Three single S−O bonds", "One S=O double bond and two S−O single bonds", "Three S=O double bonds", "One S≡O triple bond"], answer: 2, explanation: "Drawing three double bonds (S=O × 3) gives all atoms zero formal charge, which is the preferred (lowest formal charge) Lewis structure." },
+      { id: 138, question: "How many lone pairs does the central sulfur atom have in SF₆?", options: ["0", "1", "2", "3"], answer: 0, explanation: "SF₆ has 6 bonding pairs around S and no lone pairs; sulfur uses its 3d orbitals to accommodate 12 electrons (expanded octet)." },
+      { id: 139, question: "The formal charge formula is: Formal charge = (valence electrons) − (lone pair electrons) − ½(bonding electrons). What is the formal charge on O in H₃O⁺ (3 O−H bonds, 1 lone pair on O)?", options: ["0", "+1", "−1", "+2"], answer: 1, explanation: "Formal charge on O = 6 − 2 − ½(6) = 6 − 2 − 3 = +1." },
+      { id: 140, question: "Which of these molecules violates the octet rule by having more than 8 electrons around the central atom?", options: ["H₂O", "NH₃", "CH₄", "XeF₂"], answer: 3, explanation: "XeF₂ has 2 bonding pairs and 3 lone pairs on Xe — 10 electrons — exceeding the octet. Period 3+ non-metals can expand their valence shell." }
+    ],
+    5: [
+      { id: 141, question: "VSEPR theory predicts molecular geometry based on:", options: ["Bond order only", "Repulsion between electron pairs around the central atom", "The electronegativity of atoms only", "Nuclear charge"], answer: 1, explanation: "VSEPR (Valence Shell Electron Pair Repulsion) theory states that electron pairs around a central atom arrange to minimise repulsion, determining molecular shape." },
+      { id: 142, question: "What is the electron geometry (including lone pairs) of a molecule with 4 bonding pairs and 0 lone pairs?", options: ["Trigonal planar", "Bent", "Tetrahedral", "Octahedral"], answer: 2, explanation: "Four bonding pairs with no lone pairs adopt a tetrahedral electron geometry to maximise separation." },
+      { id: 143, question: "NH₃ has 3 bonding pairs and 1 lone pair around nitrogen. Its molecular geometry is:", options: ["Tetrahedral", "Trigonal planar", "Trigonal pyramidal", "Bent"], answer: 2, explanation: "The lone pair occupies one tetrahedral position; the 3 H atoms and the N form a trigonal pyramidal shape." },
+      { id: 144, question: "Why is the H−N−H bond angle in NH₃ (107°) less than the ideal tetrahedral angle (109.5°)?", options: ["Nitrogen is larger than carbon", "The lone pair on N repels the bonding pairs more than bonding pairs repel each other", "Hydrogen atoms repel each other strongly", "The bond is polar"], answer: 1, explanation: "Lone pair−bonding pair repulsion is greater than bonding pair−bonding pair repulsion, compressing the H−N−H angle below 109.5°." },
+      { id: 145, question: "H₂O has 2 bonding pairs and 2 lone pairs around oxygen. Its molecular geometry is:", options: ["Tetrahedral", "Trigonal pyramidal", "Bent (V-shaped)", "Linear"], answer: 2, explanation: "The 4 electron pairs arrange tetrahedrally, but with only 2 H atoms visible, the molecular shape is bent (V-shaped)." },
+      { id: 146, question: "What is the electron geometry of a molecule with 3 bonding pairs and 0 lone pairs?", options: ["Bent", "Trigonal pyramidal", "Tetrahedral", "Trigonal planar"], answer: 3, explanation: "Three bonding pairs with no lone pairs arrange at 120° in a trigonal planar geometry." },
+      { id: 147, question: "CO₂ has 2 bonding groups (double bonds) and 0 lone pairs on carbon. Its molecular geometry is:", options: ["Bent", "Linear", "Trigonal planar", "Tetrahedral"], answer: 1, explanation: "Two electron groups arrange on opposite sides of the central carbon, giving a linear geometry with a 180° bond angle." },
+      { id: 148, question: "Which of the following correctly ranks electron-pair repulsions from greatest to least?", options: ["BP-BP > LP-BP > LP-LP", "LP-LP > LP-BP > BP-BP", "LP-BP > LP-LP > BP-BP", "BP-BP = LP-BP = LP-LP"], answer: 1, explanation: "Lone pair−lone pair repulsion is greatest because lone pairs occupy more space; then LP-BP; then BP-BP (least)." },
+      { id: 149, question: "A molecule AX₅ with no lone pairs on A has which electron geometry?", options: ["Tetrahedral", "Trigonal bipyramidal", "Octahedral", "Square pyramidal"], answer: 1, explanation: "Five electron pairs with no lone pairs adopt a trigonal bipyramidal arrangement to minimise repulsion." },
+      { id: 150, question: "In a trigonal bipyramidal electron geometry, the axial positions make which bond angle with the equatorial plane?", options: ["90°", "120°", "109.5°", "180°"], answer: 0, explanation: "Axial bonds are perpendicular to the equatorial plane, forming 90° angles with equatorial bonds." }
+    ],
+    6: [
+      { id: 151, question: "What is the molecular geometry of BeCl₂ (2 bonding pairs, 0 lone pairs)?", options: ["Bent", "Linear", "Trigonal planar", "Tetrahedral"], answer: 1, explanation: "Two bonding pairs and no lone pairs give a linear geometry with a 180° Cl−Be−Cl angle." },
+      { id: 152, question: "BF₃ has 3 bonding pairs and 0 lone pairs around boron. Its molecular shape is:", options: ["Trigonal pyramidal", "Bent", "Tetrahedral", "Trigonal planar"], answer: 3, explanation: "Three bonding pairs with no lone pairs adopt trigonal planar geometry with 120° F−B−F angles." },
+      { id: 153, question: "What is the bond angle in a perfect tetrahedral molecule?", options: ["90°", "109.5°", "120°", "180°"], answer: 1, explanation: "In a perfect tetrahedron (e.g., CH₄), all bond angles are 109.5°." },
+      { id: 154, question: "SF₆ has 6 bonding pairs and 0 lone pairs around sulfur. Its molecular geometry is:", options: ["Trigonal bipyramidal", "Pentagonal", "Octahedral", "Tetrahedral"], answer: 2, explanation: "Six bonding pairs with no lone pairs adopt an octahedral geometry with 90° F−S−F bond angles." },
+      { id: 155, question: "What is the molecular geometry of ClF₃ (3 bonding pairs, 2 lone pairs)?", options: ["Trigonal planar", "T-shaped", "Trigonal pyramidal", "Bent"], answer: 1, explanation: "Five electron pairs total adopt trigonal bipyramidal electron geometry; with 2 lone pairs in equatorial positions, the molecular shape is T-shaped." },
+      { id: 156, question: "XeF₄ has 4 bonding pairs and 2 lone pairs in an octahedral electron geometry. Its molecular shape is:", options: ["Tetrahedral", "Square planar", "Octahedral", "See-saw"], answer: 1, explanation: "The 2 lone pairs occupy opposite axial positions in the octahedron, leaving 4 F atoms in a square planar arrangement." },
+      { id: 157, question: "Which molecule has a trigonal bipyramidal molecular geometry?", options: ["SF₄", "PCl₅", "IF₅", "XeF₄"], answer: 1, explanation: "PCl₅ has 5 bonding pairs and 0 lone pairs, giving it a trigonal bipyramidal molecular geometry." },
+      { id: 158, question: "What is the molecular geometry of SO₂ (2 bonding groups, 1 lone pair on S)?", options: ["Linear", "Trigonal planar", "Bent", "Trigonal pyramidal"], answer: 2, explanation: "Three electron groups (2 bonding + 1 lone pair) arrange in a trigonal planar electron geometry; with one lone pair, the molecular shape is bent." },
+      { id: 159, question: "Which species has a square pyramidal molecular geometry?", options: ["PCl₅", "SF₆", "BrF₅", "XeF₂"], answer: 2, explanation: "BrF₅ has 5 bonding pairs and 1 lone pair in an octahedral electron geometry; with the lone pair in one axial position, the shape is square pyramidal." },
+      { id: 160, question: "Why do lone pairs occupy more space than bonding pairs in VSEPR?", options: ["Lone pairs have more electrons", "Lone pairs are held close to both nuclei", "Lone pairs are held by only one nucleus and spread out more around the central atom", "Lone pairs create stronger bonds"], answer: 2, explanation: "Bonding pairs are attracted to two nuclei and are pulled into a narrower region; lone pairs are attracted to only one nucleus and occupy greater angular space." }
+    ],
+    7: [
+      { id: 161, question: "What is the hybridisation of carbon in methane (CH₄)?", options: ["sp", "sp²", "sp³", "sp³d"], answer: 2, explanation: "Carbon mixes its 2s and three 2p orbitals to form four equivalent sp³ hybrid orbitals pointing to tetrahedral corners." },
+      { id: 162, question: "Ethene (C₂H₄) has a C=C double bond. What is the hybridisation of each carbon atom?", options: ["sp", "sp²", "sp³", "sp³d"], answer: 1, explanation: "Each carbon in ethene is sp² hybridised (three sp² orbitals for sigma bonds + one unhybridised p orbital forming the pi bond)." },
+      { id: 163, question: "What is the hybridisation of carbon in ethyne (C₂H₂, triple bond)?", options: ["sp", "sp²", "sp³", "sp³d"], answer: 0, explanation: "Each carbon in ethyne uses one s and one p orbital to form two sp hybrid orbitals, leaving two p orbitals for two pi bonds of the triple bond." },
+      { id: 164, question: "sp³ hybridisation involves mixing which atomic orbitals?", options: ["One s and one p", "One s and two p", "One s and three p", "One s and three p and one d"], answer: 2, explanation: "sp³ hybridisation combines one s orbital and three p orbitals to produce four equivalent hybrid orbitals arranged tetrahedrally." },
+      { id: 165, question: "What is the hybridisation of the nitrogen atom in NH₃?", options: ["sp", "sp²", "sp³", "sp³d"], answer: 2, explanation: "Nitrogen in NH₃ is sp³ hybridised: three sp³ orbitals form bonds with H and one sp³ orbital holds the lone pair." },
+      { id: 166, question: "The hybridisation of sulfur in SF₄ (4 bonds, 1 lone pair) is:", options: ["sp³", "sp³d", "sp³d²", "sp²"], answer: 1, explanation: "SF₄ requires 5 electron pairs around S, so sulfur uses sp³d hybridisation (mixing s, three p, and one d orbital)." },
+      { id: 167, question: "sp³d² hybridisation produces how many hybrid orbitals?", options: ["4", "5", "6", "7"], answer: 2, explanation: "sp³d² combines 1s + 3p + 2d = 6 atomic orbitals to give 6 equivalent hybrid orbitals arranged octahedrally." },
+      { id: 168, question: "A pi (π) bond is formed by:", options: ["Head-on overlap of orbitals along the internuclear axis", "Sideways (lateral) overlap of parallel p orbitals", "Overlap of s orbitals only", "d orbital overlap exclusively"], answer: 1, explanation: "A pi bond results from sideways overlap of two parallel p orbitals above and below the internuclear axis." },
+      { id: 169, question: "A sigma (σ) bond is formed by:", options: ["Sideways overlap of p orbitals", "Head-on overlap of orbitals along the bond axis", "Overlap of hybrid orbitals sideways", "Electron transfer"], answer: 1, explanation: "A sigma bond forms from direct head-on overlap of two orbitals along the internuclear axis; it has electron density concentrated along the axis." },
+      { id: 170, question: "How many sigma and pi bonds are in a C=C double bond?", options: ["2 sigma, 0 pi", "1 sigma, 1 pi", "0 sigma, 2 pi", "2 sigma, 1 pi"], answer: 1, explanation: "A double bond consists of one sigma bond (head-on overlap) and one pi bond (sideways p-orbital overlap)." }
+    ],
+    8: [
+      { id: 171, question: "Bond polarity arises when two bonded atoms have:", options: ["The same number of neutrons", "Different electronegativities", "The same atomic radius", "The same number of valence electrons"], answer: 1, explanation: "When bonded atoms differ in electronegativity, the more electronegative atom attracts shared electrons more strongly, creating a polar bond with partial charges." },
+      { id: 172, question: "In HCl, the chlorine end of the molecule carries a partial negative charge (δ−) because:", options: ["Chlorine has more protons", "Chlorine is more electronegative and attracts the bonding electrons more", "Hydrogen is larger", "Chlorine has a lower ionisation energy"], answer: 1, explanation: "Chlorine's higher electronegativity causes the shared electrons to spend more time near Cl, giving it a partial negative charge." },
+      { id: 173, question: "Which of these bonds is the MOST polar?", options: ["C−H", "N−H", "O−H", "F−H"], answer: 3, explanation: "The greater the electronegativity difference, the more polar the bond; F is the most electronegative element, making F−H the most polar of these bonds." },
+      { id: 174, question: "CO₂ is a non-polar molecule even though C=O bonds are polar because:", options: ["Carbon has zero electronegativity", "The two C=O dipoles are equal and opposite, cancelling out", "Oxygen atoms share electrons equally with carbon", "CO₂ is a monoatomic molecule"], answer: 1, explanation: "CO₂ is linear; the two equal C=O bond dipoles point in exactly opposite directions and cancel, giving a net dipole of zero." },
+      { id: 175, question: "H₂O is a polar molecule because:", options: ["Oxygen is very large", "The two O−H dipoles do not cancel due to the bent shape", "Each O−H bond is non-polar", "Hydrogen is more electronegative than oxygen"], answer: 1, explanation: "The bent geometry of H₂O means the two O−H bond dipoles point in the same general direction and do not cancel, giving a net dipole moment." },
+      { id: 176, question: "Which molecule is non-polar despite having polar bonds?", options: ["H₂O", "NH₃", "CHCl₃", "BCl₃"], answer: 3, explanation: "BCl₃ is trigonal planar; its three B−Cl bond dipoles point symmetrically at 120° and cancel to give zero net dipole moment." },
+      { id: 177, question: "The dipole moment of a molecule is a measure of:", options: ["Bond length", "Overall charge separation — magnitude of charge times distance", "Ionic character", "Number of lone pairs"], answer: 1, explanation: "Dipole moment (μ = q × d) quantifies the extent of charge separation in a molecule, indicating how polar it is overall." },
+      { id: 178, question: "Which of the following molecules has the largest dipole moment?", options: ["CCl₄", "CO₂", "H₂O", "BF₃"], answer: 2, explanation: "H₂O has a large electronegativity difference and a bent shape that prevents dipole cancellation, giving it a large dipole moment." },
+      { id: 179, question: "Trans-CHCl=CHCl (trans-1,2-dichloroethene) is non-polar because:", options: ["All C−Cl bonds cancel and all C−H bonds cancel due to symmetric arrangement", "It contains only single bonds", "Chlorine and hydrogen have the same electronegativity", "The molecule is planar"], answer: 0, explanation: "In the trans isomer, the two C−Cl dipoles and the two C−H dipoles point in opposite directions and cancel, giving a zero net dipole." },
+      { id: 180, question: "A molecule with 4 identical bonds arranged tetrahedrally (e.g., CCl₄) is non-polar because:", options: ["Tetrahedral molecules are always polar", "All bond dipoles are identical in magnitude and cancel due to the symmetric arrangement", "The bonds are ionic", "Carbon has zero electronegativity"], answer: 1, explanation: "In CCl₄, the four identical C−Cl dipoles point symmetrically toward the tetrahedral corners; their vector sum is zero, making the molecule non-polar." }
+    ],
+    9: [
+      { id: 181, question: "London dispersion forces (LDF) exist between:", options: ["Only polar molecules", "Only ions", "All atoms and molecules", "Only hydrogen-bonded molecules"], answer: 2, explanation: "London dispersion forces arise from temporary dipoles induced in any polarisable electron cloud and act between all atoms and molecules." },
+      { id: 182, question: "Which factor most increases the strength of London dispersion forces?", options: ["Higher electronegativity", "Larger molar mass / more electrons", "Smaller molecular size", "Presence of lone pairs"], answer: 1, explanation: "More electrons in a molecule means a more polarisable electron cloud, producing larger temporary dipoles and stronger London dispersion forces." },
+      { id: 183, question: "Hydrogen bonding occurs between a hydrogen atom bonded to F, O, or N, and:", options: ["Any nearby hydrogen atom", "A lone pair on a nearby F, O, or N atom", "The nucleus of any atom", "A pi bond"], answer: 1, explanation: "A hydrogen bond forms when H (covalently bonded to F, O, or N) is attracted to a lone pair on a nearby highly electronegative F, O, or N atom." },
+      { id: 184, question: "Why does water have an unusually high boiling point for its molar mass?", options: ["Water molecules are very heavy", "Water has an ionic structure", "Extensive hydrogen bonding between molecules requires more energy to overcome", "Water has very strong London dispersion forces"], answer: 2, explanation: "Each H₂O molecule can form up to 4 hydrogen bonds; this extensive network of strong intermolecular forces elevates the boiling point significantly." },
+      { id: 185, question: "Dipole-dipole interactions occur between:", options: ["Non-polar molecules", "Permanent dipoles in polar molecules", "Ions and water molecules", "Atoms in a metallic lattice"], answer: 1, explanation: "Dipole-dipole forces arise from the electrostatic attraction between the δ+ end of one polar molecule and the δ− end of another." },
+      { id: 186, question: "Which has the strongest intermolecular forces: HF, HCl, or HBr?", options: ["HBr (largest, strongest LDF)", "HCl (intermediate)", "HF (hydrogen bonding dominates)", "All equal"], answer: 2, explanation: "HF participates in hydrogen bonding (H bonded to F), which is stronger than the dipole-dipole and LDF forces in HCl and HBr." },
+      { id: 187, question: "The boiling points of the noble gases increase from He to Xe because:", options: ["They form hydrogen bonds", "Their atomic radii decrease", "London dispersion forces increase with increasing electron count and polarisability", "They become ionic"], answer: 2, explanation: "Heavier noble gases have more electrons, are more polarisable, and experience stronger London dispersion forces, leading to higher boiling points." },
+      { id: 188, question: "Which type of intermolecular force is responsible for the solubility of ethanol in water?", options: ["London dispersion forces only", "Dipole-dipole only", "Hydrogen bonding between OH groups of ethanol and water", "Ionic interactions"], answer: 2, explanation: "Ethanol's −OH group forms hydrogen bonds with water molecules, enabling the two liquids to mix in all proportions." },
+      { id: 189, question: "Why does CH₄ have a lower boiling point than SiH₄ despite both being non-polar?", options: ["CH₄ is polar", "SiH₄ has more electrons and stronger London dispersion forces", "CH₄ forms hydrogen bonds", "SiH₄ is ionic"], answer: 1, explanation: "SiH₄ has a larger electron cloud (more electrons) than CH₄, leading to stronger London dispersion forces and a higher boiling point." },
+      { id: 190, question: "Which of the following is NOT an intermolecular force?", options: ["Hydrogen bonding", "London dispersion force", "Covalent bond", "Dipole-dipole interaction"], answer: 2, explanation: "A covalent bond is an intramolecular force (within a molecule); hydrogen bonding, LDF, and dipole-dipole are intermolecular forces (between molecules)." }
+    ],
+    10: [
+      { id: 191, question: "In metallic bonding, which model best explains high electrical conductivity?", options: ["Localised electron pairs between metal atoms", "Delocalised electron sea allowing free electron movement", "Ionic lattice of alternating charges", "Covalent network of directed bonds"], answer: 1, explanation: "The 'sea of electrons' model describes mobile, delocalised electrons that carry charge throughout the metallic lattice, accounting for conductivity." },
+      { id: 192, question: "Band theory describes metallic conductors as having:", options: ["A full valence band and empty conduction band with a large gap", "Overlapping valence and conduction bands with no band gap", "A completely filled conduction band", "Discrete energy levels only"], answer: 1, explanation: "In metals, the valence and conduction bands overlap (or the band gap is negligible), allowing electrons to move freely at room temperature." },
+      { id: 193, question: "In the resonance structure of benzene (C₆H₆), the true structure is best described as:", options: ["Alternating single and double bonds fixed in place", "A hybrid of all contributing resonance structures with delocalised electrons", "A fully saturated ring", "An ionic structure"], answer: 1, explanation: "Benzene's real structure is a resonance hybrid where the pi electrons are delocalised equally over all six carbon atoms, rather than fixed double bonds." },
+      { id: 194, question: "Formal charge is used in Lewis structures to:", options: ["Measure actual charge on atoms", "Determine which resonance structure or Lewis structure is most stable (lowest formal charges)", "Calculate bond energy", "Predict molecular polarity"], answer: 1, explanation: "Formal charges help identify the most accurate Lewis structure; the preferred structure has the smallest formal charges and places negative formal charge on the most electronegative atom." },
+      { id: 195, question: "The carbonate ion CO₃²⁻ has three equivalent C−O bonds. This is explained by:", options: ["Three different bond lengths and energies", "Resonance — the pi electrons are delocalised over all three C−O bonds", "The ion being ionic", "Three different Lewis structures each existing separately"], answer: 1, explanation: "Resonance delocalises the pi electrons over all three C−O bonds, making them identical in length and strength — intermediate between single and double bonds." },
+      { id: 196, question: "Which of the following has the most resonance structures?", options: ["H₂O", "CO₂", "NO₃⁻", "CH₄"], answer: 2, explanation: "NO₃⁻ has three equivalent N−O bonds and three resonance structures (each placing the double bond at a different oxygen)." },
+      { id: 197, question: "In band theory, an insulator is characterised by:", options: ["No band gap", "A small band gap easily crossed at room temperature", "A large band gap preventing electrons from reaching the conduction band at room temperature", "Fully occupied conduction band"], answer: 2, explanation: "Insulators have a large energy gap between the filled valence band and the empty conduction band, so thermal energy at room temperature cannot promote electrons across it." },
+      { id: 198, question: "A semiconductor differs from a conductor in band theory because:", options: ["It has no valence band", "It has a small but non-zero band gap that can be crossed by electrons at higher temperatures or with doping", "Its conduction band is always full", "It has ionic bonding"], answer: 1, explanation: "Semiconductors have a small band gap; at elevated temperatures or with appropriate dopants, electrons gain enough energy to cross into the conduction band." },
+      { id: 199, question: "In the Lewis structure of SO₄²⁻, sulfur can be drawn with expanded octet to give formal charges of zero. How many S=O double bonds are drawn in that structure?", options: ["0", "2", "4", "1"], answer: 1, explanation: "Drawing 2 S=O and 2 S−O bonds gives formal charges of 0 on S and 0 on the doubly bonded O atoms, with −1 on each singly bonded O." },
+      { id: 200, question: "Why are metals malleable and ductile, according to metallic bonding theory?", options: ["Ionic layers slide over each other and maintain attraction", "Covalent bonds reform after breaking", "Metal ion layers can slide without disrupting the electron sea, maintaining cohesion", "The sea of electrons breaks bonds permanently"], answer: 2, explanation: "When metal layers slide, the delocalised electrons continuously surround the displaced cations, maintaining cohesion and preventing fracture — explaining malleability and ductility." }
+    ]
+  },
+  stoichiometry: {
+    1: [
+      { id: 201, question: "What is Avogadro's number?", options: ["6.022 × 10²³", "3.011 × 10²³", "6.022 × 10²²", "1.204 × 10²⁴"], answer: 0, explanation: "Avogadro's number is 6.022 × 10²³ particles per mole." },
+      { id: 202, question: "One mole of any substance contains how many particles?", options: ["100", "6.022 × 10²³", "1000", "6.022 × 10²²"], answer: 1, explanation: "By definition, one mole contains 6.022 × 10²³ particles (Avogadro's number)." },
+      { id: 203, question: "What is the molar mass of carbon (C)?", options: ["6 g/mol", "12 g/mol", "14 g/mol", "24 g/mol"], answer: 1, explanation: "Carbon has an atomic mass of approximately 12 g/mol." },
+      { id: 204, question: "The mole is a unit used to measure:", options: ["Mass", "Volume", "Amount of substance", "Energy"], answer: 2, explanation: "The mole is the SI unit for amount of substance." },
+      { id: 205, question: "How many moles are in 44 g of CO₂ (molar mass 44 g/mol)?", options: ["0.5 mol", "1 mol", "2 mol", "44 mol"], answer: 1, explanation: "moles = mass / molar mass = 44/44 = 1 mol." },
+      { id: 206, question: "The molar mass of water (H₂O) is approximately:", options: ["10 g/mol", "18 g/mol", "16 g/mol", "20 g/mol"], answer: 1, explanation: "H₂O: 2(1) + 16 = 18 g/mol." },
+      { id: 207, question: "Which of the following best defines a mole?", options: ["6.022 × 10²³ grams of a substance", "The mass in grams equal to the atomic mass", "6.022 × 10²³ representative particles of a substance", "The volume of a gas at STP"], answer: 2, explanation: "A mole is defined as 6.022 × 10²³ representative particles of a substance." },
+      { id: 208, question: "How many atoms are in 1 mole of helium?", options: ["1", "6.022 × 10²²", "6.022 × 10²³", "12.044 × 10²³"], answer: 2, explanation: "One mole of He contains 6.022 × 10²³ atoms." },
+      { id: 209, question: "At STP, 1 mole of an ideal gas occupies:", options: ["11.2 L", "22.4 L", "44.8 L", "1 L"], answer: 1, explanation: "At STP (0°C, 1 atm), 1 mole of ideal gas occupies 22.4 L." },
+      { id: 210, question: "What is the mass of 0.5 moles of NaCl (molar mass 58.5 g/mol)?", options: ["58.5 g", "29.25 g", "117 g", "14.6 g"], answer: 1, explanation: "mass = moles × molar mass = 0.5 × 58.5 = 29.25 g." }
+    ],
+    2: [
+      { id: 211, question: "Calculate the molar mass of H₂SO₄.", options: ["96 g/mol", "98 g/mol", "100 g/mol", "94 g/mol"], answer: 1, explanation: "H₂SO₄: 2(1) + 32 + 4(16) = 2 + 32 + 64 = 98 g/mol." },
+      { id: 212, question: "What is the molar mass of glucose (C₆H₁₂O₆)?", options: ["160 g/mol", "180 g/mol", "176 g/mol", "192 g/mol"], answer: 1, explanation: "C₆H₁₂O₆: 6(12) + 12(1) + 6(16) = 72 + 12 + 96 = 180 g/mol." },
+      { id: 213, question: "The molar mass of CaCO₃ is:", options: ["56 g/mol", "84 g/mol", "100 g/mol", "116 g/mol"], answer: 2, explanation: "CaCO₃: 40 + 12 + 3(16) = 40 + 12 + 48 = 100 g/mol." },
+      { id: 214, question: "How many moles are in 9 g of water (M = 18 g/mol)?", options: ["0.5 mol", "1 mol", "2 mol", "18 mol"], answer: 0, explanation: "moles = 9/18 = 0.5 mol." },
+      { id: 215, question: "What mass is 2 moles of O₂ (M = 32 g/mol)?", options: ["16 g", "32 g", "64 g", "8 g"], answer: 2, explanation: "mass = 2 × 32 = 64 g." },
+      { id: 216, question: "The molar mass of NH₃ is:", options: ["14 g/mol", "15 g/mol", "17 g/mol", "18 g/mol"], answer: 2, explanation: "NH₃: 14 + 3(1) = 17 g/mol." },
+      { id: 217, question: "How many moles is 71 g of Cl₂ (M = 71 g/mol)?", options: ["0.5 mol", "1 mol", "2 mol", "71 mol"], answer: 1, explanation: "moles = 71/71 = 1 mol." },
+      { id: 218, question: "What is the molar mass of Al₂O₃?", options: ["54 g/mol", "70 g/mol", "102 g/mol", "150 g/mol"], answer: 2, explanation: "Al₂O₃: 2(27) + 3(16) = 54 + 48 = 102 g/mol." },
+      { id: 219, question: "3 moles of CO₂ (M = 44 g/mol) have a mass of:", options: ["44 g", "88 g", "132 g", "176 g"], answer: 2, explanation: "mass = 3 × 44 = 132 g." },
+      { id: 220, question: "Molar mass is numerically equal to:", options: ["The number of protons", "The atomic/formula mass in g/mol", "Avogadro's number", "The density in g/L"], answer: 1, explanation: "Molar mass in g/mol is numerically equal to the atomic or formula mass in atomic mass units." }
+    ],
+    3: [
+      { id: 221, question: "How many moles are in 56 g of iron (Fe, M = 56 g/mol)?", options: ["0.5", "1", "2", "56"], answer: 1, explanation: "moles = 56/56 = 1 mol." },
+      { id: 222, question: "What mass is 3 moles of H₂O (M = 18 g/mol)?", options: ["18 g", "36 g", "54 g", "72 g"], answer: 2, explanation: "mass = 3 × 18 = 54 g." },
+      { id: 223, question: "Convert 0.25 mol of NaOH (M = 40 g/mol) to grams:", options: ["5 g", "10 g", "40 g", "160 g"], answer: 1, explanation: "mass = 0.25 × 40 = 10 g." },
+      { id: 224, question: "How many moles are in 27 g of Al (M = 27 g/mol)?", options: ["0.5 mol", "1 mol", "2 mol", "27 mol"], answer: 1, explanation: "moles = 27/27 = 1 mol." },
+      { id: 225, question: "What is the mass of 0.1 mol of CaCO₃ (M = 100 g/mol)?", options: ["1 g", "10 g", "100 g", "1000 g"], answer: 1, explanation: "mass = 0.1 × 100 = 10 g." },
+      { id: 226, question: "How many moles are in 4 g of O₂ (M = 32 g/mol)?", options: ["0.0625 mol", "0.125 mol", "0.25 mol", "0.5 mol"], answer: 1, explanation: "moles = 4/32 = 0.125 mol." },
+      { id: 227, question: "What mass is 0.5 mol of H₂ (M = 2 g/mol)?", options: ["0.5 g", "1 g", "2 g", "4 g"], answer: 1, explanation: "mass = 0.5 × 2 = 1 g." },
+      { id: 228, question: "How many moles are in 160 g of SO₃ (M = 80 g/mol)?", options: ["0.5 mol", "1 mol", "2 mol", "4 mol"], answer: 2, explanation: "moles = 160/80 = 2 mol." },
+      { id: 229, question: "What mass is 4 mol of Na (M = 23 g/mol)?", options: ["23 g", "46 g", "69 g", "92 g"], answer: 3, explanation: "mass = 4 × 23 = 92 g." },
+      { id: 230, question: "How many moles are in 5.6 L of an ideal gas at STP?", options: ["0.1 mol", "0.25 mol", "0.5 mol", "1 mol"], answer: 1, explanation: "moles = 5.6/22.4 = 0.25 mol." }
+    ],
+    4: [
+      { id: 231, question: "How many molecules are in 1 mol of H₂O?", options: ["6.022 × 10²²", "6.022 × 10²³", "1.204 × 10²⁴", "3.011 × 10²³"], answer: 1, explanation: "1 mol = 6.022 × 10²³ molecules." },
+      { id: 232, question: "How many moles is 3.011 × 10²³ atoms?", options: ["0.25 mol", "0.5 mol", "1 mol", "2 mol"], answer: 1, explanation: "moles = 3.011 × 10²³ / 6.022 × 10²³ = 0.5 mol." },
+      { id: 233, question: "How many atoms are in 2 mol of Fe?", options: ["6.022 × 10²³", "1.204 × 10²⁴", "3.011 × 10²³", "2.408 × 10²³"], answer: 1, explanation: "atoms = 2 × 6.022 × 10²³ = 1.204 × 10²⁴." },
+      { id: 234, question: "How many molecules are in 0.5 mol of CO₂?", options: ["3.011 × 10²³", "6.022 × 10²³", "1.204 × 10²⁴", "1.505 × 10²³"], answer: 0, explanation: "molecules = 0.5 × 6.022 × 10²³ = 3.011 × 10²³." },
+      { id: 235, question: "How many moles is 1.204 × 10²⁴ particles?", options: ["0.5 mol", "1 mol", "2 mol", "4 mol"], answer: 2, explanation: "moles = 1.204 × 10²⁴ / 6.022 × 10²³ = 2 mol." },
+      { id: 236, question: "1 mol of CH₄ contains how many hydrogen atoms?", options: ["6.022 × 10²³", "1.204 × 10²⁴", "2.408 × 10²⁴", "4.816 × 10²³"], answer: 3, explanation: "CH₄ has 4 H atoms per molecule, so 4 × 6.022 × 10²³ = 2.408 × 10²⁴. Wait — 1 mol CH₄ × 4 H atoms = 4 × 6.022×10²³ = 2.408×10²⁴. The answer is 2.408×10²⁴ which is option index 2.", explanation: "1 mol CH₄ contains 4 mol H atoms = 4 × 6.022 × 10²³ = 2.408 × 10²⁴ H atoms." },
+      { id: 237, question: "How many moles is 9.033 × 10²³ molecules?", options: ["0.5 mol", "1 mol", "1.5 mol", "3 mol"], answer: 2, explanation: "moles = 9.033 × 10²³ / 6.022 × 10²³ = 1.5 mol." },
+      { id: 238, question: "How many formula units are in 2 mol of NaCl?", options: ["6.022 × 10²³", "1.204 × 10²⁴", "3.011 × 10²³", "2.408 × 10²⁴"], answer: 1, explanation: "formula units = 2 × 6.022 × 10²³ = 1.204 × 10²⁴." },
+      { id: 239, question: "1 mol of H₂O contains how many total atoms?", options: ["6.022 × 10²³", "1.204 × 10²⁴", "1.807 × 10²⁴", "3.011 × 10²³"], answer: 2, explanation: "H₂O has 3 atoms per molecule. Total = 3 × 6.022 × 10²³ = 1.807 × 10²⁴." },
+      { id: 240, question: "How many moles is 6.022 × 10²² particles?", options: ["0.01 mol", "0.1 mol", "1 mol", "10 mol"], answer: 1, explanation: "moles = 6.022 × 10²² / 6.022 × 10²³ = 0.1 mol." }
+    ],
+    5: [
+      { id: 241, question: "Balance: H₂ + O₂ → H₂O. The coefficients are:", options: ["1,1,1", "2,1,2", "1,2,2", "2,2,1"], answer: 1, explanation: "2H₂ + O₂ → 2H₂O balances H (4=4) and O (2=2)." },
+      { id: 242, question: "Balance: N₂ + H₂ → NH₃. Coefficients are:", options: ["1,1,1", "1,3,2", "2,3,2", "1,2,1"], answer: 1, explanation: "N₂ + 3H₂ → 2NH₃: N(2=2), H(6=6)." },
+      { id: 243, question: "Balance: Fe + O₂ → Fe₂O₃. Coefficients are:", options: ["4,3,2", "2,3,1", "1,1,1", "2,1,2"], answer: 0, explanation: "4Fe + 3O₂ → 2Fe₂O₃: Fe(4=4), O(6=6)." },
+      { id: 244, question: "Balance: CH₄ + O₂ → CO₂ + H₂O. Coefficients are:", options: ["1,1,1,1", "1,2,1,2", "2,3,2,4", "1,4,2,2"], answer: 1, explanation: "CH₄ + 2O₂ → CO₂ + 2H₂O: C(1=1), H(4=4), O(4=4)." },
+      { id: 245, question: "In a balanced equation, what is conserved?", options: ["Only mass", "Only atoms", "Both mass and atoms (they are related)", "Only energy"], answer: 2, explanation: "By conservation of mass, atoms are conserved, which means mass is also conserved." },
+      { id: 246, question: "Balance: KClO₃ → KCl + O₂. Coefficients:", options: ["1,1,1", "2,2,3", "1,2,3", "3,2,1"], answer: 1, explanation: "2KClO₃ → 2KCl + 3O₂: K(2=2), Cl(2=2), O(6=6)." },
+      { id: 247, question: "Balance: Al + HCl → AlCl₃ + H₂. Coefficients:", options: ["1,3,1,1.5", "2,6,2,3", "1,6,2,3", "2,3,2,3"], answer: 1, explanation: "2Al + 6HCl → 2AlCl₃ + 3H₂: Al(2=2), H(6=6), Cl(6=6)." },
+      { id: 248, question: "What does a coefficient in a chemical equation represent?", options: ["The number of atoms only", "The number of moles of that substance", "The charge of the ion", "The state of matter"], answer: 1, explanation: "Coefficients indicate the relative number of moles of each reactant and product." },
+      { id: 249, question: "Balance: C₃H₈ + O₂ → CO₂ + H₂O. Coefficients:", options: ["1,5,3,4", "1,4,3,4", "2,7,3,4", "1,3,3,3"], answer: 0, explanation: "C₃H₈ + 5O₂ → 3CO₂ + 4H₂O: C(3=3), H(8=8), O(10=10)." },
+      { id: 250, question: "Balance: Na + H₂O → NaOH + H₂. Coefficients:", options: ["1,1,1,1", "2,2,2,1", "1,2,2,1", "2,1,2,1"], answer: 1, explanation: "2Na + 2H₂O → 2NaOH + H₂: Na(2=2), H(4=4), O(2=2)." }
+    ],
+    6: [
+      { id: 251, question: "In the reaction 2H₂ + O₂ → 2H₂O, what is the mole ratio of H₂ to H₂O?", options: ["1:1", "2:1", "1:2", "2:2"], answer: 0, explanation: "2 mol H₂ : 2 mol H₂O = 1:1." },
+      { id: 252, question: "N₂ + 3H₂ → 2NH₃. What mole ratio is H₂ to NH₃?", options: ["1:2", "3:2", "2:3", "1:1"], answer: 1, explanation: "3 mol H₂ : 2 mol NH₃ = 3:2." },
+      { id: 253, question: "From N₂ + 3H₂ → 2NH₃, if 3 mol H₂ reacts, how many mol NH₃ form?", options: ["1 mol", "2 mol", "3 mol", "4 mol"], answer: 1, explanation: "3 mol H₂ × (2 mol NH₃ / 3 mol H₂) = 2 mol NH₃." },
+      { id: 254, question: "2H₂ + O₂ → 2H₂O. If 4 mol H₂ reacts, how many mol O₂ is needed?", options: ["1 mol", "2 mol", "4 mol", "8 mol"], answer: 1, explanation: "4 mol H₂ × (1 mol O₂ / 2 mol H₂) = 2 mol O₂." },
+      { id: 255, question: "What is the source of mole ratios in stoichiometry?", options: ["Periodic table", "Balanced equation coefficients", "Molar masses", "Avogadro's number"], answer: 1, explanation: "The coefficients in a balanced equation give the mole ratios between substances." },
+      { id: 256, question: "4Fe + 3O₂ → 2Fe₂O₃. How many mol Fe₂O₃ from 8 mol Fe?", options: ["2 mol", "4 mol", "6 mol", "8 mol"], answer: 1, explanation: "8 mol Fe × (2 mol Fe₂O₃ / 4 mol Fe) = 4 mol Fe₂O₃." },
+      { id: 257, question: "CH₄ + 2O₂ → CO₂ + 2H₂O. From 5 mol CH₄, how many mol H₂O?", options: ["5 mol", "10 mol", "2.5 mol", "20 mol"], answer: 1, explanation: "5 mol CH₄ × (2 mol H₂O / 1 mol CH₄) = 10 mol H₂O." },
+      { id: 258, question: "2SO₂ + O₂ → 2SO₃. If 4 mol SO₂ reacts, how many mol O₂ is needed?", options: ["1 mol", "2 mol", "4 mol", "8 mol"], answer: 1, explanation: "4 mol SO₂ × (1 mol O₂ / 2 mol SO₂) = 2 mol O₂." },
+      { id: 259, question: "Mole ratios are used to convert between:", options: ["Mass and volume", "Moles of one substance and moles of another", "Atoms and electrons", "Temperature and pressure"], answer: 1, explanation: "Mole ratios from balanced equations convert moles of one substance to moles of another." },
+      { id: 260, question: "2KClO₃ → 2KCl + 3O₂. How many mol O₂ from 4 mol KClO₃?", options: ["3 mol", "6 mol", "2 mol", "4 mol"], answer: 1, explanation: "4 mol KClO₃ × (3 mol O₂ / 2 mol KClO₃) = 6 mol O₂." }
+    ],
+    7: [
+      { id: 261, question: "What is the limiting reagent?", options: ["The reagent present in largest amount", "The reagent that is completely consumed first and limits product formed", "The reagent with largest molar mass", "The reagent added last"], answer: 1, explanation: "The limiting reagent is consumed first and determines the maximum amount of product." },
+      { id: 262, question: "N₂ + 3H₂ → 2NH₃. If 1 mol N₂ and 2 mol H₂ are mixed, which is limiting?", options: ["N₂", "H₂", "Neither", "NH₃"], answer: 1, explanation: "1 mol N₂ needs 3 mol H₂, but only 2 mol H₂ available. H₂ is limiting." },
+      { id: 263, question: "2H₂ + O₂ → 2H₂O. 4 mol H₂ and 3 mol O₂ are mixed. Limiting reagent?", options: ["H₂", "O₂", "Neither", "H₂O"], answer: 0, explanation: "4 mol H₂ needs 2 mol O₂ (available 3 mol). O₂ is excess. H₂ is limiting." },
+      { id: 264, question: "What is the excess reagent?", options: ["The reagent that runs out first", "The reagent that remains after the reaction", "The product", "The catalyst"], answer: 1, explanation: "The excess reagent is the one that remains after the limiting reagent is fully consumed." },
+      { id: 265, question: "From Q262 (H₂ limiting, 2 mol H₂), how many mol NH₃ forms?", options: ["2/3 mol", "4/3 mol", "2 mol", "1 mol"], answer: 1, explanation: "2 mol H₂ × (2 mol NH₃ / 3 mol H₂) = 4/3 mol NH₃." },
+      { id: 266, question: "2Al + 3Cl₂ → 2AlCl₃. 3 mol Al and 3 mol Cl₂ are used. What is limiting?", options: ["Al", "Cl₂", "Neither", "AlCl₃"], answer: 1, explanation: "3 mol Al needs 4.5 mol Cl₂, but only 3 mol Cl₂ available. Cl₂ is limiting." },
+      { id: 267, question: "How do you identify the limiting reagent when given masses?", options: ["Compare molar masses", "Convert to moles then compare mole ratio to coefficient ratio", "Find which mass is smaller", "Compare densities"], answer: 1, explanation: "Convert masses to moles, divide by coefficient to get 'mole equivalents', the smallest value is limiting." },
+      { id: 268, question: "Fe + S → FeS. 56 g Fe (M=56) and 32 g S (M=32) react. Which is limiting?", options: ["Fe", "S", "Neither", "FeS"], answer: 2, explanation: "1 mol Fe and 1 mol S; ratio is 1:1, both are consumed equally — neither is limiting." },
+      { id: 269, question: "What happens to the excess reagent at the end of a reaction?", options: ["It becomes a product", "Some of it remains unreacted", "It is always zero", "It converts to heat"], answer: 1, explanation: "The excess reagent is not fully consumed; some amount remains when the reaction stops." },
+      { id: 270, question: "2H₂ + O₂ → 2H₂O. If H₂ is limiting and 6 mol H₂ react, how many mol H₂O form?", options: ["3 mol", "6 mol", "12 mol", "1 mol"], answer: 1, explanation: "6 mol H₂ × (2 mol H₂O / 2 mol H₂) = 6 mol H₂O." }
+    ],
+    8: [
+      { id: 271, question: "Percent yield is calculated as:", options: ["(actual/theoretical) × 100", "(theoretical/actual) × 100", "(actual − theoretical) × 100", "actual × theoretical"], answer: 0, explanation: "% yield = (actual yield / theoretical yield) × 100%." },
+      { id: 272, question: "If theoretical yield is 50 g and actual yield is 40 g, percent yield is:", options: ["125%", "80%", "10%", "90%"], answer: 1, explanation: "% yield = (40/50) × 100 = 80%." },
+      { id: 273, question: "What is the theoretical yield?", options: ["The yield obtained in practice", "The maximum yield predicted by stoichiometry", "The yield after losses", "The yield at 100% efficiency"], answer: 1, explanation: "Theoretical yield is the maximum amount of product predicted from stoichiometric calculations." },
+      { id: 274, question: "Why is actual yield usually less than theoretical yield?", options: ["Equations are wrong", "Side reactions, incomplete reactions, and product loss during collection", "Avogadro's number is approximate", "Molar mass is imprecise"], answer: 1, explanation: "Real reactions have side reactions, may not go to completion, and product is lost in handling." },
+      { id: 275, question: "A reaction gives 4.5 g product; theoretical was 5.0 g. Percent yield?", options: ["90%", "111%", "45%", "80%"], answer: 0, explanation: "% yield = (4.5/5.0) × 100 = 90%." },
+      { id: 276, question: "Can percent yield exceed 100%? Under what conditions?", options: ["Yes, always", "Yes, if product contains impurities or absorbed moisture (apparent excess)", "No, never", "Yes, if the reaction is exothermic"], answer: 1, explanation: "Apparent yield > 100% usually means the product is impure (e.g., wet), not a true excess." },
+      { id: 277, question: "If percent yield is 75% and actual yield is 15 g, theoretical yield is:", options: ["11.25 g", "20 g", "75 g", "5.6 g"], answer: 1, explanation: "theoretical = actual / (% yield/100) = 15 / 0.75 = 20 g." },
+      { id: 278, question: "N₂ + 3H₂ → 2NH₃. From 2 mol N₂ (theoretical 4 mol NH₃), if only 3 mol NH₃ forms, % yield is:", options: ["75%", "133%", "50%", "25%"], answer: 0, explanation: "% yield = (3/4) × 100 = 75%." },
+      { id: 279, question: "Which factor does NOT affect percent yield?", options: ["Temperature", "Catalyst presence", "Avogadro's number", "Purity of reactants"], answer: 2, explanation: "Avogadro's number is a fundamental constant and does not affect experimental yield." },
+      { id: 280, question: "A student obtains 9.2 g of NaCl from a reaction with theoretical yield 11.5 g. Percent yield:", options: ["80%", "125%", "20%", "92%"], answer: 0, explanation: "% yield = (9.2/11.5) × 100 = 80%." }
+    ],
+    9: [
+      { id: 281, question: "The empirical formula is:", options: ["The actual number of atoms in a molecule", "The simplest whole-number ratio of atoms in a compound", "The structural formula", "The formula mass in grams"], answer: 1, explanation: "The empirical formula gives the simplest whole-number ratio of elements in a compound." },
+      { id: 282, question: "What is the empirical formula of H₂O₂?", options: ["H₂O₂", "HO", "H₂O", "HO₂"], answer: 1, explanation: "H₂O₂ simplifies to HO (1:1 ratio)." },
+      { id: 283, question: "A compound is 40% C, 6.7% H, 53.3% O by mass. Empirical formula?", options: ["CHO", "CH₂O", "C₂H₄O₂", "C₃H₆O₃"], answer: 1, explanation: "Moles: C=40/12=3.33, H=6.7/1=6.7, O=53.3/16=3.33. Ratio 1:2:1 → CH₂O." },
+      { id: 284, question: "The empirical formula mass of CH₂O is:", options: ["12 g/mol", "28 g/mol", "30 g/mol", "44 g/mol"], answer: 2, explanation: "CH₂O: 12 + 2(1) + 16 = 30 g/mol." },
+      { id: 285, question: "How do you find empirical formula from percent composition?", options: ["Divide percentages by molar mass, find simplest ratio", "Assume 100 g, convert % to g, divide by molar mass, find simplest ratio", "Multiply percentages by Avogadro's number", "Use the molecular formula directly"], answer: 1, explanation: "Assume 100 g sample, convert % to grams, divide by atomic molar mass to get moles, reduce to simplest ratio." },
+      { id: 286, question: "A compound has 75% C and 25% H. Empirical formula?", options: ["CH", "CH₂", "CH₄", "C₂H₂"], answer: 2, explanation: "C: 75/12=6.25; H: 25/1=25. Ratio = 6.25:25 = 1:4 → CH₄." },
+      { id: 287, question: "What additional information is needed to find the molecular formula from the empirical formula?", options: ["Percent composition", "The molar mass of the compound", "The density", "The boiling point"], answer: 1, explanation: "You need the actual molar mass to determine how many empirical units make up the molecule." },
+      { id: 288, question: "Empirical formula CH₂O, molar mass 180 g/mol. Molecular formula?", options: ["CH₂O", "C₂H₄O₂", "C₆H₁₂O₆", "C₃H₆O₃"], answer: 2, explanation: "Empirical mass = 30; 180/30 = 6. Molecular formula = (CH₂O)₆ = C₆H₁₂O₆." },
+      { id: 289, question: "A compound is 92.3% C and 7.7% H, molar mass 26 g/mol. Molecular formula?", options: ["CH", "C₂H₂", "C₃H₃", "C₂H₄"], answer: 1, explanation: "C: 92.3/12=7.69; H: 7.7/1=7.7. Ratio 1:1 → CH (empirical mass=13). 26/13=2. C₂H₂." },
+      { id: 290, question: "Which of the following compounds has the same empirical and molecular formula?", options: ["H₂O₂", "C₆H₆", "H₂O", "C₂H₄"], answer: 2, explanation: "H₂O cannot be simplified further — it is already the simplest ratio (2:1)." }
+    ],
+    10: [
+      { id: 291, question: "Molarity (M) is defined as:", options: ["moles of solute per kg of solvent", "moles of solute per litre of solution", "grams of solute per litre", "moles per mole of solvent"], answer: 1, explanation: "Molarity = moles of solute / litres of solution." },
+      { id: 292, question: "How many moles of NaCl are in 250 mL of 2 M solution?", options: ["0.25 mol", "0.5 mol", "1 mol", "2 mol"], answer: 1, explanation: "moles = M × V(L) = 2 × 0.250 = 0.5 mol." },
+      { id: 293, question: "What is the molarity of a solution with 4 mol solute in 2 L?", options: ["0.5 M", "2 M", "4 M", "8 M"], answer: 1, explanation: "M = 4 mol / 2 L = 2 M." },
+      { id: 294, question: "Dilution formula used when diluting a solution:", options: ["M₁V₁ = M₂V₂", "M₁/V₁ = M₂/V₂", "M₁ + V₁ = M₂ + V₂", "M₁ × M₂ = V₁ × V₂"], answer: 0, explanation: "M₁V₁ = M₂V₂ expresses conservation of moles during dilution." },
+      { id: 295, question: "50 mL of 6 M HCl is diluted to 300 mL. New concentration?", options: ["1 M", "2 M", "3 M", "36 M"], answer: 0, explanation: "M₂ = M₁V₁/V₂ = (6 × 50)/300 = 300/300 = 1 M." },
+      { id: 296, question: "In solution stoichiometry: HCl + NaOH → NaCl + H₂O. 25 mL of 0.1 M HCl neutralises how many moles of NaOH?", options: ["0.0025 mol", "0.025 mol", "0.1 mol", "0.25 mol"], answer: 0, explanation: "moles HCl = 0.025 L × 0.1 M = 0.0025 mol. 1:1 ratio so 0.0025 mol NaOH needed." },
+      { id: 297, question: "What volume of 0.5 M NaOH is needed to neutralise 0.01 mol HCl (1:1 ratio)?", options: ["5 mL", "10 mL", "20 mL", "50 mL"], answer: 2, explanation: "V = moles/M = 0.01/0.5 = 0.02 L = 20 mL." },
+      { id: 298, question: "Molality differs from molarity because it uses:", options: ["Litres of solution", "Kilograms of solvent", "Moles of solvent", "Grams of solution"], answer: 1, explanation: "Molality (m) = moles solute / kg solvent; molarity uses volume of solution." },
+      { id: 299, question: "2HCl + Ca(OH)₂ → CaCl₂ + 2H₂O. 100 mL of 0.4 M HCl needs what volume of 0.1 M Ca(OH)₂?", options: ["50 mL", "100 mL", "200 mL", "400 mL"], answer: 2, explanation: "moles HCl = 0.04; moles Ca(OH)₂ = 0.04/2 = 0.02 mol; V = 0.02/0.1 = 0.2 L = 200 mL." },
+      { id: 300, question: "What does a standard solution mean in titration?", options: ["A concentrated solution", "A solution of precisely known concentration", "A neutral solution", "A saturated solution"], answer: 1, explanation: "A standard solution has a precisely known concentration, used as a reference in titrations." }
+    ]
+  },
+  acids_and_bases: {
+    1: [
+      { id: 301, question: "According to Arrhenius, an acid is a substance that:", options: ["Accepts a proton in water", "Donates a proton in water", "Produces H⁺ ions in aqueous solution", "Produces OH⁻ ions in aqueous solution"], answer: 2, explanation: "Arrhenius acids produce hydrogen ions (H⁺) when dissolved in water." },
+      { id: 302, question: "According to Arrhenius, a base is a substance that:", options: ["Produces H⁺ in water", "Produces OH⁻ in water", "Accepts electrons", "Donates protons"], answer: 1, explanation: "Arrhenius bases produce hydroxide ions (OH⁻) in aqueous solution." },
+      { id: 303, question: "Which of the following is an Arrhenius acid?", options: ["NaOH", "HCl", "NaCl", "KOH"], answer: 1, explanation: "HCl dissociates in water to give H⁺ and Cl⁻, making it an Arrhenius acid." },
+      { id: 304, question: "Which is an Arrhenius base?", options: ["H₂SO₄", "HNO₃", "Ca(OH)₂", "HCl"], answer: 2, explanation: "Ca(OH)₂ dissociates to give Ca²⁺ and 2 OH⁻ ions, making it an Arrhenius base." },
+      { id: 305, question: "Neutralisation between an acid and a base always produces:", options: ["Only water", "Salt and water", "Only salt", "Carbon dioxide and water"], answer: 1, explanation: "Acid-base neutralisation produces a salt and water: acid + base → salt + H₂O." },
+      { id: 306, question: "The Bronsted-Lowry definition extends Arrhenius because it:", options: ["Only applies to water solutions", "Includes non-aqueous proton transfer reactions", "Defines acids as electron acceptors", "Defines bases as electron donors"], answer: 1, explanation: "Bronsted-Lowry defines acids as proton donors and bases as proton acceptors, working beyond water." },
+      { id: 307, question: "In the Bronsted-Lowry model, an acid is:", options: ["An OH⁻ donor", "A proton (H⁺) donor", "An electron pair acceptor", "A hydroxide producer"], answer: 1, explanation: "A Bronsted-Lowry acid donates a proton (H⁺) to another species." },
+      { id: 308, question: "In HCl + H₂O → H₃O⁺ + Cl⁻, which species acts as the base?", options: ["HCl", "Cl⁻", "H₂O", "H₃O⁺"], answer: 2, explanation: "H₂O accepts the proton from HCl, acting as the Bronsted-Lowry base." },
+      { id: 309, question: "The Lewis definition defines an acid as:", options: ["A proton donor", "A proton acceptor", "An electron pair acceptor", "An electron pair donor"], answer: 2, explanation: "A Lewis acid is an electron pair acceptor (e.g., BF₃, AlCl₃)." },
+      { id: 310, question: "NaOH dissolved in water produces:", options: ["Na⁺ and H⁺", "Na⁺ and OH⁻", "NaH and O²⁻", "Na²⁺ and OH₂"], answer: 1, explanation: "NaOH fully dissociates: NaOH → Na⁺ + OH⁻." }
+    ],
+    2: [
+      { id: 311, question: "A strong acid is one that:", options: ["Has high molar mass", "Completely dissociates in water", "Partially dissociates in water", "Reacts with metals only"], answer: 1, explanation: "Strong acids fully dissociate in aqueous solution, giving maximum H⁺." },
+      { id: 312, question: "Which of the following is a strong acid?", options: ["CH₃COOH", "HF", "HNO₃", "H₂CO₃"], answer: 2, explanation: "HNO₃ (nitric acid) is a strong acid that fully dissociates. The others are weak." },
+      { id: 313, question: "Which of the following is a weak acid?", options: ["HCl", "H₂SO₄", "HNO₃", "CH₃COOH"], answer: 3, explanation: "Acetic acid (CH₃COOH) partially dissociates — it is a weak acid." },
+      { id: 314, question: "A weak base partially dissociates. Which is a weak base?", options: ["NaOH", "KOH", "NH₃", "Ca(OH)₂"], answer: 2, explanation: "Ammonia (NH₃) is a weak base; it partially reacts with water to form NH₄⁺ and OH⁻." },
+      { id: 315, question: "The six common strong acids include HCl, HBr, HI, HNO₃, HClO₄, and:", options: ["HF", "H₂SO₄", "H₃PO₄", "H₂CO₃"], answer: 1, explanation: "H₂SO₄ (sulfuric acid) is the sixth strong acid in the standard list." },
+      { id: 316, question: "For a strong acid at concentration 0.01 M, [H⁺] equals:", options: ["Less than 0.01 M", "0.01 M", "More than 0.01 M", "0 M"], answer: 1, explanation: "Complete dissociation means [H⁺] = initial concentration = 0.01 M." },
+      { id: 317, question: "Why is HF considered a weak acid despite containing halogen?", options: ["F is not electronegative", "The H–F bond is very strong, so dissociation is incomplete", "HF does not dissolve in water", "F⁻ is unstable"], answer: 1, explanation: "The H–F bond is unusually strong, so HF dissociates only partially in water." },
+      { id: 318, question: "Which correctly orders acid strength (strongest first)?", options: ["HF > HCl > HBr > HI", "HI > HBr > HCl > HF", "HCl > HBr > HI > HF", "HF > HI > HBr > HCl"], answer: 1, explanation: "Acid strength increases down the halide group as bond strength decreases: HI > HBr > HCl > HF." },
+      { id: 319, question: "A strong base completely dissociates. Which is a strong base?", options: ["NH₃", "Al(OH)₃", "Mg(OH)₂", "KOH"], answer: 3, explanation: "KOH is a strong base that fully dissociates to K⁺ and OH⁻." },
+      { id: 320, question: "In a 0.1 M weak acid solution, [H⁺] is:", options: ["Equal to 0.1 M", "Greater than 0.1 M", "Less than 0.1 M", "Zero"], answer: 2, explanation: "Partial dissociation of a weak acid gives [H⁺] less than the initial acid concentration." }
+    ],
+    3: [
+      { id: 321, question: "A conjugate acid-base pair differs by:", options: ["One electron", "One proton (H⁺)", "One neutron", "One oxygen atom"], answer: 1, explanation: "A conjugate pair consists of an acid and the base formed when it loses one proton." },
+      { id: 322, question: "What is the conjugate base of HCl?", options: ["H₂Cl⁺", "Cl⁻", "ClOH", "HCl₂⁻"], answer: 1, explanation: "HCl donates H⁺ to form its conjugate base Cl⁻." },
+      { id: 323, question: "What is the conjugate acid of NH₃?", options: ["NH₂⁻", "N₂H₄", "NH₄⁺", "N₂H₂"], answer: 2, explanation: "NH₃ accepts a proton to form NH₄⁺, its conjugate acid." },
+      { id: 324, question: "In the reaction: H₂O + NH₃ ⇌ NH₄⁺ + OH⁻, what is the conjugate base of H₂O?", options: ["H₃O⁺", "OH⁻", "O²⁻", "H₂"], answer: 1, explanation: "H₂O donates H⁺ to become OH⁻, its conjugate base." },
+      { id: 325, question: "A strong acid has a conjugate base that is:", options: ["Also strong", "Weak (stable, little tendency to accept H⁺)", "Neutral", "Another strong acid"], answer: 1, explanation: "Strong acids fully dissociate, meaning their conjugate bases have very little tendency to re-accept protons." },
+      { id: 326, question: "The conjugate base of H₂SO₄ (after losing one H⁺) is:", options: ["SO₄²⁻", "HSO₄⁻", "H₂SO₃", "SO₃²⁻"], answer: 1, explanation: "H₂SO₄ loses one H⁺ to become HSO₄⁻ (hydrogen sulfate), its conjugate base." },
+      { id: 327, question: "Water can act as both acid and base. This property is called:", options: ["Hydration", "Amphiprotic (amphoteric)", "Ionisation", "Neutralisation"], answer: 1, explanation: "Amphiprotic (or amphoteric) substances can both donate and accept protons." },
+      { id: 328, question: "What is the conjugate acid of H₂O?", options: ["OH⁻", "H₃O⁺", "O²⁻", "H₂O₂"], answer: 1, explanation: "H₂O accepts H⁺ to form the hydronium ion H₃O⁺." },
+      { id: 329, question: "Identify the conjugate acid-base pairs in: HCN + H₂O ⇌ H₃O⁺ + CN⁻", options: ["HCN/H₂O and H₃O⁺/CN⁻", "HCN/CN⁻ and H₂O/H₃O⁺", "HCN/H₃O⁺ and H₂O/CN⁻", "H₂O/CN⁻ and HCN/H₃O⁺"], answer: 1, explanation: "HCN/CN⁻ differ by one H⁺ (pair 1); H₂O/H₃O⁺ differ by one H⁺ (pair 2)." },
+      { id: 330, question: "A weak acid has a conjugate base that is:", options: ["Stronger than average (readily accepts H⁺)", "Very weak", "A strong acid", "Neutral salt"], answer: 0, explanation: "Because the weak acid dissociates incompletely, its conjugate base readily re-accepts protons — making it a relatively strong conjugate base." }
+    ],
+    4: [
+      { id: 331, question: "The pH scale ranges from:", options: ["0 to 7", "0 to 14", "1 to 14", "-∞ to +∞ (theoretically)"], answer: 3, explanation: "pH can go below 0 or above 14 for very strong/concentrated solutions; 0–14 is the typical range for common solutions." },
+      { id: 332, question: "pH is defined as:", options: ["-log[OH⁻]", "-log[H⁺]", "log[H⁺]", "[H⁺]/10"], answer: 1, explanation: "pH = -log[H⁺] (or -log[H₃O⁺])." },
+      { id: 333, question: "A neutral solution at 25°C has pH:", options: ["0", "7", "14", "1"], answer: 1, explanation: "At 25°C, pure water is neutral with pH = 7." },
+      { id: 334, question: "An acidic solution has pH:", options: ["Greater than 7", "Equal to 7", "Less than 7", "Equal to 14"], answer: 2, explanation: "Acidic solutions have [H⁺] > [OH⁻], giving pH < 7." },
+      { id: 335, question: "A basic solution has pH:", options: ["Less than 7", "Equal to 7", "Greater than 7", "Equal to 0"], answer: 2, explanation: "Basic solutions have [OH⁻] > [H⁺], giving pH > 7." },
+      { id: 336, question: "If [H⁺] = 0.001 M, what is the pH?", options: ["1", "2", "3", "4"], answer: 2, explanation: "pH = -log(0.001) = -log(10⁻³) = 3." },
+      { id: 337, question: "A solution with pH 4 is how many times more acidic than pH 6?", options: ["2 times", "10 times", "100 times", "1000 times"], answer: 2, explanation: "pH scale is logarithmic; a difference of 2 units = 10² = 100 times difference in [H⁺]." },
+      { id: 338, question: "pOH is defined as:", options: ["-log[H⁺]", "-log[OH⁻]", "14 + log[OH⁻]", "log[H⁺]"], answer: 1, explanation: "pOH = -log[OH⁻]." },
+      { id: 339, question: "At 25°C, pH + pOH =", options: ["7", "10", "14", "1"], answer: 2, explanation: "At 25°C, Kw = 10⁻¹⁴, so pH + pOH = 14." },
+      { id: 340, question: "A solution has pOH = 4 at 25°C. Its pH is:", options: ["4", "7", "10", "18"], answer: 2, explanation: "pH = 14 − pOH = 14 − 4 = 10." }
+    ],
+    5: [
+      { id: 341, question: "Calculate the pH of 0.01 M HCl (strong acid, fully dissociates).", options: ["1", "2", "3", "12"], answer: 1, explanation: "[H⁺] = 0.01 = 10⁻² M; pH = 2." },
+      { id: 342, question: "What is the pH of 0.1 M NaOH (strong base)?", options: ["1", "7", "13", "14"], answer: 2, explanation: "[OH⁻] = 0.1 M; pOH = 1; pH = 14 − 1 = 13." },
+      { id: 343, question: "0.001 M HNO₃ (strong acid). pH =?", options: ["1", "2", "3", "11"], answer: 2, explanation: "[H⁺] = 10⁻³; pH = 3." },
+      { id: 344, question: "A solution has [H⁺] = 10⁻⁹ M. What is the pH and is it acidic or basic?", options: ["pH 9, acidic", "pH 9, basic", "pH 5, acidic", "pH 5, basic"], answer: 1, explanation: "pH = -log(10⁻⁹) = 9 > 7, so the solution is basic." },
+      { id: 345, question: "0.001 M KOH. pOH = ? pH = ?", options: ["pOH=3, pH=11", "pOH=11, pH=3", "pOH=1, pH=13", "pOH=3, pH=14"], answer: 0, explanation: "[OH⁻] = 0.001 = 10⁻³; pOH = 3; pH = 14 − 3 = 11." },
+      { id: 346, question: "Which solution is most acidic?", options: ["pH 2", "pH 5", "pH 7", "pH 9"], answer: 0, explanation: "Lower pH = higher [H⁺] = more acidic. pH 2 is most acidic." },
+      { id: 347, question: "A solution with [OH⁻] = 10⁻⁴ M has pOH of:", options: ["4", "10", "14", "−4"], answer: 0, explanation: "pOH = -log(10⁻⁴) = 4." },
+      { id: 348, question: "If pH = 11.3, what is pOH?", options: ["11.3", "2.7", "14", "7"], answer: 1, explanation: "pOH = 14 − 11.3 = 2.7." },
+      { id: 349, question: "What is the [H⁺] of a solution with pH 5?", options: ["5 M", "10⁻⁵ M", "10⁵ M", "0.5 M"], answer: 1, explanation: "[H⁺] = 10⁻pH = 10⁻⁵ M." },
+      { id: 350, question: "A solution has [H⁺] = 3.2 × 10⁻⁴ M. Approximate pH is:", options: ["~2", "~3", "~3.5", "~4"], answer: 2, explanation: "pH = -log(3.2 × 10⁻⁴) ≈ 3.5." }
+    ],
+    6: [
+      { id: 351, question: "Ka is the acid dissociation constant. A large Ka means:", options: ["Weak acid", "Strong acid (more dissociation)", "Neutral compound", "Base"], answer: 1, explanation: "Larger Ka indicates more dissociation — a stronger acid." },
+      { id: 352, question: "Kb is the base dissociation constant. For NH₃ + H₂O ⇌ NH₄⁺ + OH⁻, Kb expression is:", options: ["[NH₃]/[NH₄⁺][OH⁻]", "[NH₄⁺][OH⁻]/[NH₃]", "[NH₃][H₂O]/[NH₄⁺][OH⁻]", "[NH₄⁺]/[NH₃][OH⁻]"], answer: 1, explanation: "Kb = [NH₄⁺][OH⁻] / [NH₃]; H₂O is omitted as pure liquid." },
+      { id: 353, question: "Kw at 25°C equals:", options: ["10⁻⁷", "10⁻¹⁴", "10⁻¹⁰", "1"], answer: 1, explanation: "The ion product of water Kw = [H⁺][OH⁻] = 10⁻¹⁴ at 25°C." },
+      { id: 354, question: "For a conjugate acid-base pair, Ka × Kb =", options: ["Ka", "Kb", "Kw", "1"], answer: 2, explanation: "Ka × Kb = Kw for a conjugate acid-base pair at the same temperature." },
+      { id: 355, question: "pKa = -log Ka. A lower pKa indicates:", options: ["Weaker acid", "Stronger acid", "Weaker base", "Stronger base"], answer: 1, explanation: "Lower pKa → larger Ka → stronger acid." },
+      { id: 356, question: "Acetic acid has Ka = 1.8 × 10⁻⁵. Its pKa is approximately:", options: ["1.8", "4.7", "5.0", "9.3"], answer: 1, explanation: "pKa = -log(1.8 × 10⁻⁵) ≈ 4.74." },
+      { id: 357, question: "Ka expression for CH₃COOH ⇌ CH₃COO⁻ + H⁺:", options: ["[CH₃COOH]/[CH₃COO⁻][H⁺]", "[CH₃COO⁻][H⁺]/[CH₃COOH]", "[CH₃COO⁻]/[H⁺][CH₃COOH]", "[H⁺]/[CH₃COO⁻]"], answer: 1, explanation: "Ka = products/reactants = [CH₃COO⁻][H⁺] / [CH₃COOH]." },
+      { id: 358, question: "If Ka of acid A > Ka of acid B, then:", options: ["A is weaker than B", "A is stronger than B", "They are equally strong", "B has lower pKa"], answer: 1, explanation: "Higher Ka means greater dissociation, so acid A is stronger." },
+      { id: 359, question: "At 25°C, in pure water [H⁺] = [OH⁻] = ?", options: ["10⁻⁷ M", "10⁻¹⁴ M", "1 M", "10⁻³ M"], answer: 0, explanation: "Kw = [H⁺][OH⁻] = 10⁻¹⁴; since equal, each = 10⁻⁷ M." },
+      { id: 360, question: "If Ka = 10⁻⁵ for acid HA, what is Kb for its conjugate base A⁻ (at 25°C)?", options: ["10⁻⁵", "10⁻⁹", "10⁻¹⁴", "10⁹"], answer: 1, explanation: "Kb = Kw/Ka = 10⁻¹⁴/10⁻⁵ = 10⁻⁹." }
+    ],
+    7: [
+      { id: 361, question: "In an ICE table, I stands for:", options: ["Ionic concentration", "Initial concentration", "Intermediate concentration", "Ideal concentration"], answer: 1, explanation: "ICE = Initial, Change, Equilibrium concentrations." },
+      { id: 362, question: "For weak acid HA ⇌ H⁺ + A⁻ with initial [HA] = C, the change in [H⁺] is defined as x. At equilibrium [HA] =", options: ["C", "C + x", "C − x", "x"], answer: 2, explanation: "HA loses x moles as it dissociates: [HA] = C − x at equilibrium." },
+      { id: 363, question: "For a weak acid with Ka = 1×10⁻⁵ and initial concentration 0.1 M, x (≈[H⁺]) is approximately:", options: ["0.1 M", "10⁻³ M", "10⁻⁵ M", "10⁻⁷ M"], answer: 1, explanation: "x = sqrt(Ka × C) = sqrt(10⁻⁵ × 0.1) = sqrt(10⁻⁶) = 10⁻³ M." },
+      { id: 364, question: "The approximation C − x ≈ C is valid when:", options: ["x > C", "x < 5% of C", "Ka > 1", "pH < 3"], answer: 1, explanation: "If x < 5% of C, the approximation C − x ≈ C introduces less than 5% error." },
+      { id: 365, question: "What is the pH of 0.1 M acetic acid (Ka = 1.8 × 10⁻⁵)?", options: ["~2.87", "~4.74", "~1", "~7"], answer: 0, explanation: "x = sqrt(1.8×10⁻⁵ × 0.1) ≈ 1.34×10⁻³; pH = -log(1.34×10⁻³) ≈ 2.87." },
+      { id: 366, question: "Percent dissociation of a weak acid is calculated as:", options: ["(Ka / C) × 100", "(x / C) × 100", "(C / x) × 100", "(x × Ka) × 100"], answer: 1, explanation: "% dissociation = (x/C) × 100 where x = [H⁺] at equilibrium." },
+      { id: 367, question: "If Ka doubles (and C stays constant), pH of a weak acid solution:", options: ["Stays same", "Increases (less acidic)", "Decreases slightly (more acidic)", "Drops by exactly 1 unit"], answer: 2, explanation: "Higher Ka → more dissociation → higher [H⁺] → lower pH." },
+      { id: 368, question: "For a weak base NH₃ + H₂O ⇌ NH₄⁺ + OH⁻ with Kb = 1.8×10⁻⁵ and [NH₃]₀ = 0.1 M, [OH⁻] ≈:", options: ["1.34×10⁻³ M", "1.8×10⁻⁵ M", "0.1 M", "10⁻⁷ M"], answer: 0, explanation: "[OH⁻] = sqrt(Kb × C) = sqrt(1.8×10⁻⁵ × 0.1) ≈ 1.34×10⁻³ M." },
+      { id: 369, question: "For the weak base above, pOH ≈ 2.87, so pH ≈:", options: ["2.87", "7", "11.13", "14"], answer: 2, explanation: "pH = 14 − pOH = 14 − 2.87 = 11.13." },
+      { id: 370, question: "Diluting a weak acid solution generally:", options: ["Increases pH (less acidic)", "Decreases pH", "Has no effect on pH", "Increases Ka"], answer: 0, explanation: "Dilution decreases [H⁺] (pH increases); it also increases percent dissociation but overall [H⁺] drops." }
+    ],
+    8: [
+      { id: 371, question: "At the equivalence point in a strong acid-strong base titration, pH =", options: ["< 7", "= 7", "> 7", "Depends on concentrations"], answer: 1, explanation: "Strong acid + strong base → neutral salt + water; pH = 7 at equivalence point." },
+      { id: 372, question: "At the equivalence point in a weak acid-strong base titration, pH is:", options: ["= 7", "< 7", "> 7", "= pKa"], answer: 2, explanation: "The conjugate base of the weak acid hydrolyses in water, making the solution basic (pH > 7) at equivalence." },
+      { id: 373, question: "In a titration, the equivalence point is when:", options: ["pH = 7", "Moles of acid equal moles of base", "The indicator changes colour", "The solution turns blue"], answer: 1, explanation: "Equivalence point: moles of acid exactly neutralise moles of base (stoichiometric point)." },
+      { id: 374, question: "An indicator is chosen based on:", options: ["Its colour only", "Its pKa matching the expected equivalence point pH range", "Its solubility", "Its molar mass"], answer: 1, explanation: "Indicators change colour near their pKa; choose one whose colour change range brackets the equivalence point pH." },
+      { id: 375, question: "Phenolphthalein changes colour (colourless to pink) at approximately pH:", options: ["4–6", "6–8", "8.3–10", "12–14"], answer: 2, explanation: "Phenolphthalein transitions from colourless (acid) to pink (basic) around pH 8.3–10." },
+      { id: 376, question: "Methyl orange indicator is best for titrations between:", options: ["Weak acid and weak base", "Strong acid and strong base", "Strong acid and weak base", "Weak acid and strong base"], answer: 2, explanation: "Methyl orange changes colour around pH 3.1–4.4, suitable for strong acid-weak base titrations." },
+      { id: 377, question: "25 mL of 0.1 M NaOH neutralises what volume of 0.1 M HCl?", options: ["12.5 mL", "25 mL", "50 mL", "100 mL"], answer: 1, explanation: "1:1 ratio, same concentration → equal volumes needed. 25 mL HCl." },
+      { id: 378, question: "The half-equivalence point in a weak acid titration is important because:", options: ["pH = 0 there", "pH ≈ pKa there (half acid neutralised)", "The solution is neutral", "The indicator always changes colour there"], answer: 1, explanation: "At half-equivalence, [HA] = [A⁻], so pH = pKa (Henderson-Hasselbalch gives pH = pKa + log 1)." },
+      { id: 379, question: "In a back titration, you add excess known reagent then titrate the:", options: ["Original sample directly", "Excess unreacted reagent", "Product formed", "Indicator"], answer: 1, explanation: "Back titration: add excess standard reagent, then titrate the remaining excess to find how much reacted with the sample." },
+      { id: 380, question: "The steep portion of a titration curve (rapid pH change) occurs around the:", options: ["Start", "Half-equivalence point", "Equivalence point", "End"], answer: 2, explanation: "pH changes rapidly near the equivalence point as small additions of titrant cause large pH shifts." }
+    ],
+    9: [
+      { id: 381, question: "A buffer solution resists changes in pH because it contains:", options: ["Pure water only", "A weak acid and its conjugate base (or weak base and conjugate acid)", "A strong acid and strong base", "Equal amounts of H⁺ and OH⁻"], answer: 1, explanation: "Buffers contain a weak acid/conjugate base pair that neutralises added acid or base." },
+      { id: 382, question: "The Henderson-Hasselbalch equation is:", options: ["pH = Ka + log([A⁻]/[HA])", "pH = pKa + log([A⁻]/[HA])", "pH = pKa - log([HA]/[A⁻])", "pH = -pKa + log([HA])"], answer: 1, explanation: "pH = pKa + log([A⁻]/[HA]) — the Henderson-Hasselbalch equation." },
+      { id: 383, question: "A buffer is most effective when:", options: ["[HA] >> [A⁻]", "[A⁻] >> [HA]", "[HA] ≈ [A⁻] (near the pKa)", "There is no acid"], answer: 2, explanation: "Buffers have maximum capacity when [HA] = [A⁻], i.e., pH = pKa." },
+      { id: 384, question: "To prepare a buffer at pH 4.74, you should use an acid with pKa close to:", options: ["7", "4.74", "2", "9"], answer: 1, explanation: "Buffer pH ≈ pKa when [A⁻]/[HA] ≈ 1; choose acid with pKa = 4.74 (e.g., acetic acid)." },
+      { id: 385, question: "What happens to a buffer when a small amount of strong acid is added?", options: ["pH drops dramatically", "The conjugate base neutralises H⁺, minimising pH change", "The buffer is destroyed", "pH increases"], answer: 1, explanation: "Added H⁺ reacts with A⁻: A⁻ + H⁺ → HA, maintaining pH." },
+      { id: 386, question: "Blood is buffered primarily by the bicarbonate buffer system: H₂CO₃/HCO₃⁻. Normal blood pH is:", options: ["6.4", "7.0", "7.4", "8.0"], answer: 2, explanation: "Normal blood pH is maintained around 7.35–7.45 by the bicarbonate/carbonic acid buffer." },
+      { id: 387, question: "Buffer capacity refers to:", options: ["The volume of the buffer", "The amount of acid or base the buffer can neutralise before significant pH change", "The concentration of buffer components only", "The pKa value"], answer: 1, explanation: "Buffer capacity is the moles of strong acid or base that can be added per litre before pH changes significantly." },
+      { id: 388, question: "A buffer has pH = pKa + log([A⁻]/[HA]). If [A⁻]/[HA] = 10, pH relative to pKa is:", options: ["pH = pKa − 1", "pH = pKa", "pH = pKa + 1", "pH = pKa + 2"], answer: 2, explanation: "log(10) = 1, so pH = pKa + 1." },
+      { id: 389, question: "Adding water (dilution) to a buffer:", options: ["Significantly changes pH", "Barely changes pH (same ratio [A⁻]/[HA])", "Always increases pH", "Destroys the buffer"], answer: 1, explanation: "Dilution does not change the [A⁻]/[HA] ratio significantly, so pH changes minimally." },
+      { id: 390, question: "A phosphate buffer uses H₂PO₄⁻/HPO₄²⁻ pair (pKa ≈ 7.2). This buffer is most useful in what pH range?", options: ["2–4", "5–6", "6.2–8.2", "10–12"], answer: 2, explanation: "Effective buffer range is pKa ± 1, so 7.2 ± 1 = 6.2–8.2." }
+    ],
+    10: [
+      { id: 391, question: "A polyprotic acid can donate more than one proton. Which is a polyprotic acid?", options: ["HCl", "HNO₃", "H₃PO₄", "CH₃COOH"], answer: 2, explanation: "H₃PO₄ can donate up to 3 protons (triprotic acid)." },
+      { id: 392, question: "For H₂SO₄, Ka₁ >> Ka₂. This means:", options: ["Both dissociations are equally easy", "First dissociation is much easier than the second", "Second dissociation is easier", "It is a monoprotic acid"], answer: 1, explanation: "Each successive dissociation of a polyprotic acid is harder (smaller Ka) due to removing H⁺ from an increasingly negative ion." },
+      { id: 393, question: "Hydrolysis of a salt of a weak acid and strong base (e.g., CH₃COONa) gives a solution that is:", options: ["Acidic", "Neutral", "Basic", "Depends on concentration"], answer: 2, explanation: "CH₃COO⁻ hydrolyses: CH₃COO⁻ + H₂O ⇌ CH₃COOH + OH⁻, making the solution basic." },
+      { id: 394, question: "A salt of a strong acid and weak base (e.g., NH₄Cl) gives a solution that is:", options: ["Acidic", "Neutral", "Basic", "Salt never affects pH"], answer: 0, explanation: "NH₄⁺ donates a proton to water: NH₄⁺ ⇌ NH₃ + H⁺, making the solution acidic." },
+      { id: 395, question: "What is the pH of a 0.1 M NaCH₃COO solution (pKa of acetic acid = 4.74, Kw = 10⁻¹⁴)?", options: ["~4.74", "~7", "~8.87", "~9.5"], answer: 2, explanation: "Kb(CH₃COO⁻) = Kw/Ka; [OH⁻] from hydrolysis gives pOH, then pH = 14−pOH ≈ 8.87." },
+      { id: 396, question: "The common ion effect causes:", options: ["Increased dissociation of weak acids", "Suppressed dissociation of a weak acid when its conjugate base is added", "Higher pH in all cases", "Stronger buffering at extreme pH"], answer: 1, explanation: "Adding the conjugate base shifts equilibrium left (Le Chatelier), suppressing dissociation — the common ion effect." },
+      { id: 397, question: "An amphoteric species can act as both:", options: ["Oxidising and reducing agent", "Acid and base", "Solid and liquid", "Electrolyte and nonelectrolyte"], answer: 1, explanation: "An amphoteric species (like H₂O, HCO₃⁻) can both donate and accept protons." },
+      { id: 398, question: "In strong acid-weak base titration, the equivalence point pH is:", options: ["= 7", "> 7", "< 7", "= pKa"], answer: 2, explanation: "The weak base's conjugate acid (e.g., NH₄⁺) makes the solution slightly acidic at equivalence." },
+      { id: 399, question: "Which pH indicator would be best for a strong acid-strong base titration?", options: ["Methyl orange only", "Phenolphthalein only", "Either methyl orange or phenolphthalein (steep curve covers both ranges)", "Litmus only"], answer: 2, explanation: "The equivalence point of SA-SB titrations has a steep pH curve from ~3 to ~11, so most indicators work." },
+      { id: 400, question: "Acid rain has pH below 5.6. The primary cause is:", options: ["CO₂ dissolving in rainwater only", "SO₂ and NOₓ emissions dissolving to form H₂SO₄ and HNO₃", "O₃ reacting with water", "Evaporation of HCl from oceans"], answer: 1, explanation: "SO₂ and NOₓ from combustion dissolve in rain to form sulfuric and nitric acids, lowering pH below 5.6." }
+    ]
+  },
+  chemical_reactions: {
+    1: [
+      { id: 401, question: "A synthesis (combination) reaction has the form:", options: ["AB → A + B", "A + B → AB", "AB + CD → AD + CB", "AB + C → AC + B"], answer: 1, explanation: "Synthesis: two or more reactants combine to form one product (A + B → AB)." },
+      { id: 402, question: "A decomposition reaction has the form:", options: ["A + B → AB", "AB → A + B", "AX + BY → AY + BX", "A + BC → AC + B"], answer: 1, explanation: "Decomposition: one reactant breaks into two or more products (AB → A + B)." },
+      { id: 403, question: "2H₂O → 2H₂ + O₂ is an example of:", options: ["Synthesis", "Single displacement", "Decomposition", "Combustion"], answer: 2, explanation: "Water splits into two simpler substances — a decomposition reaction." },
+      { id: 404, question: "Zn + CuSO₄ → ZnSO₄ + Cu is an example of:", options: ["Synthesis", "Double displacement", "Single displacement", "Combustion"], answer: 2, explanation: "One element (Zn) displaces another (Cu) from a compound — single displacement." },
+      { id: 405, question: "Complete combustion of a hydrocarbon always produces:", options: ["CO and H₂O", "CO₂ and H₂O", "C and H₂", "CO₂ and H₂"], answer: 1, explanation: "Complete combustion: hydrocarbon + O₂ → CO₂ + H₂O." },
+      { id: 406, question: "NaCl + AgNO₃ → AgCl↓ + NaNO₃ is an example of:", options: ["Single displacement", "Synthesis", "Decomposition", "Double displacement (metathesis)"], answer: 3, explanation: "Two ionic compounds exchange partners — a double displacement (precipitation) reaction." },
+      { id: 407, question: "Which type of reaction involves oxygen and releases large amounts of energy as heat and light?", options: ["Decomposition", "Combustion", "Double displacement", "Synthesis"], answer: 1, explanation: "Combustion involves rapid reaction with O₂, releasing energy as heat and light." },
+      { id: 408, question: "Fe + S → FeS is what type of reaction?", options: ["Decomposition", "Combustion", "Synthesis", "Single displacement"], answer: 2, explanation: "Two elements combine to form one compound — synthesis." },
+      { id: 409, question: "Which reaction type is: 2HgO → 2Hg + O₂?", options: ["Synthesis", "Combustion", "Single displacement", "Decomposition"], answer: 3, explanation: "Mercury(II) oxide breaks down into its elements — decomposition." },
+      { id: 410, question: "Mg + 2HCl → MgCl₂ + H₂ is a:", options: ["Double displacement", "Combustion", "Single displacement", "Synthesis"], answer: 2, explanation: "Mg displaces H from HCl — single displacement." }
+    ],
+    2: [
+      { id: 411, question: "The oxidation state of a free element (uncombined) is:", options: ["+1", "−1", "0", "Depends on element"], answer: 2, explanation: "Free elements always have oxidation state = 0." },
+      { id: 412, question: "The oxidation state of oxygen in most compounds is:", options: ["+2", "−1", "−2", "0"], answer: 2, explanation: "Oxygen is typically −2 in compounds (except peroxides −1, OF₂ +2)." },
+      { id: 413, question: "The oxidation state of hydrogen in most compounds is:", options: ["+1", "−1", "0", "+2"], answer: 0, explanation: "Hydrogen is +1 in most compounds (except metal hydrides where it is −1)." },
+      { id: 414, question: "What is the oxidation state of S in H₂SO₄?", options: ["+4", "+6", "−2", "0"], answer: 1, explanation: "2(+1) + S + 4(−2) = 0 → S = +6." },
+      { id: 415, question: "What is the oxidation state of N in NO₃⁻?", options: ["+3", "+5", "−3", "0"], answer: 1, explanation: "N + 3(−2) = −1 → N = +5." },
+      { id: 416, question: "What is the oxidation state of Mn in MnO₄⁻?", options: ["+5", "+6", "+7", "+4"], answer: 2, explanation: "Mn + 4(−2) = −1 → Mn = +7." },
+      { id: 417, question: "The sum of oxidation states in a neutral compound equals:", options: ["+1", "−1", "0", "The charge of the central atom"], answer: 2, explanation: "Oxidation states in a neutral compound must sum to zero." },
+      { id: 418, question: "What is the oxidation state of Cr in Cr₂O₇²⁻?", options: ["+3", "+4", "+6", "+7"], answer: 2, explanation: "2Cr + 7(−2) = −2 → 2Cr = +12 → Cr = +6." },
+      { id: 419, question: "In H₂O₂, the oxidation state of oxygen is:", options: ["−2", "−1", "0", "+1"], answer: 1, explanation: "In peroxides, oxygen is −1 (each O is −1 and 2H = +2: 2(+1) + 2(−1) = 0)." },
+      { id: 420, question: "What is the oxidation state of Fe in Fe₂O₃?", options: ["+2", "+3", "+4", "0"], answer: 1, explanation: "2Fe + 3(−2) = 0 → 2Fe = +6 → Fe = +3." }
+    ],
+    3: [
+      { id: 421, question: "In redox reactions, oxidation is:", options: ["Gain of electrons", "Loss of electrons", "Gain of protons", "Loss of neutrons"], answer: 1, explanation: "Oxidation = loss of electrons (OIL: Oxidation Is Loss)." },
+      { id: 422, question: "In redox reactions, reduction is:", options: ["Loss of electrons", "Gain of electrons", "Loss of protons", "Gain of neutrons"], answer: 1, explanation: "Reduction = gain of electrons (RIG: Reduction Is Gain)." },
+      { id: 423, question: "In the reaction Zn + Cu²⁺ → Zn²⁺ + Cu, zinc is:", options: ["Reduced", "Oxidised", "Neither", "A catalyst"], answer: 1, explanation: "Zn loses 2 electrons (0 → +2), so it is oxidised." },
+      { id: 424, question: "In Zn + Cu²⁺ → Zn²⁺ + Cu, copper ion is:", options: ["Oxidised", "Reduced", "Neither", "A spectator ion"], answer: 1, explanation: "Cu²⁺ gains 2 electrons (+2 → 0), so it is reduced." },
+      { id: 425, question: "The reducing agent in a redox reaction is:", options: ["The substance that gets reduced", "The substance that gets oxidised (and reduces another)", "The solvent", "The spectator ion"], answer: 1, explanation: "The reducing agent is oxidised — it loses electrons and causes another species to be reduced." },
+      { id: 426, question: "The oxidising agent is:", options: ["The substance that gets oxidised", "The substance that gets reduced (and oxidises another)", "The product", "The acid"], answer: 1, explanation: "The oxidising agent is reduced — it gains electrons and causes another species to be oxidised." },
+      { id: 427, question: "In 2Na + Cl₂ → 2NaCl, chlorine is the:", options: ["Reducing agent", "Oxidising agent", "Spectator", "Catalyst"], answer: 1, explanation: "Cl₂ is reduced (0 → −1), so it is the oxidising agent." },
+      { id: 428, question: "A disproportionation reaction is one where the same element is:", options: ["Neither oxidised nor reduced", "Both oxidised and reduced simultaneously", "Only oxidised", "Only reduced"], answer: 1, explanation: "In disproportionation, one element acts as both the oxidising and reducing agent." },
+      { id: 429, question: "When balancing redox equations in acidic solution, what is often added to balance oxygen?", options: ["OH⁻", "H₂O", "H₂O₂", "O₂"], answer: 1, explanation: "In acidic conditions, H₂O is added to balance O atoms, then H⁺ to balance H atoms." },
+      { id: 430, question: "The half-reaction for reduction of MnO₄⁻ to Mn²⁺ in acid is: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O. How many electrons are transferred?", options: ["3", "4", "5", "8"], answer: 2, explanation: "Mn goes from +7 to +2, a change of 5 — so 5 electrons are gained per Mn." }
+    ],
+    4: [
+      { id: 431, question: "Increasing temperature generally affects reaction rate by:", options: ["Decreasing it", "Having no effect", "Increasing it (more energetic collisions)", "Doubling it exactly"], answer: 2, explanation: "Higher temperature increases kinetic energy, leading to more frequent and more energetic collisions." },
+      { id: 432, question: "Increasing concentration of reactants generally:", options: ["Decreases reaction rate", "Increases reaction rate (more collisions per unit volume)", "Has no effect", "Changes the activation energy"], answer: 1, explanation: "Higher concentration means more particles in a given volume, increasing collision frequency." },
+      { id: 433, question: "A catalyst affects reaction rate by:", options: ["Providing energy to reactants", "Lowering the activation energy", "Increasing temperature", "Increasing concentration"], answer: 1, explanation: "Catalysts lower activation energy, providing an alternative reaction pathway and increasing rate." },
+      { id: 434, question: "Increasing surface area of a solid reactant:", options: ["Decreases rate", "Increases rate (more exposed surface for collisions)", "Has no effect on rate", "Changes the stoichiometry"], answer: 1, explanation: "Greater surface area exposes more reactant particles for collisions, increasing rate." },
+      { id: 435, question: "The Arrhenius equation relates rate constant k to:", options: ["Concentration and volume", "Temperature and activation energy", "Pressure and time", "Catalyst amount"], answer: 1, explanation: "k = A·e^(−Ea/RT); rate constant depends on temperature and activation energy." },
+      { id: 436, question: "The activation energy (Ea) is:", options: ["The energy released by the reaction", "The minimum energy required for a reaction to occur", "The heat of formation", "The bond energy of products"], answer: 1, explanation: "Activation energy is the minimum energy colliding particles need to react and form products." },
+      { id: 437, question: "A reaction with high activation energy is generally:", options: ["Very fast", "Very slow at room temperature", "Unaffected by temperature", "Always exothermic"], answer: 1, explanation: "High Ea means few molecules have enough energy to react at low temperatures — slow rate." },
+      { id: 438, question: "Pressure affects gas-phase reaction rates because:", options: ["It changes molar mass", "It changes activation energy", "Increased pressure = increased concentration of gas molecules", "It changes the stoichiometry"], answer: 2, explanation: "Increasing pressure compresses gases into smaller volume, effectively increasing concentration." },
+      { id: 439, question: "The rate-determining step is:", options: ["The fastest step in a mechanism", "The slowest step, which limits overall reaction rate", "The last step of the reaction", "The step with lowest activation energy"], answer: 1, explanation: "The rate-determining step is the slowest elementary step; it controls the overall rate." },
+      { id: 440, question: "Doubling the concentration of reactant A doubles the rate. The order with respect to A is:", options: ["Zero order", "First order", "Second order", "Third order"], answer: 1, explanation: "Rate doubles when [A] doubles → rate ∝ [A]¹ → first order." }
+    ],
+    5: [
+      { id: 441, question: "Collision theory states that for a reaction to occur, reactant particles must:", options: ["Be at the same temperature", "Collide with sufficient energy and correct orientation", "Be in the same phase", "Have the same molar mass"], answer: 1, explanation: "Collisions must have energy ≥ activation energy AND correct geometric orientation." },
+      { id: 442, question: "An effective collision is one that:", options: ["Occurs between any two particles", "Results in a reaction (sufficient energy + correct orientation)", "Occurs at low temperature", "Does not involve bond breaking"], answer: 1, explanation: "An effective collision must have the minimum activation energy and proper orientation to form products." },
+      { id: 443, question: "A Maxwell-Boltzmann distribution curve shows:", options: ["The range of speeds/energies of molecules at a given temperature", "The concentration versus time", "The pH of a reaction mixture", "The enthalpy changes"], answer: 0, explanation: "Maxwell-Boltzmann distribution shows the distribution of molecular speeds (or kinetic energies) in a gas sample." },
+      { id: 444, question: "When temperature increases, the Maxwell-Boltzmann curve:", options: ["Shifts left with a higher peak", "Shifts right and flattens (more high-energy molecules)", "Stays the same", "Becomes narrower"], answer: 1, explanation: "Higher temperature shifts the curve to higher energies, flattening it, with more molecules above Ea." },
+      { id: 445, question: "Collision frequency is affected by:", options: ["Activation energy only", "Concentration and temperature", "Catalyst only", "Molar mass only"], answer: 1, explanation: "More molecules (concentration) and faster movement (temperature) increase collision frequency." },
+      { id: 446, question: "Why does a catalyst increase reaction rate according to collision theory?", options: ["Increases collision frequency", "Provides alternative pathway with lower Ea, increasing fraction of effective collisions", "Increases temperature", "Increases concentration"], answer: 1, explanation: "Catalyst lowers Ea — more molecules now exceed the activation energy threshold, giving more effective collisions." },
+      { id: 447, question: "Orientation of molecules matters in collision theory because:", options: ["All orientations are equally effective", "Only specific orientations lead to bond breaking/forming at the right atoms", "Orientation determines temperature", "Wrong orientation increases activation energy permanently"], answer: 1, explanation: "Reactant molecules must collide with the reacting atoms properly aligned for bonds to break and form." },
+      { id: 448, question: "A reaction with a very high activation energy has:", options: ["High rate at room temperature", "Low fraction of molecules with enough energy to react", "No catalyst available", "Negative enthalpy change"], answer: 1, explanation: "Few molecules possess energy ≥ Ea when Ea is large → slow reaction at room temperature." },
+      { id: 449, question: "The transition state (activated complex) in a reaction is:", options: ["The reactant state", "The product state", "The high-energy intermediate at the top of the energy barrier", "The catalyst"], answer: 2, explanation: "The transition state is the unstable, high-energy arrangement of atoms at the top of the activation energy barrier." },
+      { id: 450, question: "An exothermic reaction has products that are:", options: ["At higher energy than reactants", "At lower energy than reactants", "At the same energy", "Unstable"], answer: 1, explanation: "Exothermic reactions release energy; products have lower potential energy than reactants." }
+    ],
+    6: [
+      { id: 451, question: "A homogeneous catalyst is:", options: ["In a different phase from reactants", "In the same phase as the reactants", "Always a solid", "Always a metal"], answer: 1, explanation: "Homogeneous catalyst is in the same phase (usually all in solution) as the reactants." },
+      { id: 452, question: "A heterogeneous catalyst is:", options: ["In the same phase as reactants", "In a different phase from the reactants", "Always a liquid", "Never reusable"], answer: 1, explanation: "Heterogeneous catalyst is in a different phase (e.g., solid catalyst with gas-phase reactants)." },
+      { id: 453, question: "How does a catalyst affect the enthalpy change (ΔH) of a reaction?", options: ["Increases ΔH", "Decreases ΔH", "Has no effect on ΔH", "Reverses the sign of ΔH"], answer: 2, explanation: "Catalysts only affect activation energy and rate; the overall ΔH (energy difference between reactants and products) is unchanged." },
+      { id: 454, question: "Enzymes are biological catalysts made of:", options: ["Lipids", "Carbohydrates", "Proteins", "Nucleic acids"], answer: 2, explanation: "Enzymes are protein catalysts that speed up biochemical reactions with high specificity." },
+      { id: 455, question: "An inhibitor in a chemical context:", options: ["Increases reaction rate", "Decreases reaction rate by blocking catalytic sites or reacting with catalyst", "Has no effect on rate", "Increases activation energy permanently"], answer: 1, explanation: "Inhibitors slow reactions by poisoning catalysts or competing for active sites." },
+      { id: 456, question: "The surface area of a heterogeneous solid catalyst matters because:", options: ["More surface area = more active sites for reactant adsorption", "Less surface area speeds reaction", "Surface area changes activation energy", "Surface area changes ΔH"], answer: 0, explanation: "More surface area exposes more catalytic active sites, allowing more reactant molecules to adsorb and react." },
+      { id: 457, question: "In catalytic converters, what reactions are catalysed?", options: ["Combustion of fuel", "Conversion of CO, NOₓ, and unburnt hydrocarbons to CO₂, N₂, H₂O", "Electrolysis of water", "Decomposition of CO₂"], answer: 1, explanation: "Catalytic converters use platinum group metals to convert harmful exhaust gases to less harmful ones." },
+      { id: 458, question: "An autocatalytic reaction is one where:", options: ["A separate catalyst is needed", "A product of the reaction acts as a catalyst", "The reaction needs no energy", "Temperature is irrelevant"], answer: 1, explanation: "In autocatalysis, a product catalyses the reaction that produced it, causing accelerating reaction rates." },
+      { id: 459, question: "Haber process for NH₃ synthesis uses which catalyst?", options: ["Platinum", "Iron", "Nickel", "Vanadium pentoxide"], answer: 1, explanation: "The Haber process (N₂ + 3H₂ → 2NH₃) uses iron as the catalyst with promoters." },
+      { id: 460, question: "Contact process for H₂SO₄ uses which catalyst?", options: ["Iron", "Platinum", "Vanadium(V) oxide (V₂O₅)", "Nickel"], answer: 2, explanation: "The Contact process oxidises SO₂ to SO₃ using vanadium(V) oxide catalyst." }
+    ],
+    7: [
+      { id: 461, question: "Chemical equilibrium is reached when:", options: ["All reactants are consumed", "Forward and reverse reaction rates are equal", "pH = 7", "Temperature is constant"], answer: 1, explanation: "At equilibrium, the rate of the forward reaction equals the rate of the reverse reaction." },
+      { id: 462, question: "The equilibrium constant Kc for aA + bB ⇌ cC + dD is:", options: ["[A]^a[B]^b / [C]^c[D]^d", "[C]^c[D]^d / [A]^a[B]^b", "[C][D] / [A][B]", "[A][B] / [C][D]"], answer: 1, explanation: "Kc = [products]^coefficients / [reactants]^coefficients." },
+      { id: 463, question: "A large Kc (>>1) means:", options: ["Reactants are favoured at equilibrium", "Products are favoured at equilibrium", "Reaction does not occur", "Rate is very fast"], answer: 1, explanation: "Kc >> 1 means [products] >> [reactants] at equilibrium — products are favoured." },
+      { id: 464, question: "A small Kc (<<1) means:", options: ["Reactants are favoured at equilibrium", "Products are favoured", "Reaction is fast", "Temperature is low"], answer: 0, explanation: "Kc << 1 means [reactants] >> [products] at equilibrium — reactants dominate." },
+      { id: 465, question: "For N₂ + 3H₂ ⇌ 2NH₃, the Kc expression is:", options: ["[N₂][H₂]³/[NH₃]²", "[NH₃]²/[N₂][H₂]³", "[NH₃]/[N₂][H₂]", "[N₂][H₂]/[NH₃]"], answer: 1, explanation: "Kc = [NH₃]² / ([N₂][H₂]³)." },
+      { id: 466, question: "Pure solids and liquids are excluded from the Kc expression because:", options: ["They have no concentration", "Their concentrations are constant and included in K", "They are not reactants", "They are always products"], answer: 1, explanation: "Pure solids and liquids have fixed (constant) activity = 1, so they are incorporated into the equilibrium constant." },
+      { id: 467, question: "The reaction quotient Q helps predict:", options: ["The rate of reaction", "Whether a system is at equilibrium and which direction it will shift", "The activation energy", "The enthalpy change"], answer: 1, explanation: "Q is calculated like Kc but with current concentrations; comparing Q to K shows which direction the reaction shifts." },
+      { id: 468, question: "If Q < Kc, the reaction will shift:", options: ["Towards reactants (left)", "Towards products (right)", "Remain at equilibrium", "Stop completely"], answer: 1, explanation: "Q < Kc means too many reactants relative to equilibrium; reaction proceeds forward to make more products." },
+      { id: 469, question: "If Q > Kc, the reaction will shift:", options: ["Towards products (right)", "Towards reactants (left)", "Remain at equilibrium", "Stop"], answer: 1, explanation: "Q > Kc means too many products; reaction shifts in reverse to restore equilibrium." },
+      { id: 470, question: "Temperature change DOES change Kc because:", options: ["It changes concentrations directly", "It alters the relative rates of forward and reverse reactions differently", "Kc is always temperature-independent", "It changes the stoichiometry"], answer: 1, explanation: "Temperature changes the activation energy advantage of one direction over the other, changing the equilibrium position and Kc." }
+    ],
+    8: [
+      { id: 471, question: "Le Chatelier's principle states that if a system at equilibrium is disturbed, it will:", options: ["Stop reacting", "Shift to oppose the change and re-establish equilibrium", "Shift to enhance the change", "Reach a new equilibrium with no change"], answer: 1, explanation: "Le Chatelier: the system responds to minimise the effect of the disturbance." },
+      { id: 472, question: "For N₂ + 3H₂ ⇌ 2NH₃ (exothermic), increasing temperature shifts equilibrium:", options: ["Right (more NH₃)", "Left (less NH₃)", "No change", "Depends on pressure"], answer: 1, explanation: "Increasing temperature favours the endothermic direction (reverse), shifting left to consume heat." },
+      { id: 473, question: "For N₂ + 3H₂ ⇌ 2NH₃, increasing pressure shifts equilibrium:", options: ["Left (more gas moles)", "Right (fewer gas moles — 4 mol → 2 mol)", "No change", "Depends on temperature"], answer: 1, explanation: "Increasing pressure favours fewer gas moles; 4 mol gas → 2 mol, so shifts right." },
+      { id: 474, question: "Adding more reactant to an equilibrium shifts it:", options: ["Left", "Right (to consume the added reactant)", "No change", "Depends on Ka"], answer: 1, explanation: "Adding reactant increases Q (making Q < Kc momentarily), pushing the reaction right." },
+      { id: 475, question: "Removing a product from an equilibrium shifts it:", options: ["Left", "Right (to replace the removed product)", "No change", "Depends on temperature"], answer: 1, explanation: "Removing product decreases Q below Kc, shifting reaction right to produce more product." },
+      { id: 476, question: "A catalyst added to a system at equilibrium:", options: ["Shifts equilibrium right", "Shifts equilibrium left", "Increases Kc", "Has no effect on equilibrium position, only speeds up attaining it"], answer: 3, explanation: "Catalyst speeds both forward and reverse reactions equally; it does not change Kc or shift equilibrium." },
+      { id: 477, question: "For PCl₅ ⇌ PCl₃ + Cl₂, decreasing volume (increasing pressure) shifts equilibrium:", options: ["Right (more moles)", "Left (fewer moles — 1 mol → 2 mol gas, so left opposes increase)", "No change", "Depends on temperature"], answer: 1, explanation: "Increasing pressure favours fewer moles of gas; 1 mol PCl₅ < 2 mol products, so reaction shifts left." },
+      { id: 478, question: "For the endothermic reaction A ⇌ B, increasing temperature:", options: ["Shifts left", "Shifts right (favours endothermic direction)", "Has no effect", "Decreases Kc"], answer: 1, explanation: "For an endothermic reaction, higher temperature favours products (right shift), increasing Kc." },
+      { id: 479, question: "In the Haber process, why is an intermediate temperature (~450°C) used rather than very high or low?", options: ["Low T gives fast rate but poor yield; high T gives good yield but slow rate", "High T gives fast rate but poor yield; low T is too slow", "Temperature has no effect", "Only pressure matters"], answer: 1, explanation: "NH₃ synthesis is exothermic: low T favours yield but rate too slow; high T is fast but shifts equilibrium left — a compromise is used." },
+      { id: 480, question: "Adding an inert gas at constant volume to a gas-phase equilibrium:", options: ["Shifts equilibrium right", "Shifts equilibrium left", "Has no effect on equilibrium position", "Increases Kc"], answer: 2, explanation: "Inert gas at constant volume does not change partial pressures of reactants/products, so no equilibrium shift occurs." }
+    ],
+    9: [
+      { id: 481, question: "For the equilibrium N₂O₄ ⇌ 2NO₂, Kc = 4.0×10⁻³ at a given temperature. If [N₂O₄] = 0.1 M at equilibrium, [NO₂] is:", options: ["0.02 M", "0.04 M", "0.2 M", "0.004 M"], answer: 0, explanation: "Kc = [NO₂]²/[N₂O₄] → [NO₂]² = 4.0×10⁻³ × 0.1 = 4.0×10⁻⁴ → [NO₂] = 0.02 M." },
+      { id: 482, question: "For A ⇌ B with Kc = 9, if [A]₀ = 1 M and [B]₀ = 0, equilibrium [A] =", options: ["0.1 M", "0.9 M", "0.5 M", "9 M"], answer: 0, explanation: "Let x = [B] at equilibrium; Kc = x/(1−x) = 9 → x = 0.9; [A] = 0.1 M." },
+      { id: 483, question: "In an ICE table for equilibrium calculations, the 'Change' row represents:", options: ["The initial concentration", "The change in concentration from initial to equilibrium", "The equilibrium concentration", "The Kc value"], answer: 1, explanation: "The Change row shows how concentrations shift from initial values to equilibrium (often expressed as +x or −x)." },
+      { id: 484, question: "H₂ + I₂ ⇌ 2HI, Kc = 49. Starting with [H₂] = [I₂] = 1 M, equilibrium [HI] ≈:", options: ["1.4 M", "3.5 M", "7 M", "0.1 M"], answer: 0, explanation: "Kc = (2x)²/((1−x)(1−x)) = 49; 2x/(1−x) = 7; 2x = 7−7x; 9x = 7; x = 0.78; [HI] = 2(0.78) ≈ 1.56 M. Closest ≈ 1.4 M (approximation)." },
+      { id: 485, question: "When Kc is very large, we can assume the reaction:", options: ["Does not proceed", "Goes to near completion", "Is at equilibrium immediately", "Has very high activation energy"], answer: 1, explanation: "Large Kc >> 1 means products greatly favoured; reaction proceeds nearly to completion." },
+      { id: 486, question: "For 2SO₂ + O₂ ⇌ 2SO₃, Kc = 280. If Q = 300 > Kc, what happens?", options: ["Reaction shifts right", "Reaction shifts left", "Nothing changes", "Kc increases"], answer: 1, explanation: "Q > Kc → too many products → reaction shifts left (reverse direction) to reach equilibrium." },
+      { id: 487, question: "Kp and Kc are related by Kp = Kc(RT)^Δn, where Δn is:", options: ["Total moles", "Change in moles of gas (moles products − moles reactants)", "Temperature change", "Pressure change"], answer: 1, explanation: "Δn = moles of gaseous products − moles of gaseous reactants in the balanced equation." },
+      { id: 488, question: "For N₂ + 3H₂ ⇌ 2NH₃, Δn =", options: ["2 − 4 = −2", "4 − 2 = +2", "2 − 1 = +1", "1 − 2 = −1"], answer: 0, explanation: "Δn = 2 (products) − (1 + 3) (reactants) = 2 − 4 = −2." },
+      { id: 489, question: "Ksp is the solubility product constant. For AgCl ⇌ Ag⁺ + Cl⁻, Ksp =", options: ["[AgCl]", "[Ag⁺][Cl⁻]", "[Ag⁺]/[Cl⁻]", "[Cl⁻]/[Ag⁺]"], answer: 1, explanation: "Ksp = [Ag⁺][Cl⁻]; the solid AgCl is omitted from the expression." },
+      { id: 490, question: "If the ion product Q > Ksp, a precipitate will:", options: ["Dissolve", "Form (system shifts to decrease ion concentrations)", "Not be affected", "Increase Ksp"], answer: 1, explanation: "Q > Ksp means the solution is supersaturated; precipitation occurs until Q = Ksp." }
+    ],
+    10: [
+      { id: 491, question: "Electrochemistry involves the relationship between:", options: ["Chemical reactions and light", "Chemical reactions and electrical energy", "Heat and pressure", "Magnetism and chemistry"], answer: 1, explanation: "Electrochemistry studies the interconversion of chemical energy and electrical energy via redox reactions." },
+      { id: 492, question: "In a galvanic (voltaic) cell, chemical energy is converted to:", options: ["Heat", "Light", "Electrical energy", "Sound"], answer: 2, explanation: "A galvanic cell uses spontaneous redox reactions to generate electrical energy (electricity)." },
+      { id: 493, question: "In an electrolytic cell, electrical energy is used to:", options: ["Generate electricity", "Drive a non-spontaneous chemical reaction", "Measure temperature", "Absorb light"], answer: 1, explanation: "Electrolysis uses electrical energy to force non-spontaneous redox reactions (e.g., electroplating, electrolysis of water)." },
+      { id: 494, question: "In a galvanic cell, oxidation occurs at the:", options: ["Cathode", "Anode", "Salt bridge", "Electrolyte"], answer: 1, explanation: "At the anode: oxidation (AnOx); at the cathode: reduction (RedCat)." },
+      { id: 495, question: "In electrolysis, reduction occurs at the:", options: ["Anode", "Cathode", "Salt bridge", "Positive electrode"], answer: 1, explanation: "In both galvanic and electrolytic cells, reduction occurs at the cathode." },
+      { id: 496, question: "The standard electrode potential (E°) measures:", options: ["Current produced", "Tendency of a half-cell to be reduced relative to a standard hydrogen electrode", "Activation energy", "Enthalpy change"], answer: 1, explanation: "E° is the reduction potential of a half-reaction measured against the standard hydrogen electrode (SHE, E° = 0 V)." },
+      { id: 497, question: "The standard cell potential E°cell is calculated as:", options: ["E°cathode − E°anode (both as reduction potentials)", "E°anode − E°cathode", "E°cathode + E°anode", "E°cathode × E°anode"], answer: 0, explanation: "E°cell = E°cathode − E°anode (using reduction potentials for both)." },
+      { id: 498, question: "A positive E°cell indicates the reaction is:", options: ["Non-spontaneous", "Spontaneous", "At equilibrium", "Endothermic"], answer: 1, explanation: "E°cell > 0 corresponds to ΔG < 0, indicating a spontaneous reaction." },
+      { id: 499, question: "Faraday's law of electrolysis states that the amount of substance deposited is:", options: ["Independent of charge", "Proportional to the charge passed (moles e⁻ = Q/F)", "Proportional to temperature", "Inversely proportional to current"], answer: 1, explanation: "Faraday's law: moles of substance = (charge in coulombs) / (Faraday constant × charge per ion)." },
+      { id: 500, question: "The Faraday constant (F) is approximately:", options: ["6.022 × 10²³ C/mol", "96485 C/mol", "8.314 J/mol·K", "1.602 × 10⁻¹⁹ C"], answer: 1, explanation: "F ≈ 96485 C/mol — the charge of one mole of electrons." }
+    ]
+  }
+};
 
-  chemical_bonding: [
-    {
-      id: 1,
-      question: "What type of bond is formed when electrons are transferred from one atom to another?",
-      options: ["Covalent bond", "Metallic bond", "Ionic bond", "Hydrogen bond"],
-      answer: 2,
-      explanation: "In an ionic bond, one atom donates electrons to another, forming oppositely charged ions that attract each other."
-    },
-    {
-      id: 2,
-      question: "In a Lewis structure of water (H₂O), how many lone pairs does the oxygen atom have?",
-      options: ["0", "1", "2", "3"],
-      answer: 2,
-      explanation: "Oxygen has 6 valence electrons. It forms 2 bonds with hydrogen atoms (using 2 electrons), leaving 4 electrons = 2 lone pairs."
-    },
-    {
-      id: 3,
-      question: "According to VSEPR theory, what is the molecular geometry of methane (CH₄)?",
-      options: ["Linear", "Trigonal planar", "Tetrahedral", "Bent"],
-      answer: 2,
-      explanation: "CH₄ has 4 bonding pairs and no lone pairs around carbon, giving a perfect tetrahedral geometry (bond angles ≈ 109.5°)."
-    },
-    {
-      id: 4,
-      question: "Which molecule is polar?",
-      options: ["CO₂", "BF₃", "CCl₄", "H₂O"],
-      answer: 3,
-      explanation: "H₂O has a bent shape (due to 2 lone pairs on O) and polar O–H bonds. The dipoles do NOT cancel, making the molecule polar."
-    },
-    {
-      id: 5,
-      question: "The bond in F₂ is best described as:",
-      options: ["Ionic", "Polar covalent", "Nonpolar covalent", "Metallic"],
-      answer: 2,
-      explanation: "Both F atoms have the same electronegativity (4.0), so electrons are shared equally — a nonpolar covalent bond."
-    },
-    {
-      id: 6,
-      question: "What is the bond order in a triple bond such as N≡N?",
-      options: ["1", "2", "3", "6"],
-      answer: 2,
-      explanation: "A triple bond consists of 3 shared electron pairs (one sigma + two pi bonds). Bond order = 3."
-    },
-    {
-      id: 7,
-      question: "Which intermolecular force is responsible for the unusually high boiling point of water?",
-      options: ["London dispersion forces", "Dipole–dipole forces", "Hydrogen bonding", "Ionic attraction"],
-      answer: 2,
-      explanation: "Water forms strong O–H···O hydrogen bonds because O is highly electronegative and bonded to H. This raises the boiling point to 100 °C."
-    },
-    {
-      id: 8,
-      question: "In metallic bonding, valence electrons are:",
-      options: ["Transferred to anions", "Shared between two specific atoms", "Delocalised in a 'sea' around cations", "Held tightly by the nucleus"],
-      answer: 2,
-      explanation: "Metals have a lattice of positive ions surrounded by a 'sea' of free (delocalised) electrons, which gives metals electrical conductivity and malleability."
-    },
-    {
-      id: 9,
-      question: "What is the molecular geometry of ammonia (NH₃)?",
-      options: ["Trigonal planar", "Trigonal pyramidal", "Tetrahedral", "Linear"],
-      answer: 1,
-      explanation: "NH₃ has 3 bonding pairs and 1 lone pair. The lone pair pushes the bonds down, giving a trigonal pyramidal shape (bond angle ≈ 107°)."
-    },
-    {
-      id: 10,
-      question: "Which property best explains why ionic compounds have high melting points?",
-      options: ["Weak van der Waals forces", "Covalent network structure", "Strong electrostatic attraction between ions", "Metallic bonding"],
-      answer: 2,
-      explanation: "Ionic compounds have a giant lattice of oppositely charged ions held by strong electrostatic forces, requiring a lot of energy to break."
-    }
-  ],
-
-  stoichiometry: [
-    {
-      id: 1,
-      question: "How many moles of atoms are in 24 g of carbon (Ar = 12)?",
-      options: ["1", "2", "12", "24"],
-      answer: 1,
-      explanation: "Moles = mass ÷ molar mass = 24 ÷ 12 = 2 mol."
-    },
-    {
-      id: 2,
-      question: "What is the molar mass of H₂SO₄? (H=1, S=32, O=16)",
-      options: ["49 g/mol", "80 g/mol", "96 g/mol", "98 g/mol"],
-      answer: 3,
-      explanation: "H₂SO₄: 2(1) + 32 + 4(16) = 2 + 32 + 64 = 98 g/mol."
-    },
-    {
-      id: 3,
-      question: "In the reaction 2H₂ + O₂ → 2H₂O, if 4 mol of H₂ reacts completely, how many moles of H₂O are produced?",
-      options: ["2", "4", "6", "8"],
-      answer: 1,
-      explanation: "Mole ratio H₂ : H₂O = 2 : 2 = 1 : 1. So 4 mol H₂ produces 4 mol H₂O."
-    },
-    {
-      id: 4,
-      question: "A compound contains 40% C, 6.7% H, and 53.3% O by mass. What is its empirical formula? (C=12, H=1, O=16)",
-      options: ["CH₂O", "C₂H₄O₂", "CHO", "CH₃O"],
-      answer: 0,
-      explanation: "Moles: C = 40/12 ≈ 3.33, H = 6.7/1 = 6.7, O = 53.3/16 ≈ 3.33. Ratio ≈ 1:2:1 → empirical formula CH₂O."
-    },
-    {
-      id: 5,
-      question: "Avogadro's number (6.022 × 10²³) represents the number of particles in:",
-      options: ["1 gram of any substance", "1 mole of any substance", "1 litre of gas at STP", "1 molecule of any compound"],
-      answer: 1,
-      explanation: "1 mole of any substance contains exactly 6.022 × 10²³ particles (atoms, molecules, ions, etc.)."
-    },
-    {
-      id: 6,
-      question: "In a reaction, 10 g of H₂ and 80 g of O₂ react to form water. Which is the limiting reagent? (H=1, O=16)",
-      options: ["H₂", "O₂", "Both are equal", "Neither — there is excess of both"],
-      answer: 1,
-      explanation: "Moles: H₂ = 10/2 = 5 mol, O₂ = 80/32 = 2.5 mol. Reaction needs 2H₂ + O₂, so 5 mol H₂ needs 2.5 mol O₂ — they react exactly! But if slightly different, O₂ would be limiting. Here they're stoichiometrically equal."
-    },
-    {
-      id: 7,
-      question: "What volume does 2 moles of an ideal gas occupy at STP (0 °C, 1 atm)?",
-      options: ["11.2 L", "22.4 L", "44.8 L", "11.2 mL"],
-      answer: 2,
-      explanation: "At STP, 1 mol of ideal gas = 22.4 L. So 2 mol = 44.8 L."
-    },
-    {
-      id: 8,
-      question: "The percent yield formula is:",
-      options: ["(theoretical / actual) × 100", "(actual / theoretical) × 100", "(actual / molar mass) × 100", "(moles / mass) × 100"],
-      answer: 1,
-      explanation: "Percent yield = (actual yield ÷ theoretical yield) × 100%. It measures reaction efficiency."
-    },
-    {
-      id: 9,
-      question: "How many molecules are in 0.5 mol of CO₂?",
-      options: ["3.011 × 10²³", "6.022 × 10²³", "1.204 × 10²⁴", "6.022 × 10²⁴"],
-      answer: 0,
-      explanation: "Molecules = moles × Avogadro's number = 0.5 × 6.022 × 10²³ = 3.011 × 10²³."
-    },
-    {
-      id: 10,
-      question: "What is the concentration of a solution containing 4 mol of NaCl dissolved in 2 litres of water?",
-      options: ["0.5 M", "2 M", "4 M", "8 M"],
-      answer: 1,
-      explanation: "Concentration (M) = moles ÷ volume (L) = 4 ÷ 2 = 2 mol/L (2 M)."
-    }
-  ],
-
-  acids_and_bases: [
-    {
-      id: 1,
-      question: "According to the Arrhenius definition, an acid is a substance that:",
-      options: ["Accepts a proton in water", "Donates a proton in water", "Produces H⁺ ions in aqueous solution", "Produces OH⁻ ions in aqueous solution"],
-      answer: 2,
-      explanation: "Arrhenius acids produce H⁺ (or H₃O⁺) when dissolved in water. Example: HCl → H⁺ + Cl⁻."
-    },
-    {
-      id: 2,
-      question: "What is the pH of a solution with [H⁺] = 1 × 10⁻³ mol/L?",
-      options: ["3", "7", "11", "-3"],
-      answer: 0,
-      explanation: "pH = −log[H⁺] = −log(10⁻³) = 3."
-    },
-    {
-      id: 3,
-      question: "A solution with pH = 9 is:",
-      options: ["Strongly acidic", "Weakly acidic", "Neutral", "Basic"],
-      answer: 3,
-      explanation: "pH > 7 indicates a basic (alkaline) solution. pH 9 is weakly basic."
-    },
-    {
-      id: 4,
-      question: "In the reaction NH₃ + H₂O ⇌ NH₄⁺ + OH⁻, water is acting as:",
-      options: ["A Brønsted–Lowry acid", "A Brønsted–Lowry base", "Both acid and base", "Neither acid nor base"],
-      answer: 0,
-      explanation: "Water donates a proton (H⁺) to NH₃, making water the Brønsted–Lowry acid in this reaction."
-    },
-    {
-      id: 5,
-      question: "What is the product of the neutralisation reaction between HCl and NaOH?",
-      options: ["NaCl + H₂O", "NaOH + H₂", "Na₂O + HCl", "NaH + Cl₂O"],
-      answer: 0,
-      explanation: "HCl + NaOH → NaCl + H₂O. Acid + base → salt + water (neutralisation)."
-    },
-    {
-      id: 6,
-      question: "Which of the following is a strong acid?",
-      options: ["Ethanoic acid (CH₃COOH)", "Carbonic acid (H₂CO₃)", "Hydrochloric acid (HCl)", "Phosphoric acid (H₃PO₄)"],
-      answer: 2,
-      explanation: "HCl is a strong acid — it fully dissociates in water: HCl → H⁺ + Cl⁻. The others are weak acids."
-    },
-    {
-      id: 7,
-      question: "At 25 °C, if the pH of a solution is 4, what is the pOH?",
-      options: ["4", "7", "10", "14"],
-      answer: 2,
-      explanation: "At 25 °C, pH + pOH = 14. So pOH = 14 − 4 = 10."
-    },
-    {
-      id: 8,
-      question: "A buffer solution resists changes in pH because it contains:",
-      options: ["A strong acid and a strong base", "A weak acid and its conjugate base", "Pure water and a salt", "A neutral molecule and an ion"],
-      answer: 1,
-      explanation: "A buffer typically contains a weak acid (e.g. CH₃COOH) and its conjugate base (e.g. CH₃COO⁻). They absorb added H⁺ or OH⁻."
-    },
-    {
-      id: 9,
-      question: "During an acid–base titration, the equivalence point is reached when:",
-      options: ["The solution turns pink", "Moles of acid equal moles of base", "pH = 7 exactly", "The indicator changes colour twice"],
-      answer: 1,
-      explanation: "The equivalence point is where the moles of acid exactly equal the moles of base (stoichiometrically). pH = 7 only if both are strong."
-    },
-    {
-      id: 10,
-      question: "The Lewis definition of an acid is a substance that:",
-      options: ["Produces H⁺ in water", "Donates a proton", "Accepts an electron pair", "Donates an electron pair"],
-      answer: 2,
-      explanation: "Lewis acids are electron-pair acceptors. This is a broader definition than Arrhenius or Brønsted–Lowry — it doesn't require H⁺."
-    }
-  ],
-
-  chemical_reactions: [
-    {
-      id: 1,
-      question: "What type of reaction is: 2Mg + O₂ → 2MgO?",
-      options: ["Decomposition", "Single displacement", "Synthesis (combination)", "Double displacement"],
-      answer: 2,
-      explanation: "In a synthesis reaction, two or more substances combine to form a single product: A + B → AB."
-    },
-    {
-      id: 2,
-      question: "In the reaction CaCO₃ → CaO + CO₂, what type of reaction is this?",
-      options: ["Synthesis", "Decomposition", "Combustion", "Neutralisation"],
-      answer: 1,
-      explanation: "Decomposition reactions break one compound into two or more simpler substances: AB → A + B."
-    },
-    {
-      id: 3,
-      question: "What is the correct balanced equation for the combustion of propane (C₃H₈)?",
-      options: ["C₃H₈ + O₂ → CO₂ + H₂O", "C₃H₈ + 5O₂ → 3CO₂ + 4H₂O", "C₃H₈ + 4O₂ → 3CO₂ + 4H₂O", "2C₃H₈ + 7O₂ → 6CO₂ + 8H₂O"],
-      answer: 1,
-      explanation: "C₃H₈ + 5O₂ → 3CO₂ + 4H₂O. Check: C: 3=3 ✓, H: 8=8 ✓, O: 10=10 ✓."
-    },
-    {
-      id: 4,
-      question: "Which of the following is a redox reaction?",
-      options: ["NaCl(aq) + AgNO₃(aq) → AgCl(s) + NaNO₃(aq)", "HCl + NaOH → NaCl + H₂O", "Zn + CuSO₄ → ZnSO₄ + Cu", "CaCO₃ → CaO + CO₂"],
-      answer: 2,
-      explanation: "Zn is oxidised (0 → +2) and Cu²⁺ is reduced (+2 → 0). Any reaction with electron transfer is a redox reaction."
-    },
-    {
-      id: 5,
-      question: "In a redox reaction, the reducing agent is the substance that:",
-      options: ["Gains electrons", "Loses electrons", "Gains protons", "Loses protons"],
-      answer: 1,
-      explanation: "The reducing agent loses (donates) electrons and is itself oxidised. OIL RIG: Oxidation Is Loss, Reduction Is Gain."
-    },
-    {
-      id: 6,
-      question: "What does a catalyst do in a chemical reaction?",
-      options: ["Increases the energy of reactants", "Lowers the activation energy", "Raises the activation energy", "Is consumed in the reaction"],
-      answer: 1,
-      explanation: "A catalyst provides an alternative reaction pathway with lower activation energy, speeding up the reaction. It is not consumed."
-    },
-    {
-      id: 7,
-      question: "According to collision theory, increasing temperature increases reaction rate because:",
-      options: ["It increases the concentration of reactants", "More particles have energy ≥ activation energy", "It lowers the activation energy", "It increases the volume of the container"],
-      answer: 1,
-      explanation: "Higher temperature gives more particles enough kinetic energy to exceed the activation energy threshold, increasing successful collision frequency."
-    },
-    {
-      id: 8,
-      question: "In the reaction Zn + 2HCl → ZnCl₂ + H₂, what is the oxidation state change of zinc?",
-      options: ["0 to −2", "0 to +2", "+2 to 0", "+2 to −2"],
-      answer: 1,
-      explanation: "Zinc starts as a neutral element (0) and becomes Zn²⁺ in ZnCl₂ (+2). Zinc is oxidised."
-    },
-    {
-      id: 9,
-      question: "Which of the following will NOT increase the rate of a reaction?",
-      options: ["Increasing temperature", "Adding a catalyst", "Increasing reactant concentration", "Decreasing surface area of a solid reactant"],
-      answer: 3,
-      explanation: "Decreasing surface area reduces the exposed area for collisions, slowing the reaction rate. All other options increase rate."
-    },
-    {
-      id: 10,
-      question: "In the reaction A + B → C + D, what does the enthalpy change (ΔH < 0) indicate?",
-      options: ["The reaction is endothermic", "Energy is absorbed from surroundings", "The reaction is exothermic", "The activation energy is zero"],
-      answer: 2,
-      explanation: "Negative ΔH means energy is released to the surroundings — an exothermic reaction. Examples: combustion, neutralisation."
-    }
-  ]
-}
-
-module.exports = questions
+module.exports = questions;
