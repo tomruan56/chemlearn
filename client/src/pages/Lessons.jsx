@@ -46,6 +46,42 @@ const lessons = [
     summary: 'Arrhenius, Brønsted–Lowry and Lewis definitions, pH scale, strong vs weak, titration, and buffers.',
     topics: ['Definitions (Arrhenius, B-L, Lewis)', 'pH & pOH', 'Strong vs weak', 'Neutralisation', 'Buffers & titration'],
   },
+  {
+    icon: '🔥',
+    title: 'Thermochemistry',
+    to: '/lessons/thermochemistry',
+    color: 'from-orange-900 to-orange-800',
+    border: 'border-orange-700',
+    summary: 'Enthalpy, calorimetry (q = mcΔT), Hess\'s Law, bond energies, standard enthalpies, and Gibbs free energy.',
+    topics: ['Enthalpy & ΔH', 'Calorimetry', 'Hess\'s Law', 'Bond energies', 'Gibbs free energy'],
+  },
+  {
+    icon: '💨',
+    title: 'Gases',
+    to: '/lessons/gases',
+    color: 'from-cyan-900 to-cyan-800',
+    border: 'border-cyan-700',
+    summary: 'Kinetic molecular theory, Boyle\'s, Charles\'s and ideal gas laws, Dalton\'s law, and Graham\'s law.',
+    topics: ['Kinetic molecular theory', 'Boyle\'s & Charles\'s laws', 'Ideal gas law PV=nRT', 'Dalton\'s law', 'Graham\'s law'],
+  },
+  {
+    icon: '🧬',
+    title: 'Organic Chemistry',
+    to: '/lessons/organic-chemistry',
+    color: 'from-pink-900 to-pink-800',
+    border: 'border-pink-700',
+    summary: 'Hydrocarbons, IUPAC naming, functional groups, isomers, key reaction types, and polymers.',
+    topics: ['Hydrocarbons', 'IUPAC naming', 'Functional groups', 'Reaction types', 'Polymers'],
+  },
+  {
+    icon: '☢️',
+    title: 'Nuclear Chemistry',
+    to: '/lessons/nuclear-chemistry',
+    color: 'from-violet-900 to-violet-800',
+    border: 'border-violet-700',
+    summary: 'Radioactive decay (α, β, γ), half-life calculations, nuclear fission and fusion, and mass–energy equivalence.',
+    topics: ['Radioactive decay', 'Half-life', 'Nuclear equations', 'Fission & fusion', 'E = mc²'],
+  },
 ]
 
 export default function Lessons() {

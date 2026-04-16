@@ -10,6 +10,10 @@ import ChemicalBonding from './pages/lessons/ChemicalBonding'
 import Stoichiometry from './pages/lessons/Stoichiometry'
 import AcidsAndBases from './pages/lessons/AcidsAndBases'
 import ChemicalReactions from './pages/lessons/ChemicalReactions'
+import Thermochemistry from './pages/lessons/Thermochemistry'
+import Gases from './pages/lessons/Gases'
+import OrganicChemistry from './pages/lessons/OrganicChemistry'
+import NuclearChemistry from './pages/lessons/NuclearChemistry'
 import Quiz from './pages/Quiz'
 import EquationBalancer from './pages/EquationBalancer'
 import Reactions from './pages/Reactions'
@@ -35,6 +39,10 @@ export default function App() {
               <Route path="/lessons/stoichiometry" element={<Stoichiometry />} />
               <Route path="/lessons/acids-and-bases" element={<AcidsAndBases />} />
               <Route path="/lessons/chemical-reactions" element={<ChemicalReactions />} />
+              <Route path="/lessons/thermochemistry" element={<Thermochemistry />} />
+              <Route path="/lessons/gases" element={<Gases />} />
+              <Route path="/lessons/organic-chemistry" element={<OrganicChemistry />} />
+              <Route path="/lessons/nuclear-chemistry" element={<NuclearChemistry />} />
               <Route path="/quiz" element={<Quiz />} />
               <Route path="/balancer" element={<EquationBalancer />} />
               <Route path="/reactions" element={<Reactions />} />
