@@ -237,10 +237,10 @@ export default function EquationBalancer() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-5xl">⚖️</span>
+        <span className="text-4xl sm:text-5xl">⚖️</span>
         <div>
-          <h1 className="text-3xl font-bold">Equation Balancer</h1>
-          <p className="text-gray-400">Enter any chemical equation to balance it instantly</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">Equation Balancer</h1>
+          <p className="text-gray-400 text-sm sm:text-base">Enter any chemical equation to balance it instantly</p>
         </div>
       </div>
 
@@ -292,8 +292,8 @@ export default function EquationBalancer() {
           ) : (
             <>
               <h2 className="font-bold text-lg mb-1 text-green-400">Balanced Equation</h2>
-              <div className="bg-gray-800 rounded-xl p-5 mb-4 text-center">
-                <span className="font-mono text-2xl text-white">
+              <div className="bg-gray-800 rounded-xl p-3 sm:p-5 mb-4 text-center overflow-x-auto">
+                <span className="font-mono text-base sm:text-xl md:text-2xl text-white whitespace-nowrap">
                   {result.leftMolecules.map((mol, i) => (
                     <span key={i}>
                       {i > 0 && <span className="text-gray-400"> + </span>}
@@ -322,19 +322,19 @@ export default function EquationBalancer() {
                 <table className="w-full text-sm border-collapse mb-4">
                   <thead>
                     <tr className="bg-gray-800">
-                      <th className="px-4 py-2 text-left border border-gray-700 text-gray-300">Element</th>
-                      <th className="px-4 py-2 text-center border border-gray-700 text-gray-300">Left side</th>
-                      <th className="px-4 py-2 text-center border border-gray-700 text-gray-300">Right side</th>
-                      <th className="px-4 py-2 text-center border border-gray-700 text-gray-300">Balanced?</th>
+                      <th className="px-2 sm:px-4 py-1.5 sm:py-2 text-left border border-gray-700 text-gray-300">Element</th>
+                      <th className="px-2 sm:px-4 py-1.5 sm:py-2 text-center border border-gray-700 text-gray-300">Left</th>
+                      <th className="px-2 sm:px-4 py-1.5 sm:py-2 text-center border border-gray-700 text-gray-300">Right</th>
+                      <th className="px-2 sm:px-4 py-1.5 sm:py-2 text-center border border-gray-700 text-gray-300">✓</th>
                     </tr>
                   </thead>
                   <tbody>
                     {Object.entries(result.atomCheck).map(([el, { left, right }]) => (
                       <tr key={el} className="bg-gray-900">
-                        <td className="px-4 py-2 border border-gray-700 font-bold text-blue-300">{el}</td>
-                        <td className="px-4 py-2 border border-gray-700 text-center">{left}</td>
-                        <td className="px-4 py-2 border border-gray-700 text-center">{right}</td>
-                        <td className="px-4 py-2 border border-gray-700 text-center">
+                        <td className="px-2 sm:px-4 py-1.5 sm:py-2 border border-gray-700 font-bold text-blue-300">{el}</td>
+                        <td className="px-2 sm:px-4 py-1.5 sm:py-2 border border-gray-700 text-center">{left}</td>
+                        <td className="px-2 sm:px-4 py-1.5 sm:py-2 border border-gray-700 text-center">{right}</td>
+                        <td className="px-2 sm:px-4 py-1.5 sm:py-2 border border-gray-700 text-center">
                           {left === right ? <span className="text-green-400">✓</span> : <span className="text-red-400">✗</span>}
                         </td>
                       </tr>

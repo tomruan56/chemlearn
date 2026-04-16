@@ -31,9 +31,9 @@ export default function ChemicalReactions() {
     <div className="max-w-3xl mx-auto px-4 py-10">
       <Link to="/lessons" className="text-red-400 hover:text-red-300 text-sm mb-4 inline-block">← All Lessons</Link>
       <div className="flex items-center gap-3 mb-6">
-        <span className="text-5xl">⚗️</span>
+        <span className="text-4xl sm:text-5xl">⚗️</span>
         <div>
-          <h1 className="text-3xl font-bold">Chemical Reactions</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Chemical Reactions</h1>
           <p className="text-gray-400">Types, rates, redox, and energy changes</p>
         </div>
       </div>

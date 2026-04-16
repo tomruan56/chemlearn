@@ -16,7 +16,16 @@
       "Bash(PORT=3002 NODE_ENV=production node server/index.js)",
       "Bash(curl -s -o /dev/null -w \"HTML status: %{http_code}\\\\n\" http://localhost:3002/)",
       "Bash(curl -s http://localhost:3002/api/health)",
-      "Bash(pkill -f \"PORT=3002\")"
+      "Bash(pkill -f \"PORT=3002\")",
+      "Bash(node -e \"const r = require\\('./client/src/data/reactions.js'\\); console.log\\('This is ESM, use different approach'\\)\")",
+      "Bash(python3 -c ':*)",
+      "Bash(node -e \"const fs=require\\('fs'\\); const c=fs.readFileSync\\('D:/Claude/HighSchoolChemistry/server/data/questions.js','utf8'\\); console.log\\('chars:', c.length, 'ends:', JSON.stringify\\(c.slice\\(-60\\)\\)\\)\")",
+      "Bash(node append_stoich.js)",
+      "Bash(node append_acids.js)",
+      "Bash(node append_reactions.js)",
+      "Bash(node -e ':*)",
+      "Bash(node fix_lessons.js)",
+      "Bash(rm fix_lessons.js)"
     ]
   }
 }

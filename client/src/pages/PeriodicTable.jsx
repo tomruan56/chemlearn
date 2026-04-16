@@ -141,15 +141,15 @@ export default function PeriodicTable() {
       {selected && (
         <div className="mt-6 mx-2">
           <div className={`card border-2 ${categoryColors[selected.category]?.border || 'border-gray-700'}`}>
-            <div className="flex items-start gap-6 flex-wrap">
-              <div className={`${categoryColors[selected.category]?.bg} rounded-xl p-4 text-center min-w-[100px]`}>
-                <div className="text-sm opacity-60 mb-1">{selected.number}</div>
-                <div className="text-5xl font-bold">{selected.symbol}</div>
-                <div className="text-sm mt-1">{selected.name}</div>
+            <div className="flex items-start gap-3 sm:gap-6 flex-wrap">
+              <div className={`${categoryColors[selected.category]?.bg} rounded-xl p-3 sm:p-4 text-center min-w-[80px] sm:min-w-[100px]`}>
+                <div className="text-xs sm:text-sm opacity-60 mb-1">{selected.number}</div>
+                <div className="text-3xl sm:text-5xl font-bold">{selected.symbol}</div>
+                <div className="text-xs sm:text-sm mt-1">{selected.name}</div>
                 <div className="text-xs opacity-60 mt-1">{selected.mass} u</div>
               </div>
-              <div className="flex-1 min-w-[200px]">
-                <h2 className="text-2xl font-bold mb-1">{selected.name}</h2>
+              <div className="flex-1 min-w-[160px]">
+                <h2 className="text-xl sm:text-2xl font-bold mb-1">{selected.name}</h2>
                 <div className="flex flex-wrap gap-3 mb-3 text-sm">
                   <span className="bg-gray-800 rounded px-2 py-0.5">
                     <span className="text-gray-400">Category: </span>

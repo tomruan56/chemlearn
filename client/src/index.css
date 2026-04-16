@@ -5,21 +5,29 @@
 @layer base {
   body {
     @apply bg-gray-950 text-gray-100 min-h-screen;
+    /* Prevent text size inflation on orientation change */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  /* Safe-area insets for notched phones (Dynamic Island, Face ID, etc.) */
+  main {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200;
+    @apply bg-blue-600 hover:bg-blue-500 text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-colors duration-200 text-sm sm:text-base;
   }
   .btn-secondary {
-    @apply bg-gray-700 hover:bg-gray-600 text-gray-100 font-semibold px-4 py-2 rounded-lg transition-colors duration-200;
+    @apply bg-gray-700 hover:bg-gray-600 text-gray-100 font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-colors duration-200 text-sm sm:text-base;
   }
   .card {
-    @apply bg-gray-900 border border-gray-800 rounded-xl p-6;
+    @apply bg-gray-900 border border-gray-800 rounded-xl p-4 sm:p-6;
   }
   .input {
-    @apply bg-gray-800 border border-gray-700 text-gray-100 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500;
+    @apply bg-gray-800 border border-gray-700 text-gray-100 rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 text-sm sm:text-base;
   }
 }
 
@@ -35,7 +43,7 @@
 
 /* Quiz option */
 .quiz-option {
-  @apply border border-gray-700 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-blue-500 hover:bg-blue-900/20;
+  @apply border border-gray-700 rounded-lg p-3 sm:p-4 cursor-pointer transition-all duration-200 hover:border-blue-500 hover:bg-blue-900/20;
 }
 .quiz-option.correct {
   @apply border-green-500 bg-green-900/30 text-green-300;
@@ -45,4 +53,12 @@
 }
 .quiz-option.selected {
   @apply border-blue-500 bg-blue-900/30;
+}
+
+/* Landscape on short screens (phones rotated) — reduce vertical rhythm */
+@media (orientation: landscape) and (max-height: 500px) {
+  .landscape-py {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
 }

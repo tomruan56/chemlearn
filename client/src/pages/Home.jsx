@@ -94,34 +94,34 @@ export default function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       {/* Hero */}
-      <div className="text-center mb-14">
-        <div className="text-6xl mb-4">⚗️</div>
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+      <div className="text-center mb-10 sm:mb-14">
+        <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">⚗️</div>
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
           Master High School <span className="text-blue-400">Chemistry</span>
         </h1>
-        <p className="text-gray-400 text-lg max-w-xl mx-auto mb-8">
+        <p className="text-gray-400 text-sm sm:text-lg max-w-xl mx-auto mb-6 sm:mb-8 px-2">
           Interactive lessons, quizzes, a full periodic table and equation balancer — everything you need to ace your chemistry exams.
         </p>
-        <div className="flex items-center justify-center gap-4">
-          <Link to="/quiz" className="btn-primary text-lg px-6 py-3">Start Quiz</Link>
-          <Link to="/periodic-table" className="btn-secondary text-lg px-6 py-3">Explore Periodic Table</Link>
+        <div className="flex items-center justify-center gap-3">
+          <Link to="/quiz" className="btn-primary">Start Quiz</Link>
+          <Link to="/periodic-table" className="btn-secondary">Explore Periodic Table</Link>
         </div>
       </div>
 
       {/* Progress bar (logged-in users) */}
       {user && (
-        <div className="card mb-10">
+        <div className="card mb-8 sm:mb-10">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="font-semibold text-lg">Your Progress</h2>
-            <span className="text-sm text-gray-400">{passedTests} / {TOTAL_TESTS} tests passed</span>
+            <h2 className="font-semibold text-base sm:text-lg">Your Progress</h2>
+            <span className="text-xs sm:text-sm text-gray-400">{passedTests} / {TOTAL_TESTS} tests passed</span>
           </div>
-          <div className="w-full bg-gray-800 rounded-full h-3 mb-4">
+          <div className="w-full bg-gray-800 rounded-full h-2 sm:h-3 mb-4">
             <div
-              className="bg-blue-500 h-3 rounded-full transition-all duration-500"
+              className="bg-blue-500 h-2 sm:h-3 rounded-full transition-all duration-500"
               style={{ width: `${(passedTests / TOTAL_TESTS) * 100}%` }}
             />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
             {topics.map(topic => {
               const topicId = topic.name.toLowerCase().replace(/ & /g, '_and_').replace(/ /g, '_')
               const s = topicStats[topicId]
@@ -129,14 +129,14 @@ export default function Home() {
                 <Link
                   key={topic.to}
                   to={`/quiz?topic=${topic.to.split('/').pop()}`}
-                  className="bg-gray-800 rounded-lg p-3 text-center hover:bg-gray-700 transition-colors"
+                  className="bg-gray-800 rounded-lg p-2 sm:p-3 text-center hover:bg-gray-700 transition-colors"
                 >
-                  <div className="text-2xl mb-1">{topic.icon}</div>
-                  <div className="text-xs text-gray-400 mb-1">{topic.name}</div>
+                  <div className="text-xl sm:text-2xl mb-1">{topic.icon}</div>
+                  <div className="text-[10px] sm:text-xs text-gray-400 mb-1 leading-tight">{topic.name}</div>
                   {s.attempted > 0 ? (
-                    <div className="text-xs font-semibold text-green-400">{s.passed}/10 passed</div>
+                    <div className="text-[10px] sm:text-xs font-semibold text-green-400">{s.passed}/10</div>
                   ) : (
-                    <div className="text-xs text-gray-600">Not started</div>
+                    <div className="text-[10px] sm:text-xs text-gray-600">Not started</div>
                   )}
                 </Link>
               )
@@ -146,15 +146,15 @@ export default function Home() {
       )}
 
       {/* Features */}
-      <div className="grid md:grid-cols-2 gap-6 mb-14">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14">
         {features.map(f => (
           <Link
             key={f.to}
             to={f.to}
-            className={`bg-gradient-to-br ${f.color} border ${f.border} rounded-xl p-6 hover:scale-[1.02] transition-transform duration-200 group`}
+            className={`bg-gradient-to-br ${f.color} border ${f.border} rounded-xl p-4 sm:p-6 hover:scale-[1.02] transition-transform duration-200 group`}
           >
-            <div className="text-4xl mb-3">{f.icon}</div>
-            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">
+            <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">{f.icon}</div>
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-blue-200 transition-colors">
               {f.title}
             </h3>
             <p className="text-gray-300 text-sm">{f.description}</p>
@@ -164,13 +164,13 @@ export default function Home() {
 
       {/* Topic quick links */}
       <div className="mb-10">
-        <h2 className="text-2xl font-bold mb-6 text-center">Topics Covered</h2>
-        <div className="flex flex-wrap justify-center gap-3">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Topics Covered</h2>
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
           {topics.map(t => (
             <Link
               key={t.to}
               to={t.to}
-              className="bg-gray-900 border border-gray-700 rounded-full px-5 py-2 text-sm font-medium hover:border-blue-500 hover:bg-gray-800 transition-all flex items-center gap-2"
+              className="bg-gray-900 border border-gray-700 rounded-full px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-medium hover:border-blue-500 hover:bg-gray-800 transition-all flex items-center gap-1.5 sm:gap-2"
             >
               <span>{t.icon}</span>
               <span className={t.color}>{t.name}</span>

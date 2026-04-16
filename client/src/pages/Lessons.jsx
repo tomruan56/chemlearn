@@ -98,9 +98,9 @@ export default function Lessons() {
             className={`block bg-gradient-to-r ${l.color} border ${l.border} rounded-xl p-6 hover:scale-[1.01] transition-transform duration-200 group`}
           >
             <div className="flex items-start gap-4">
-              <span className="text-4xl">{l.icon}</span>
-              <div className="flex-1">
-                <h2 className="text-xl font-bold text-white group-hover:text-blue-200 transition-colors mb-1">
+              <span className="text-3xl sm:text-4xl">{l.icon}</span>
+              <div className="flex-1 min-w-0">
+                <h2 className="text-base sm:text-xl font-bold text-white group-hover:text-blue-200 transition-colors mb-1">
                   {l.title}
                 </h2>
                 <p className="text-gray-300 text-sm mb-3">{l.summary}</p>
@@ -112,7 +112,7 @@ export default function Lessons() {
                   ))}
                 </div>
               </div>
-              <span className="text-gray-400 text-xl self-center">→</span>
+              <span className="text-gray-400 text-base sm:text-xl self-center flex-shrink-0">→</span>
             </div>
           </Link>
         ))}

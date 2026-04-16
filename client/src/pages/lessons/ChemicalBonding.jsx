@@ -23,9 +23,9 @@ export default function ChemicalBonding() {
     <div className="max-w-3xl mx-auto px-4 py-10">
       <Link to="/lessons" className="text-purple-400 hover:text-purple-300 text-sm mb-4 inline-block">← All Lessons</Link>
       <div className="flex items-center gap-3 mb-6">
-        <span className="text-5xl">🔗</span>
+        <span className="text-4xl sm:text-5xl">🔗</span>
         <div>
-          <h1 className="text-3xl font-bold">Chemical Bonding</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Chemical Bonding</h1>
           <p className="text-gray-400">How atoms join together</p>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default function ChemicalBonding() {
         <p className="text-gray-300 mb-3">
           Covalent bonds form when atoms <strong className="text-white">share electrons</strong>. Each shared pair counts as one bond.
         </p>
-        <div className="grid grid-cols-3 gap-3 mb-4 text-center text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 text-center text-sm">
           {[['Single bond', 'H–H', 'σ bond, 2 shared e⁻'], ['Double bond', 'O=O', 'σ + π, 4 shared e⁻'], ['Triple bond', 'N≡N', 'σ + 2π, 6 shared e⁻']].map(([t, ex, info]) => (
             <div key={t} className="bg-gray-800 rounded-lg p-3">
               <div className="font-bold text-purple-300">{t}</div>

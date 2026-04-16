@@ -24,13 +24,13 @@ function Table({ headers, rows }) {
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="bg-gray-800">
-            {headers.map(h => <th key={h} className="px-4 py-2 text-left text-gray-300 border border-gray-700">{h}</th>)}
+            {headers.map(h => <th key={h} className="px-2 sm:px-4 py-1.5 sm:py-2 text-left text-gray-300 border border-gray-700 whitespace-nowrap">{h}</th>)}
           </tr>
         </thead>
         <tbody>
           {rows.map((row, i) => (
             <tr key={i} className={i % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800/50'}>
-              {row.map((cell, j) => <td key={j} className="px-4 py-2 border border-gray-700 text-gray-300">{cell}</td>)}
+              {row.map((cell, j) => <td key={j} className="px-2 sm:px-4 py-1.5 sm:py-2 border border-gray-700 text-gray-300">{cell}</td>)}
             </tr>
           ))}
         </tbody>
@@ -44,9 +44,9 @@ export default function OrganicChemistry() {
     <div className="max-w-3xl mx-auto px-4 py-10">
       <Link to="/lessons" className="text-pink-400 hover:text-pink-300 text-sm mb-4 inline-block">← All Lessons</Link>
       <div className="flex items-center gap-3 mb-6">
-        <span className="text-5xl">🧬</span>
+        <span className="text-4xl sm:text-5xl">🧬</span>
         <div>
-          <h1 className="text-3xl font-bold">Organic Chemistry</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Organic Chemistry</h1>
           <p className="text-gray-400">Carbon compounds, naming, and reactions</p>
         </div>
       </div>

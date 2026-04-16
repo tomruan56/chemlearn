@@ -40,7 +40,7 @@ function ReactionCard({ reaction, query }) {
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-gray-600 transition-colors">
       <button
-        className="w-full text-left px-5 py-4"
+        className="w-full text-left px-3 sm:px-5 py-3 sm:py-4"
         onClick={() => setExpanded(e => !e)}
       >
         <div className="flex items-start justify-between gap-3">
@@ -62,7 +62,7 @@ function ReactionCard({ reaction, query }) {
       </button>
 
       {expanded && (
-        <div className="px-5 pb-5 border-t border-gray-800 pt-4">
+        <div className="px-3 sm:px-5 pb-4 sm:pb-5 border-t border-gray-800 pt-3 sm:pt-4">
           <p className="text-gray-300 text-sm mb-4 leading-relaxed">
             {reaction.description}
           </p>
@@ -106,9 +106,9 @@ export default function Reactions() {
     <div className="max-w-3xl mx-auto px-4 py-10">
       {/* Header */}
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-5xl">🔬</span>
+        <span className="text-4xl sm:text-5xl">🔬</span>
         <div>
-          <h1 className="text-3xl font-bold">Reaction Library</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Reaction Library</h1>
           <p className="text-gray-400">
             {reactions.length} reactions — search by element symbol or compound formula
           </p>

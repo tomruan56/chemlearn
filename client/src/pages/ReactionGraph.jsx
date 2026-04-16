@@ -221,7 +221,7 @@ export default function ReactionGraph() {
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
-    <div className="flex flex-col" style={{ height: 'calc(100vh - 56px)' }}>
+    <div className="flex flex-col" style={{ height: 'calc(100dvh - 48px)' }}>
 
       {/* ── Toolbar ── */}
       <div className="bg-gray-900 border-b border-gray-800 px-3 py-2 flex flex-wrap items-center gap-2 z-10 flex-shrink-0">
@@ -338,43 +338,64 @@ export default function ReactionGraph() {
           </div>
         </div>
 
-        {/* ── sidebar ── */}
+        {/* ── sidebar — desktop: right panel; mobile: bottom sheet ── */}
         {selected && (
-          <div className="w-72 flex-shrink-0 bg-gray-900 border-l border-gray-800 overflow-y-auto">
-            <div className="p-4">
-              <div className="flex items-start justify-between mb-1">
-                <h2 className="font-mono text-2xl font-bold text-white break-all leading-snug">
-                  {selected.id}
-                </h2>
-                <button
-                  onClick={() => setSelected(null)}
-                  className="text-gray-500 hover:text-white text-xl ml-2 flex-shrink-0 mt-0.5"
-                >×</button>
+          <>
+            {/* Mobile bottom sheet */}
+            <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 bg-gray-900 border-t border-gray-800
+                            rounded-t-2xl shadow-2xl max-h-[50vh] overflow-y-auto">
+              <div className="sticky top-0 bg-gray-900 flex items-center justify-between px-4 pt-3 pb-2 border-b border-gray-800/60">
+                <div>
+                  <span className="font-mono text-lg font-bold text-white break-all">{selected.id}</span>
+                  <span className="text-xs text-gray-500 ml-2">
+                    {/^[A-Z][a-z]?$/.test(selected.id) ? '⚡ element' : '🧪 compound'}
+                    {' · '}{selected.reactions?.length ?? 0} reactions
+                  </span>
+                </div>
+                <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-white text-2xl leading-none ml-3">×</button>
               </div>
-
-              <p className="text-xs text-gray-500 mb-4">
-                {/^[A-Z][a-z]?$/.test(selected.id) ? '⚡ Pure element' : '🧪 Compound'}
-                {' · '}{selected.reactions?.length ?? 0} reaction{selected.reactions?.length !== 1 ? 's' : ''}
-              </p>
-
-              <div className="space-y-2">
+              <div className="p-3 space-y-2">
                 {(selected.reactions ?? []).map(r => (
                   <div key={r.id} className="bg-gray-800 rounded-lg p-3 border border-gray-700/60">
                     <p className="font-mono text-xs text-white mb-2 leading-snug">{r.equation}</p>
                     <div className="flex flex-wrap items-center gap-1.5">
-                      <span
-                        className="text-xs px-2 py-0.5 rounded-full border font-medium"
+                      <span className="text-xs px-2 py-0.5 rounded-full border font-medium"
                         style={{ background: tc(r.type) + '22', borderColor: tc(r.type), color: tc(r.type) }}
                       >{r.type}</span>
-                      {r.conditions && (
-                        <span className="text-xs text-gray-600">{r.conditions}</span>
-                      )}
+                      {r.conditions && <span className="text-xs text-gray-600">{r.conditions}</span>}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
+
+            {/* Desktop right panel */}
+            <div className="hidden sm:block w-72 flex-shrink-0 bg-gray-900 border-l border-gray-800 overflow-y-auto">
+              <div className="p-4">
+                <div className="flex items-start justify-between mb-1">
+                  <h2 className="font-mono text-2xl font-bold text-white break-all leading-snug">{selected.id}</h2>
+                  <button onClick={() => setSelected(null)} className="text-gray-500 hover:text-white text-xl ml-2 flex-shrink-0 mt-0.5">×</button>
+                </div>
+                <p className="text-xs text-gray-500 mb-4">
+                  {/^[A-Z][a-z]?$/.test(selected.id) ? '⚡ Pure element' : '🧪 Compound'}
+                  {' · '}{selected.reactions?.length ?? 0} reaction{selected.reactions?.length !== 1 ? 's' : ''}
+                </p>
+                <div className="space-y-2">
+                  {(selected.reactions ?? []).map(r => (
+                    <div key={r.id} className="bg-gray-800 rounded-lg p-3 border border-gray-700/60">
+                      <p className="font-mono text-xs text-white mb-2 leading-snug">{r.equation}</p>
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="text-xs px-2 py-0.5 rounded-full border font-medium"
+                          style={{ background: tc(r.type) + '22', borderColor: tc(r.type), color: tc(r.type) }}
+                        >{r.type}</span>
+                        {r.conditions && <span className="text-xs text-gray-600">{r.conditions}</span>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>
