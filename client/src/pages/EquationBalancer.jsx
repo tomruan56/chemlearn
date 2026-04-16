@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useLanguage } from '../context/LanguageContext'
+import { T } from '../i18n/translations'
 
 // ── Parser ───────────────────────────────────────────────────────────────────
 
@@ -222,6 +224,8 @@ const EXAMPLES = [
 export default function EquationBalancer() {
   const [input, setInput] = useState('')
   const [result, setResult] = useState(null)
+  const { lang } = useLanguage()
+  const t = k => T[lang]?.[k] ?? T.en[k] ?? k
 
   function handleBalance(eq) {
     const r = balanceEquation(eq || input)
@@ -239,8 +243,8 @@ export default function EquationBalancer() {
       <div className="flex items-center gap-3 mb-2">
         <span className="text-4xl sm:text-5xl">⚖️</span>
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold">Equation Balancer</h1>
-          <p className="text-gray-400 text-sm sm:text-base">Enter any chemical equation to balance it instantly</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">{t('bal_title')}</h1>
+          <p className="text-gray-400 text-sm sm:text-base">{t('bal_sub')}</p>
         </div>
       </div>
 

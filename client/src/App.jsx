@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import { AuthProvider } from './context/AuthContext'
+import { LanguageProvider } from './context/LanguageContext'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import PeriodicTable from './pages/PeriodicTable'
@@ -25,6 +26,7 @@ const ReactionGraph = lazy(() => import('./pages/ReactionGraph'))
 
 export default function App() {
   return (
+    <LanguageProvider>
     <AuthProvider>
       <BrowserRouter>
         <div className="min-h-screen flex flex-col">
@@ -65,5 +67,6 @@ export default function App() {
         </div>
       </BrowserRouter>
     </AuthProvider>
+    </LanguageProvider>
   )
 }

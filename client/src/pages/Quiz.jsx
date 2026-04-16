@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useLanguage } from '../context/LanguageContext'
+import { T } from '../i18n/translations'
 
 // ── static metadata ───────────────────────────────────────────────────────────
 const TOPICS = [
@@ -51,6 +53,8 @@ function StarRating({ score, total }) {
 // ── component ─────────────────────────────────────────────────────────────────
 export default function Quiz() {
   const { token } = useAuth()
+  const { lang } = useLanguage()
+  const t = k => T[lang]?.[k] ?? T.en[k] ?? k
   const [searchParams] = useSearchParams()
 
   // phase: 'topic' | 'tests' | 'loading' | 'answering' | 'results'
@@ -146,35 +150,43 @@ export default function Quiz() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="text-4xl mb-4 animate-bounce">⚗️</div>
-          <p className="text-gray-400">Loading…</p>
+          <p className="text-gray-400">{t('quiz_loading')}</p>
         </div>
       </div>
     )
+  }
+
+  const topicNames = {
+    atomic_structure:   t('topic_atomic_title'),
+    chemical_bonding:   t('topic_bonding_title'),
+    stoichiometry:      t('topic_stoich_title'),
+    acids_and_bases:    t('topic_acids_title'),
+    chemical_reactions: t('topic_reactions_title'),
   }
 
   // ── topic selection ────────────────────────────────────────────────────────
   if (phase === 'topic') {
     return (
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <h1 className="text-3xl font-bold mb-2">Practice Quizzes</h1>
+        <h1 className="text-3xl font-bold mb-2">{t('quiz_title')}</h1>
         <p className="text-gray-400 mb-8">
-          10 tests per topic · 10 questions each · difficulty from{' '}
-          <span className="text-green-400">Very Easy</span> to{' '}
+          10 {t('quiz_all_tests')} · 10 {t('quiz_questions')} · {t('quiz_difficulty')}{' '}
+          <span className="text-green-400">Very Easy</span> →{' '}
           <span className="text-red-400">Expert</span>
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
-          {TOPICS.map(t => (
+          {TOPICS.map(tp => (
             <button
-              key={t.id}
-              onClick={() => openTopic(t.id)}
-              className={`bg-gradient-to-br ${t.color} border ${t.border} rounded-xl p-5 text-left
+              key={tp.id}
+              onClick={() => openTopic(tp.id)}
+              className={`bg-gradient-to-br ${tp.color} border ${tp.border} rounded-xl p-5 text-left
                           hover:scale-[1.02] transition-transform group`}
             >
-              <div className="text-3xl mb-2">{t.icon}</div>
+              <div className="text-3xl mb-2">{tp.icon}</div>
               <div className="font-bold text-lg text-white group-hover:text-blue-200 transition-colors">
-                {t.name}
+                {topicNames[tp.id] || tp.name}
               </div>
-              <div className="text-sm text-gray-400 mt-1">10 tests · 100 questions total</div>
+              <div className="text-sm text-gray-400 mt-1">10 {t('quiz_all_tests')} · 100 {t('quiz_questions')}</div>
             </button>
           ))}
         </div>
@@ -184,7 +196,7 @@ export default function Quiz() {
 
   // ── test selection ─────────────────────────────────────────────────────────
   if (phase === 'tests') {
-    const passedCount = tests.filter(t => t.completed).length
+    const passedCount = tests.filter(ts => ts.completed).length
 
     return (
       <div className="max-w-3xl mx-auto px-4 py-10">
@@ -192,13 +204,13 @@ export default function Quiz() {
           onClick={() => setPhase('topic')}
           className="text-gray-400 hover:text-white text-sm mb-6 flex items-center gap-1 transition-colors"
         >
-          ← All Topics
+          {t('quiz_back_topics')}
         </button>
 
         <div className="flex items-center gap-3 mb-6">
           <span className="text-4xl">{topicMeta?.icon}</span>
           <div>
-            <h1 className="text-2xl font-bold">{topicMeta?.name}</h1>
+            <h1 className="text-2xl font-bold">{topicNames[topic] || topicMeta?.name}</h1>
             <p className="text-gray-400 text-sm">Test 1 = easiest · Test 10 = hardest</p>
           </div>
         </div>
@@ -215,36 +227,36 @@ export default function Quiz() {
 
         {/* test grid */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6">
-          {tests.map(t => (
+          {tests.map(ts => (
             <button
-              key={t.test}
-              onClick={() => startTest(topic, t.test)}
+              key={ts.test}
+              onClick={() => startTest(topic, ts.test)}
               className={`rounded-xl p-4 text-left border transition-all hover:bg-gray-800
                           hover:border-blue-500 group ${
-                t.completed
+                ts.completed
                   ? 'bg-gray-900 border-green-700'
                   : 'bg-gray-900 border-gray-700'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-bold text-gray-500 group-hover:text-gray-400">
-                  TEST {t.test}
+                  TEST {ts.test}
                 </span>
-                {t.completed && <span className="text-green-400 text-xs">✓</span>}
+                {ts.completed && <span className="text-green-400 text-xs">✓</span>}
               </div>
-              <div className={`text-xs font-semibold mb-2 ${DIFF_COLOR[t.label] ?? 'text-gray-400'}`}>
-                {t.label}
+              <div className={`text-xs font-semibold mb-2 ${DIFF_COLOR[ts.label] ?? 'text-gray-400'}`}>
+                {ts.label}
               </div>
-              {t.bestScore !== null ? (
+              {ts.bestScore !== null ? (
                 <>
                   <div className="text-sm font-bold text-white mb-1.5">
-                    {t.bestScore}
+                    {ts.bestScore}
                     <span className="text-gray-500 text-xs font-normal">/10</span>
                   </div>
-                  <ScoreBar score={t.bestScore} total={10} />
+                  <ScoreBar score={ts.bestScore} total={10} />
                 </>
               ) : (
-                <div className="text-xs text-gray-600 mt-2">Not started</div>
+                <div className="text-xs text-gray-600 mt-2">{t('quiz_not_attempted')}</div>
               )}
             </button>
           ))}
@@ -295,7 +307,7 @@ export default function Quiz() {
           {/* Review */}
           {res && res.length > 0 && (
             <div className="space-y-4">
-              <h3 className="font-semibold text-gray-300 border-t border-gray-800 pt-4">Review</h3>
+              <h3 className="font-semibold text-gray-300 border-t border-gray-800 pt-4">{t('quiz_review')}</h3>
               {res.map((r, i) => (
                 <div
                   key={r.id}
@@ -331,15 +343,15 @@ export default function Quiz() {
 
         <div className="flex flex-wrap gap-3 justify-center">
           <button onClick={() => startTest(topic, testNum)} className="btn-primary">
-            Retry Test {testNum}
+            {t('quiz_retry')} {testNum}
           </button>
           {testNum < 10 && (
             <button onClick={() => startTest(topic, testNum + 1)} className="btn-primary">
-              Next Test {testNum + 1} →
+              {t('quiz_next_test')} {testNum + 1} →
             </button>
           )}
-          <button onClick={() => openTopic(topic)} className="btn-secondary">All Tests</button>
-          <button onClick={() => setPhase('topic')} className="btn-secondary">Change Topic</button>
+          <button onClick={() => openTopic(topic)} className="btn-secondary">{t('quiz_all_tests')}</button>
+          <button onClick={() => setPhase('topic')} className="btn-secondary">{t('quiz_change_topic')}</button>
         </div>
       </div>
     )
@@ -412,9 +424,9 @@ export default function Quiz() {
           className={`btn-primary px-8 ${selected === null ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
           {!revealed
-            ? 'Lock in Answer'
+            ? t('quiz_lock_answer')
             : current < questions.length - 1
-              ? 'Next Question →'
+              ? 'Next →'
               : 'See Results →'}
         </button>
       </div>

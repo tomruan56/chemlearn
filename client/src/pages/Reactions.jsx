@@ -1,5 +1,7 @@
 import { useState, useMemo } from 'react'
 import { reactions, allElements, allTypes, searchReactions } from '../data/reactions'
+import { useLanguage } from '../context/LanguageContext'
+import { T } from '../i18n/translations'
 
 const TYPE_COLORS = {
   'Synthesis':                     'bg-blue-900/50 text-blue-300 border-blue-700',
@@ -92,6 +94,8 @@ export default function Reactions() {
   const [query, setQuery] = useState('')
   const [typeFilter, setTypeFilter] = useState('all')
   const [showAll, setShowAll] = useState(false)
+  const { lang } = useLanguage()
+  const t = k => T[lang]?.[k] ?? T.en[k] ?? k
 
   const results = useMemo(() => {
     let base = query.trim() ? searchReactions(query) : reactions
@@ -108,9 +112,9 @@ export default function Reactions() {
       <div className="flex items-center gap-3 mb-2">
         <span className="text-4xl sm:text-5xl">🔬</span>
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold">Reaction Library</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">{t('rx_title')}</h1>
           <p className="text-gray-400">
-            {reactions.length} reactions — search by element symbol or compound formula
+            {reactions.length} {t('rx_sub_prefix')}
           </p>
         </div>
       </div>

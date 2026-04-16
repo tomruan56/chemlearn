@@ -1,22 +1,27 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-
-const navLinks = [
-  { to: '/',                label: 'Home',             icon: '🏠' },
-  { to: '/periodic-table', label: 'Periodic Table',   icon: '⚛️' },
-  { to: '/lessons',         label: 'Lessons',          icon: '📚' },
-  { to: '/quiz',            label: 'Quiz',             icon: '✏️' },
-  { to: '/balancer',        label: 'Equation Balancer',icon: '⚖️' },
-  { to: '/reactions',       label: 'Reactions',        icon: '🔬' },
-  { to: '/reaction-graph', label: 'Reaction Graph',   icon: '🔗' },
-]
+import { useLanguage } from '../context/LanguageContext'
+import { T } from '../i18n/translations'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
+  const { lang, toggle } = useLanguage()
   const location = useLocation()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
+
+  const t = k => T[lang]?.[k] ?? T.en[k] ?? k
+
+  const navLinks = [
+    { to: '/',                label: t('nav_home'),       icon: '🏠' },
+    { to: '/periodic-table', label: t('nav_periodic'),   icon: '⚛️' },
+    { to: '/lessons',         label: t('nav_lessons'),    icon: '📚' },
+    { to: '/quiz',            label: t('nav_quiz'),       icon: '✏️' },
+    { to: '/balancer',        label: t('nav_balancer'),   icon: '⚖️' },
+    { to: '/reactions',       label: t('nav_reactions'),  icon: '🔬' },
+    { to: '/reaction-graph', label: t('nav_graph'),      icon: '🔗' },
+  ]
 
   function handleLogout() {
     logout()
@@ -52,18 +57,35 @@ export default function Navbar() {
                 {link.icon} {link.label}
               </Link>
             ))}
+            {/* Language toggle — desktop */}
+            <button
+              onClick={toggle}
+              className="ml-2 px-3 py-1.5 rounded-lg text-sm font-bold border border-gray-700 text-gray-300 hover:text-white hover:border-blue-500 hover:bg-gray-800 transition-colors"
+              title="Switch language"
+            >
+              {lang === 'en' ? '🇻🇳 VI' : '🇬🇧 EN'}
+            </button>
           </div>
 
-          {/* Hamburger button — mobile only */}
-          <button
-            className="md:hidden flex flex-col justify-center items-center w-9 h-9 rounded-lg hover:bg-gray-800 transition-colors gap-1.5"
-            onClick={() => setOpen(o => !o)}
-            aria-label="Toggle menu"
-          >
-            <span className={`block w-5 h-0.5 bg-gray-300 transition-transform duration-200 ${open ? 'translate-y-2 rotate-45' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-gray-300 transition-opacity duration-200 ${open ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-gray-300 transition-transform duration-200 ${open ? '-translate-y-2 -rotate-45' : ''}`} />
-          </button>
+          {/* Mobile right side: lang toggle + hamburger */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggle}
+              className="text-xs font-bold px-2 py-1 rounded border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+              title="Switch language"
+            >
+              {lang === 'en' ? '🇻🇳' : '🇬🇧'}
+            </button>
+            <button
+              className="flex flex-col justify-center items-center w-9 h-9 rounded-lg hover:bg-gray-800 transition-colors gap-1.5"
+              onClick={() => setOpen(o => !o)}
+              aria-label="Toggle menu"
+            >
+              <span className={`block w-5 h-0.5 bg-gray-300 transition-transform duration-200 ${open ? 'translate-y-2 rotate-45' : ''}`} />
+              <span className={`block w-5 h-0.5 bg-gray-300 transition-opacity duration-200 ${open ? 'opacity-0' : ''}`} />
+              <span className={`block w-5 h-0.5 bg-gray-300 transition-transform duration-200 ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+            </button>
+          </div>
         </div>
       </nav>
 

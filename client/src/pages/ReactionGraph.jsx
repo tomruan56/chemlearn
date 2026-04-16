@@ -1,6 +1,8 @@
 import { useRef, useState, useMemo, useCallback, useEffect } from 'react'
 import ForceGraph2D from 'react-force-graph-2d'
 import { reactions } from '../data/reactions'
+import { useLanguage } from '../context/LanguageContext'
+import { T } from '../i18n/translations'
 
 // ─── reaction-type → colour ───────────────────────────────────────────────────
 const TYPE_COLOR = {
@@ -96,6 +98,8 @@ export default function ReactionGraph() {
   const [search,     setSearch]     = useState('')
   const [selected,   setSelected]   = useState(null)
   const [hovered,    setHovered]    = useState(null)
+  const { lang } = useLanguage()
+  const t = k => T[lang]?.[k] ?? T.en[k] ?? k
   const [ready,      setReady]      = useState(false)
 
   // ── responsive canvas size ─────────────────────────────────────────────────
@@ -226,7 +230,7 @@ export default function ReactionGraph() {
       {/* ── Toolbar ── */}
       <div className="bg-gray-900 border-b border-gray-800 px-3 py-2 flex flex-wrap items-center gap-2 z-10 flex-shrink-0">
         <span className="text-base">🔗</span>
-        <span className="font-bold text-white text-sm hidden sm:inline">Reaction Chain Graph</span>
+        <span className="font-bold text-white text-sm hidden sm:inline">{t('rg_title')}</span>
         <span className="text-gray-700 hidden sm:inline">|</span>
 
         {/* search */}

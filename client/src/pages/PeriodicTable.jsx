@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { elements, categoryColors } from '../data/elements'
+import { useLanguage } from '../context/LanguageContext'
+import { T } from '../i18n/translations'
 
 // Build a grid: period rows × group columns (1-18), plus f-block rows below
 function buildGrid() {
@@ -41,6 +43,8 @@ function ElementCell({ el, onClick, selected }) {
 export default function PeriodicTable() {
   const [selected, setSelected] = useState(null)
   const [filter, setFilter] = useState('all')
+  const { lang } = useLanguage()
+  const t = k => T[lang]?.[k] ?? T.en[k] ?? k
 
   function handleClick(el) {
     setSelected(s => s?.number === el.number ? null : el)
@@ -51,13 +55,13 @@ export default function PeriodicTable() {
   return (
     <div className="max-w-[1400px] mx-auto px-4 py-6">
       <div className="flex flex-wrap items-center gap-3 mb-4 px-2">
-        <h1 className="text-2xl font-bold">Periodic Table</h1>
+        <h1 className="text-2xl font-bold">{t('pt_title')}</h1>
         <select
           value={filter}
           onChange={e => setFilter(e.target.value)}
           className="input w-auto text-sm py-1"
         >
-          <option value="all">All categories</option>
+          <option value="all">{t('pt_all_categories')}</option>
           {Object.entries(categoryColors).map(([key, val]) => (
             <option key={key} value={key}>{val.label}</option>
           ))}
