@@ -1,6 +1,6 @@
 export const nuclearChemistryData = {
   icon: '☢️',
-  quizTopic: null,
+  quizTopic: 'nuclear_chemistry',
   theme: {
     heading: 'text-violet-400',
     border: 'border-violet-500',

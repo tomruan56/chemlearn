@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { elements, categoryColors } from '../data/elements'
+import { elementCompounds } from '../data/elementCompounds'
 import { useLanguage } from '../context/LanguageContext'
 import { T } from '../i18n/translations'
 
@@ -45,9 +46,17 @@ export default function PeriodicTable() {
   const [filter, setFilter] = useState('all')
   const { lang } = useLanguage()
   const t = k => T[lang]?.[k] ?? T.en[k] ?? k
+  const detailRef = useRef(null)
 
   function handleClick(el) {
-    setSelected(s => s?.number === el.number ? null : el)
+    const isDeselect = selected?.number === el.number
+    setSelected(isDeselect ? null : el)
+    if (!isDeselect) {
+      // small delay so the panel has time to render before scrolling
+      setTimeout(() => {
+        detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      }, 30)
+    }
   }
 
   const filteredElements = filter === 'all' ? null : filter
@@ -143,7 +152,7 @@ export default function PeriodicTable() {
 
       {/* Detail panel */}
       {selected && (
-        <div className="mt-6 mx-2">
+        <div ref={detailRef} className="mt-6 mx-2">
           <div className={`card border-2 ${categoryColors[selected.category]?.border || 'border-gray-700'}`}>
             <div className="flex items-start gap-3 sm:gap-6 flex-wrap">
               <div className={`${categoryColors[selected.category]?.bg} rounded-xl p-3 sm:p-4 text-center min-w-[80px] sm:min-w-[100px]`}>
@@ -177,6 +186,28 @@ export default function PeriodicTable() {
                 <p className="text-gray-300 text-sm leading-relaxed">{selected.description}</p>
               </div>
             </div>
+
+            {/* Compounds section */}
+            {elementCompounds[selected.number] && (
+              <div className="mt-5 pt-4 border-t border-gray-700">
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                  Common Compounds &amp; Applications
+                </h3>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {elementCompounds[selected.number].map((c, i) => (
+                    <div key={i} className="bg-gray-800 rounded-lg px-3 py-2.5 flex flex-col gap-1">
+                      <div className="flex items-baseline gap-2">
+                        <span className={`font-mono font-bold text-sm ${categoryColors[selected.category]?.text || 'text-blue-300'}`}>
+                          {c.formula}
+                        </span>
+                        <span className="text-gray-300 text-xs font-medium truncate">{c.name}</span>
+                      </div>
+                      <p className="text-gray-400 text-xs leading-snug">{c.use}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

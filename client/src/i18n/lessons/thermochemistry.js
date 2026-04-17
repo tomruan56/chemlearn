@@ -1,6 +1,6 @@
 export const thermochemistryData = {
   icon: '🔥',
-  quizTopic: null,
+  quizTopic: 'thermochemistry',
   theme: {
     heading: 'text-orange-400',
     border: 'border-orange-500',

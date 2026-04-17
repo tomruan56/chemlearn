@@ -6,11 +6,15 @@ import { T } from '../i18n/translations'
 
 // ── static metadata ───────────────────────────────────────────────────────────
 const TOPICS = [
-  { id: 'atomic_structure',   name: 'Atomic Structure',   icon: '⚛️', color: 'from-blue-900 to-blue-800',    border: 'border-blue-700'   },
-  { id: 'chemical_bonding',   name: 'Chemical Bonding',   icon: '🔗', color: 'from-purple-900 to-purple-800', border: 'border-purple-700' },
-  { id: 'stoichiometry',      name: 'Stoichiometry',      icon: '⚖️', color: 'from-green-900 to-green-800',   border: 'border-green-700'  },
-  { id: 'acids_and_bases',    name: 'Acids & Bases',      icon: '🧪', color: 'from-yellow-900 to-yellow-800', border: 'border-yellow-700' },
-  { id: 'chemical_reactions', name: 'Chemical Reactions', icon: '⚗️', color: 'from-red-900 to-red-800',       border: 'border-red-700'    },
+  { id: 'atomic_structure',   name: 'Atomic Structure',   icon: '⚛️', color: 'from-blue-900 to-blue-800',      border: 'border-blue-700'    },
+  { id: 'chemical_bonding',   name: 'Chemical Bonding',   icon: '🔗', color: 'from-purple-900 to-purple-800',  border: 'border-purple-700'  },
+  { id: 'stoichiometry',      name: 'Stoichiometry',      icon: '⚖️', color: 'from-green-900 to-green-800',    border: 'border-green-700'   },
+  { id: 'acids_and_bases',    name: 'Acids & Bases',      icon: '🧪', color: 'from-yellow-900 to-yellow-800',  border: 'border-yellow-700'  },
+  { id: 'chemical_reactions', name: 'Chemical Reactions', icon: '⚗️', color: 'from-red-900 to-red-800',        border: 'border-red-700'     },
+  { id: 'thermochemistry',    name: 'Thermochemistry',    icon: '🔥', color: 'from-orange-900 to-orange-800',  border: 'border-orange-700'  },
+  { id: 'gases',              name: 'Gases',              icon: '💨', color: 'from-cyan-900 to-cyan-800',      border: 'border-cyan-700'    },
+  { id: 'organic_chemistry',  name: 'Organic Chemistry',  icon: '🧬', color: 'from-pink-900 to-pink-800',      border: 'border-pink-700'    },
+  { id: 'nuclear_chemistry',  name: 'Nuclear Chemistry',  icon: '☢️', color: 'from-violet-900 to-violet-800',  border: 'border-violet-700'  },
 ]
 
 const DIFF_COLOR = {
@@ -162,6 +166,10 @@ export default function Quiz() {
     stoichiometry:      t('topic_stoich_title'),
     acids_and_bases:    t('topic_acids_title'),
     chemical_reactions: t('topic_reactions_title'),
+    thermochemistry:    t('topic_thermo_title'),
+    gases:              t('topic_gases_title'),
+    organic_chemistry:  t('topic_organic_title'),
+    nuclear_chemistry:  t('topic_nuclear_title'),
   }
 
   // ── topic selection ────────────────────────────────────────────────────────

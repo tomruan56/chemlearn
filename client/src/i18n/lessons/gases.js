@@ -1,6 +1,6 @@
 export const gasesData = {
   icon: '💨',
-  quizTopic: null,
+  quizTopic: 'gases',
   theme: {
     heading: 'text-cyan-400',
     border: 'border-cyan-500',

@@ -1,6 +1,6 @@
 export const organicChemistryData = {
   icon: '🧬',
-  quizTopic: null,
+  quizTopic: 'organic_chemistry',
   theme: {
     heading: 'text-pink-400',
     border: 'border-pink-500',
